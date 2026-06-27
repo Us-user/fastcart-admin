@@ -1,0 +1,26 @@
+{
+  "app": {
+    "name": "FastCart Админ"
+  },
+  "scaffold": {
+    "ready": "Каркас и инфраструктура подключены.",
+    "stackOk": "MUI + Tailwind + Redux + RTK Query + i18n + тёмная тема работают."
+  },
+  "theme": {
+    "light": "Светлая тема",
+    "dark": "Тёмная тема"
+  },
+  "language": {
+    "switch": "RU / EN"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "create": "Создать",
+    "edit": "Редактировать",
+    "search": "Поиск",
+    "loading": "Загрузка…",
+    "retry": "Повторить"
+  }
+}

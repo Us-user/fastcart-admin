@@ -1,0 +1,26 @@
+{
+  "app": {
+    "name": "FastCart Admin"
+  },
+  "scaffold": {
+    "ready": "Scaffolding & infrastructure are wired up.",
+    "stackOk": "MUI + Tailwind + Redux + RTK Query + i18n + dark mode are all working."
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "language": {
+    "switch": "RU / EN"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "create": "Create",
+    "edit": "Edit",
+    "search": "Search",
+    "loading": "Loading…",
+    "retry": "Retry"
+  }
+}

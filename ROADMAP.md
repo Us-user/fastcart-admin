@@ -17,19 +17,19 @@
 ## Phase 0 — Scaffolding & infrastructure
 *Goal: an empty-but-wired app that builds, lints, has the full stack installed, dark mode + i18n + store + API layer in place. No business screens yet.*
 
-- [ ] Scaffold fresh Vite `react-ts` project at repo root (preserve `images/`, TRD, roadmap, `.claude/`).
-- [ ] Install stack (TRD §1): MUI, Tailwind, Redux Toolkit + RTK Query, React Router, React Hook Form, Yup + `@hookform/resolvers`, i18next + react-i18next, axios.
-- [ ] TypeScript strict mode (`strict: true`); ESLint + Prettier configured.
-- [ ] Feature-based folder structure (TRD §2.2): `app/`, `shared/{api,ui,lib}`, `features/*`, `pages/`, `locales/`.
-- [ ] Env: `VITE_API_BASE_URL=https://fastcart-backend.onrender.com`; commit `.env.example`.
-- [ ] MUI + Tailwind coexistence (TRD §1.1): resolve preflight/baseline conflicts; document approach in README.
-- [ ] Dark mode from a single source (Redux theme mode) → drives MUI `palette.mode` **and** Tailwind `dark` class on `<html>`.
-- [ ] Redux store + typed hooks (`useAppDispatch`/`useAppSelector`).
-- [ ] RTK Query `baseApi` with `baseQueryWithReauth` (401 → refresh → retry once → logout; single-flight, no loops) (TRD §3.2).
-- [ ] Shared axios instance: auth header + same 401-refresh logic (for multipart) (TRD §7).
-- [ ] Reusable typed `FormData` builder (arrays, files, `JSON.stringify`'d Options/Variants) (TRD §7).
-- [ ] i18n bootstrap: `en` + `ru` resource files, language detector, default EN (TRD §4.2).
-- [ ] Single status → color map module (orders/payments/returns/inventory) (TRD §4, §13).
+- [x] Scaffold fresh Vite `react-ts` project at repo root (preserve `images/`, TRD, roadmap, `.claude/`).
+- [x] Install stack (TRD §1): MUI, Tailwind, Redux Toolkit + RTK Query, React Router, React Hook Form, Yup + `@hookform/resolvers`, i18next + react-i18next, axios.
+- [x] TypeScript strict mode (`strict: true`); ESLint + Prettier configured. *(swapped scaffold's oxlint → ESLint flat config per TRD)*
+- [x] Feature-based folder structure (TRD §2.2): `app/`, `shared/{api,ui,lib}`, `features/*`, `pages/`, `locales/`. *(`shared/ui` populates as shared components are built)*
+- [x] Env: `VITE_API_BASE_URL=https://fastcart-backend.onrender.com`; commit `.env.example`.
+- [x] MUI + Tailwind coexistence (TRD §1.1): resolve preflight/baseline conflicts; document approach in README.
+- [x] Dark mode from a single source (Redux theme mode) → drives MUI `palette.mode` **and** Tailwind `dark` class on `<html>`.
+- [x] Redux store + typed hooks (`useAppDispatch`/`useAppSelector`).
+- [x] RTK Query `baseApi` with `baseQueryWithReauth` (401 → refresh → retry once → logout; single-flight, no loops) (TRD §3.2).
+- [x] Shared axios instance: auth header + same 401-refresh logic (for multipart) (TRD §7).
+- [x] Reusable typed `FormData` builder (arrays, files, `JSON.stringify`'d Options/Variants) (TRD §7).
+- [x] i18n bootstrap: `en` + `ru` resource files, language detector, default EN (TRD §4.2).
+- [x] Single status → color map module (orders/payments/returns/inventory) (TRD §4, §13).
 
 ## Phase 1 — Auth, role gating & app shell
 *Goal: log in, refresh, admin-only access, and the shared layout every screen lives in.*
@@ -109,7 +109,7 @@
 ---
 
 ## Conventions — decide once, apply everywhere (TRD §13)
-- [ ] Status → color map (single source).
+- [x] Status → color map (single source).
 - [ ] Locale-aware date / number / currency formatting.
 - [ ] Default pagination page size (backend default 20 unless a mockup implies otherwise).
 - [ ] Toast copy patterns (success / error).
