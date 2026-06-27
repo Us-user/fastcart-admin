@@ -5,6 +5,7 @@ import { PublicOnly, RequireAdmin, RequireAuth } from '@/features/auth/guards';
 import { InsufficientPermissionsPage } from '@/pages/InsufficientPermissionsPage';
 import { OtherPage } from '@/pages/OtherPage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
+import { ProductsListPage } from '@/pages/ProductsListPage';
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage';
@@ -34,7 +35,15 @@ export function AppRouter() {
             <Route element={<AppShell />}>
               <Route path="/" element={<PlaceholderPage titleKey="nav.dashboard" />} />
               <Route path="/orders" element={<PlaceholderPage titleKey="nav.orders" />} />
-              <Route path="/products" element={<PlaceholderPage titleKey="nav.products" />} />
+              <Route path="/products" element={<ProductsListPage />} />
+              <Route
+                path="/products/new"
+                element={<PlaceholderPage titleKey="products.addProduct" />}
+              />
+              <Route
+                path="/products/:id/edit"
+                element={<PlaceholderPage titleKey="products.editProduct" />}
+              />
               <Route path="/other" element={<OtherPage />} />
             </Route>
           </Route>

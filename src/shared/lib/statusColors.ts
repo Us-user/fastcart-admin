@@ -40,10 +40,10 @@ const STATUS_TONE: Record<string, StatusTone> = {
   approved: 'green',
   rejected: 'red',
   completed: 'green',
-  // Inventory
+  // Inventory (Products mockup shows "Out of Stock" as a neutral gray pill)
   instock: 'green',
   lowstock: 'amber',
-  outofstock: 'red',
+  outofstock: 'gray',
 };
 
 function normalize(status: string): string {

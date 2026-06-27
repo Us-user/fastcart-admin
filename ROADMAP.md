@@ -52,15 +52,15 @@
 - [x] Categories CRUD + **Add category** modal (multipart Name + Image) (TRD §5.4).
 - [x] Subcategories master–detail inside the Categories tab (Category → Subcategory) (TRD §6.1, §8).
 - [x] Brands CRUD — two-column list + Add new brand (TRD §5.4, §9).
-- [ ] Colors CRUD — used by product Colour block + "New color" picker modal (TRD §9).
-- [ ] Tags CRUD — used by product Tags block (TRD §9).
+- [x] Colors CRUD — used by product Colour block + "New color" picker modal (TRD §9).
+- [x] Tags CRUD — used by product Tags block (TRD §9).
 - [x] "Other" tabbed screen shell hosting Categories / Brands / Banners (+ later tabs).
 
 ## Phase 3 — Products
 *Goal: the largest module — list, create (multipart), edit (sectioned), variants/options/images.*
 
-- [ ] Products list (thumbnail, inventory pill, category, price), search + filter, multi-select, pagination + results count (TRD §5.3).
-- [ ] Empty state "Add new products"; single + bulk delete modals.
+- [x] Products list (thumbnail, inventory pill, category, price), search + filter, multi-select, pagination + results count (TRD §5.3).
+- [x] Empty state "Add new products"; single + bulk delete modals.
 - [ ] **Add product** form — Information (incl. linked Category→Subcategory, Brand, **Condition** `BrandNew|Refurbished|Old`), Price block (+ `IsTaxable`), Options editor, Colour block, Tags block, Images uploader (TRD §5.3, §6.9, §8.1).
 - [ ] Multipart create `POST /Products`: Options/Variants `JSON.stringify`'d into string fields, Images as binary, TagIds repeated (TRD §7).
 - [ ] "Successfully add" success modal.
@@ -110,7 +110,7 @@
 
 ## Conventions — decide once, apply everywhere (TRD §13)
 - [x] Status → color map (single source).
-- [ ] Locale-aware date / number / currency formatting.
+- [~] Locale-aware date / number / currency formatting. *(currency/number done — `shared/lib/format.ts`; date formatting pending)*
 - [ ] Default pagination page size (backend default 20 unless a mockup implies otherwise).
 - [~] Toast copy patterns (success / error). *(global snackbar + `getApiErrorMessage` fallback established; per-entity copy fills in per phase)*
 - [~] Yup validation schemas per entity (translated messages). *(auth schemas done; other entities per phase)*

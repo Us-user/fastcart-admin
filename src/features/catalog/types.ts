@@ -1,19 +1,5 @@
-/** Standard backend response envelope — every endpoint wraps its payload. */
-export interface ApiEnvelope<T> {
-  success: boolean;
-  message: string | null;
-  data: T;
-  errors: unknown;
-}
-
-/** Paged list envelope used by paginated GET endpoints (e.g. `/Brands`). */
-export interface PagedResult<T> {
-  items: T[];
-  pageNumber: number;
-  pageSize: number;
-  totalCount: number;
-  totalPages: number;
-}
+// Generic API envelope types now live in shared/api; re-exported for existing imports.
+export type { ApiEnvelope, PagedResult } from '@/shared/api/types';
 
 export interface SubCategory {
   id: number;
@@ -49,5 +35,28 @@ export interface SubCategoryRequest {
 
 /** JSON body for `POST/PUT /Brands`. */
 export interface BrandRequest {
+  name: string;
+}
+
+export interface Color {
+  id: number;
+  name: string;
+  /** Hex string incl. leading `#`, e.g. `#00599C`. */
+  hexCode: string;
+}
+
+/** JSON body for `POST/PUT /Colors` (TRD §9). */
+export interface ColorRequest {
+  name: string;
+  hexCode: string;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+}
+
+/** JSON body for `POST/PUT /Tags` (TRD §9). */
+export interface TagRequest {
   name: string;
 }

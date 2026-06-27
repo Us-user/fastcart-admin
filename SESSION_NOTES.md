@@ -117,3 +117,33 @@
 
 **NEXT ACTION (start here):**
 > Continue **Phase 2**: build **Colors CRUD** (`GET/POST /Colors`, `GET/PUT/DELETE /Colors/{id}`, `ColorRequest{ name, hexCode }`) and **Tags CRUD** (`GET/POST /Tags`, `GET/PUT/DELETE /Tags/{id}`, `TagRequest{ name }`) as RTK Query slices in `src/features/catalog/`. These have **no standalone screen** — surface them as the **"New color" picker modal** (matches `images/02 Destructive-4/-5.png`: Color name + hex with color picker) and the **Tags chip block**, which will be embedded in the Phase-3 Add/Edit product form. Verify the response envelope shape with a live `GET /Colors` / `GET /Tags` first. Then move to **Phase 3 — Products** (start with the Products list: open `images/Products.png` + the delete-modal mockups).
+
+---
+
+## Session 5 — 2026-06-27 — Phase 2 finish (Colors/Tags) + Phase 3 Products list
+
+**Phase:** Phase 2 — **COMPLETE** (all 6 tasks checked off). Phase 3 — Products list + delete modals done; product form remains.
+
+**Done this session**
+- **Verified live shapes first:** `GET /Colors` is **paged** like Brands (`data:{items:[{id,name,hexCode}],…}`); `GET /Tags` is a **flat array** (`data:[{id,name}]`). `GET /Products` is paged; list item = `{id,name,code,brandName,categoryName,subCategoryName,primaryImageUrl,fromPrice,maxPrice,hasDiscount,inStock,condition,isNew,avgRating,reviewCount,swatches:[{value,hexCode}]}` — **no numeric stock count** (only `inStock`). `BulkDeleteRequest{ ids:int[] }`. Probed `Sort`: only `price_asc`/`price_desc`/`rating` reorder; everything else = default newest.
+- **Colors CRUD** (`features/catalog/colorsApi.ts`): paged GET + POST/PUT/DELETE, tag `Color`/`LIST`. **Tags CRUD** (`tagsApi.ts`): flat-array GET + CRUD, tag `Tag`/`LIST`. Types `Color`/`ColorRequest`/`Tag`/`TagRequest` + `colorSchema`(name+hex)/`tagSchema` + `validation.hexCode` added.
+- **`NewColorModal.tsx`** (create+edit) matches `02 Destructive-4/-5.png`: Color name field + hex field whose swatch is a native `<input type=color>` overlay (no new lib — TRD §1). **`ColorBlock.tsx`** (selectable swatches + "Create new" + hover edit/delete) and **`TagBlock.tsx`** (removable selected chips + add-by-name create-or-select + existing-tag chips with rename/delete) — reusable, controlled (`value:number[]`,`onChange`), to be dropped into the Phase-3 product form. Give Colors/Tags full CRUD manageability (§9).
+- **Products list** (`features/products/{types,productsApi}.ts`, `components/ProductsList.tsx`, `pages/ProductsListPage.tsx`) matches `Products.png`: thumbnail+name, inventory pill, category, price, debounced search + Filter (sort) dropdown, multi-select (header checkbox + per-row), bulk edit (1 selected → edit) / bulk delete toolbar icons, server-side pagination + results count. Empty state ("Add new products", `Products-1.png`) hides the header Add button to match the mockup. Single + bulk delete via existing `ConfirmDialog` (bulk message is count-pluralized).
+- **Shared infra:** `shared/api/types.ts` now owns `ApiEnvelope`/`PagedResult` (catalog/types.ts re-exports them); `shared/lib/format.ts` adds `formatCurrency`/`formatPriceRange` (locale-aware, USD); `statusColors` `outofstock` → **gray** (matches mockup). Router serves `/products`; `/products/new` + `/products/:id/edit` are placeholders.
+- Full EN+RU i18n (`products.*`, `catalog.*` color/tag keys, plural forms incl. RU one/few/many).
+- **Verified:** `npm run build` (tsc strict + vite, 808 modules) ✓, `npm run lint` ✓, `npm run format:check` ✓, dev server (port 5191) serves root + transforms `ProductsList.tsx` (HTTP 200) ✓.
+
+**Decisions made**
+- **Inventory column shows "In stock" / "Out of Stock" pill only** — the list API has no stock count, so the mockup's "96 in stock" number isn't reproducible from the list payload.
+- **No color-picker library** (TRD §1 forbids new UI libs): the "New color" swatch uses a transparent native `<input type=color>` overlay; modal layout still matches the mockup.
+- **Tag create returns no id** → after `createTag`, `refetch().unwrap()` then select the tag by name (avoids assuming the POST response body, which is unverified).
+- **Generic envelope types moved to `shared/api`** (cross-feature now that Products needs them); catalog re-exports for back-compat.
+- **`Sort` mapping**: `newest` sends no `Sort` param (it's the backend default); only `price_asc`/`price_desc`/`rating` are sent (verified to reorder).
+
+**Open questions / blockers**
+- **Mutations still unverified end-to-end** — no admin test credentials. Color/Tag/Product create/update/delete + bulk-delete haven't been exercised against the live backend (all GETs confirmed with real data). First task with creds: run one create/delete of each and confirm the envelope + `bulk-delete {ids}` body succeed.
+- `ColorBlock`/`TagBlock` are built but **not yet mounted** anywhere (they belong in the Phase-3 product form) — they type-check/build but their runtime UX is unverified until the form integrates them.
+- Backend still slow to cold-start (Render free tier).
+
+**NEXT ACTION (start here):**
+> Begin the **Add product form** (Phase 3, TRD §5.3/§7/§8.1). Run `/design` and open `images/Detail products.png` (the "Products / Add new" form) + the option-value/success modals in the `02 Destructive-*` series BEFORE writing UI. Build at route `/products/new` (replace the placeholder): Information block (name, code, description, **Category→Subcategory linked dropdowns** — only `SubCategoryId` is sent; add a standalone `GET /SubCategories?categoryId` query in `features/catalog`, Brand, **Condition** `BrandNew|Refurbished|Old`), Price block (price/discount/count + `IsTaxable` toggle), Options editor (with value modals), and drop in the existing **`ColorBlock`** + **`TagBlock`** + an Images uploader. Submit via **multipart `POST /Products`** using the `buildFormData` helper — `Options`/`Variants` are `JSON.stringify`'d strings, `Images` binary, `TagIds` repeated (TRD §7) — through the axios `http` instance, then invalidate `Product` LIST. Finish with the "Successfully add" success modal.
