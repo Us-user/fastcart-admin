@@ -328,6 +328,40 @@
       "paymentStatusUpdated": "Payment status updated"
     }
   },
+  "dashboard": {
+    "sales": "Sales",
+    "cost": "Cost",
+    "profit": "Profit",
+    "salesRevenue": "Sales Revenue",
+    "orders": "Orders",
+    "topSellingProducts": "Top selling products",
+    "seeAll": "See All",
+    "inSales": "in sales",
+    "recentTransactions": "Recent Transactions",
+    "topProductsByUnits": "Top Products by Units Sold",
+    "columns": {
+      "name": "Name",
+      "date": "Date",
+      "amount": "Amount",
+      "status": "Status",
+      "price": "Price",
+      "units": "Units"
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
+  },
   "catalog": {
     "tabs": {
       "categories": "Categories",

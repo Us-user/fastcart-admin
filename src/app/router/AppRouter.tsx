@@ -2,12 +2,12 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { AppShell } from '@/app/layout/AppShell';
 import { PublicOnly, RequireAdmin, RequireAuth } from '@/features/auth/guards';
+import { DashboardPage } from '@/pages/DashboardPage';
 import { InsufficientPermissionsPage } from '@/pages/InsufficientPermissionsPage';
 import { OrderDetailPage } from '@/pages/OrderDetailPage';
 import { OrderFormPage } from '@/pages/OrderFormPage';
 import { OrdersListPage } from '@/pages/OrdersListPage';
 import { OtherPage } from '@/pages/OtherPage';
-import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { ProductEditPage } from '@/pages/ProductEditPage';
 import { ProductFormPage } from '@/pages/ProductFormPage';
 import { ProductsListPage } from '@/pages/ProductsListPage';
@@ -38,7 +38,7 @@ export function AppRouter() {
           {/* Admin-only app shell */}
           <Route element={<RequireAdmin />}>
             <Route element={<AppShell />}>
-              <Route path="/" element={<PlaceholderPage titleKey="nav.dashboard" />} />
+              <Route path="/" element={<DashboardPage />} />
               <Route path="/orders" element={<OrdersListPage />} />
               <Route path="/orders/new" element={<OrderFormPage />} />
               <Route path="/orders/:id" element={<OrderDetailPage />} />

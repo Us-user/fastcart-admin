@@ -9,7 +9,7 @@ A standalone admin web app for the FastCart e-commerce backend (separate from th
 
 ## Tech stack (TRD §1)
 
-TypeScript (strict) · React 19 + Vite · MUI (interactive primitives) · Tailwind CSS v4 (layout/spacing/custom visuals) · Redux Toolkit + RTK Query (state + server cache) · React Router · React Hook Form + Yup · i18next + react-i18next (EN + RU) · axios (multipart uploads only).
+TypeScript (strict) · React 19 + Vite · MUI (interactive primitives) · Tailwind CSS v4 (layout/spacing/custom visuals) · Redux Toolkit + RTK Query (state + server cache) · React Router · React Hook Form + Yup · i18next + react-i18next (EN + RU) · axios (multipart uploads only) · **recharts** (Dashboard revenue line chart — the only charting dependency; added in Phase 5 per TRD §5.1 guidance).
 
 ## Getting started
 

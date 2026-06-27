@@ -33,3 +33,13 @@ export function formatDateTime(value: string | number | Date, locale: string): s
   if (Number.isNaN(date.getTime())) return '';
   return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(date);
 }
+
+/** Compact currency for dashboard summary cards (e.g. $152k, $1.2M). */
+export function formatCompactCurrency(value: number, locale: string): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'USD',
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(value);
+}

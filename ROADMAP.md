@@ -75,10 +75,10 @@
 - [x] Two separate controls: Order status (`New/Ready/Shipped/Received/Cancelled/Returned`) + Payment status (`Pending/Paid/Failed/Refunded`) → two PUT endpoints.
 
 ## Phase 5 — Dashboard
-- [ ] Summary cards (Sales / Cost / Profit) from `dashboard/summary` (TRD §5.1).
-- [ ] Sales Revenue line chart with month axis + hover tooltip (add a chart lib; note it in README).
-- [ ] Top selling products + Top Products by Units Sold + Recent Transactions.
-- [ ] Date-range / year selectors wired to endpoints.
+- [x] Summary cards (Sales / Cost / Profit) from `dashboard/summary` (TRD §5.1).
+- [x] Sales Revenue line chart with month axis + hover tooltip (add a chart lib; note it in README).
+- [x] Top selling products + Top Products by Units Sold + Recent Transactions.
+- [x] Date-range / year selectors wired to endpoints.
 
 ## Phase 6 — Marketing
 - [ ] Banners tab: **Main sliders** (multipart Title/Subtitle/**SortOrder**/IsActive/Image + order control) (TRD §5.4, §6.10).

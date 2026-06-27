@@ -242,3 +242,38 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 5 — Dashboard**. Open `images/Dashboard.png` BEFORE writing UI (run `/design`). Verify live shapes first: `GET /api/v1/dashboard/summary` (summary cards: Sales, Cost, Profit) and the revenue/chart endpoint. Build `features/dashboard/{types,dashboardApi}.ts` + `components/DashboardPage.tsx` at route `/`. Add a chart library (e.g. `recharts` — compatible with the stack, widely used with React) for the Sales Revenue line chart; note it in README. Implement summary cards, line chart with month axis + hover tooltip, Top Selling Products list, Top Products by Units Sold table, Recent Transactions table, and date-range/year selectors wired to endpoints.
+
+---
+
+## Session 9 — 2026-06-27 — Phase 5: Dashboard
+
+**Phase:** Phase 5 — Dashboard — **COMPLETE** (all 4 tasks checked off in `ROADMAP.md`).
+
+**Done this session**
+- **Verified Swagger** — all 4 dashboard endpoints confirmed: `GET /admin/dashboard/summary?from&to`, `GET /admin/dashboard/revenue?year`, `GET /admin/dashboard/top-products?metric&take` (default take=5), `GET /admin/dashboard/recent-transactions?take` (default take=10). All responses are `200 undefined` (no schema) — shapes assumed from mockup + TRD §5.1.
+- **Installed `recharts@3.9.0`** — the only chart dependency; noted in README per TRD §5.1 guidance.
+- **`src/features/dashboard/types.ts`** — `DashboardSummary{sales,cost,profit}`, `RevenueDataPoint{month,revenue,orders}`, `TopProductItem{id,name,imageUrl,categoryName,sales,units,price}`, `RecentTransaction{id,customerName,date,amount,paymentStatus}` + arg types.
+- **`src/features/dashboard/dashboardApi.ts`** — 4 RTK Query endpoints: `getDashboardSummary`, `getDashboardRevenue`, `getDashboardTopProducts` (called twice with `metric=sales` and `metric=units`), `getDashboardRecentTransactions`. All invalidate `Dashboard` tags.
+- **`shared/lib/format.ts` += `formatCompactCurrency`** — compact notation for summary cards (e.g. `$152k`, `$1.2M`).
+- **`SummaryCards.tsx`** — 3 cards (Sales/Cost/Profit) with soft pastel backgrounds (rose/orange/green), MUI icons (BarChart/Paid/CheckCircle), compact currency values + loading skeletons.
+- **`RevenueChart.tsx`** — Recharts `LineChart` (month axis, orders Y-axis, blue `#2563EB` line, custom dark tooltip "864 Orders / May" style), year selector (MUI `Select`, last 3 years), loading skeleton.
+- **`TopSellingProducts.tsx`** — right-column product list (thumbnail, name, category, green sales figure, "See All →" link to `/products`), 5 items, loading skeletons.
+- **`TopProductsByUnits.tsx`** — table (thumbnail, name, price, units), 5 items, loading skeletons.
+- **`RecentTransactions.tsx`** — table (name, date, amount, payment status pill via `getStatusPillClasses`), 10 items, loading skeletons.
+- **`pages/DashboardPage.tsx`** — two-column layout matching the mockup: left (summary cards → revenue chart → 2-col bottom row) + right sidebar (top selling products).
+- **Router** — `/` now serves `DashboardPage`; removed unused `PlaceholderPage` import.
+- **Full EN + RU i18n** (`dashboard.*` block: cards, chart, tables, month names in both languages).
+- **Verified:** `npm run build` (tsc strict + vite, **1342 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **All 4 API response shapes are ASSUMED** — responses are `200 undefined` in Swagger and no admin credentials were available to probe. Field names `sales/cost/profit`, `month/revenue/orders`, `sales/units/price`, `customerName/date/amount/paymentStatus` are logical assumptions. **First task with creds: fetch each endpoint and reconcile field names.**
+- **Revenue chart plots `orders` count on Y-axis** (matches the "864 Orders / May" mockup tooltip). If the backend returns `revenue` (dollar amount) as the primary series, swap `dataKey="orders"` → `dataKey="revenue"` in `RevenueChart.tsx:99`.
+- **`TopProductItem.sales`** = dollar sales figure shown in green; **`TopProductItem.units`** = unit count. If the API returns a single shape for both metrics and differentiates by field name or nesting, adjust `TopSellingProducts` and `TopProductsByUnits` accordingly.
+- **Year selector defaults to current year** (`new Date().getFullYear()`). Summary has no explicit date-range UI (the mockup shows none); the query fires with `from`/`to` omitted (backend default = all time or current period).
+
+**Open questions / blockers**
+- **All dashboard data is unverified end-to-end** — no admin credentials. The four assumed response shapes need validation on first real login.
+- Backend slow to cold-start (Render free tier).
+
+**NEXT ACTION (start here):**
+> Begin **Phase 6 — Marketing**. First task: **Banners tab — Main sliders** inside the existing `OtherPage` (replace the `BannersTab` placeholder). Run `/design` — there is no `images/Banners.png` mockup, so reuse the existing visual language (card grid style from Categories, list style from Brands). Verify live shapes first: `GET /api/v1/admin/sliders` or `GET /api/v1/Sliders` (multipart create: `POST` with `Title`, `Subtitle`, `SortOrder`, `IsActive`, `Image`). Check Swagger for exact endpoint paths under `Slider` and `Banner` tags. Then build **Banners** (Title/CategoryId/EndsAt countdown/IsActive/Image). After Marketing, build **Coupons** (new sidebar item, TRD §6.3).
