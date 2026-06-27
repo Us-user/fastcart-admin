@@ -309,3 +309,39 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 7 — Operations modules**. First: **Returns** — new sidebar item at `/returns`. Verify live shapes: `GET /api/v1/admin/returns?status&paging` (envelope + paged items with return fields), `PUT /admin/returns/{id}` (`ResolveReturnRequest{ returnStatus: 'Approved'|'Rejected'|'Completed' }`). Build `features/returns/{types,returnsApi}.ts` + `pages/ReturnsPage.tsx` (table with status filter, status pill using existing `statusColors`, resolve action). Add sidebar nav + route. Then **Users & Roles** (`GET /admin/users`, detail, delete, `POST/DELETE /admin/users/{id}/roles`), then **Messages** and **Newsletter** tabs in `OtherPage.tsx`.
+
+---
+
+## Session 11 — 2026-06-28 — Phase 7: Operations modules (Returns + Users + Messages + Newsletter)
+
+**Phase:** Phase 7 — Operations modules — **COMPLETE** (all 4 tasks checked off in `ROADMAP.md`).
+
+**Done this session**
+- **`src/features/returns/`** — `types.ts` (`ReturnItem`, `ResolveReturnRequest`, `RETURN_STATUSES`, `ReturnStatus` union), `returnsApi.ts` (RTK Query `getReturns` paged by status + `resolveReturn` PUT, `Return/LIST` tags).
+- **`src/pages/ReturnsPage.tsx`** — table with status filter dropdown (`Requested/Approved/Rejected/Completed`), status pill via `getStatusPillClasses`, per-row action buttons (Approve/Reject from `Requested`; Complete from `Approved`; terminal states show no actions), `ConfirmDialog` before PUT, EN+RU i18n.
+- **`src/features/users/`** — `types.ts` (`UserListItem`, `UserDetail`, `Role`, `AssignRoleRequest`), `usersApi.ts` (RTK Query `getUsers` paged + searchable, `getUser`, `deleteUser`, `getRoles`, `assignRole` POST, `removeRole` DELETE; tags `User/LIST`, `User/{id}`, `Role/LIST`).
+- **`src/features/users/components/UserDetailModal.tsx`** — MUI Dialog: user info grid, all available roles shown as Chips (filled=assigned/outlined=unassigned), click to assign, delete icon to remove. Live role-patch mutations on click.
+- **`src/pages/UsersPage.tsx`** — debounced username search (same `useEffect+setTimeout` pattern as Orders/Products), paginated table (username/email/phone/role chips), view-detail icon → `UserDetailModal`, delete icon → `ConfirmDialog`.
+- **`src/features/messages/`** — `types.ts` (`ContactMessage`), `messagesApi.ts` (`getContactMessages` paged, `Message/LIST`), `components/MessagesTab.tsx` (read-only table: name/email/phone/message preview/date).
+- **`src/features/newsletter/`** — `types.ts` (`NewsletterSubscriber`), `newsletterApi.ts` (`getNewsletterSubscribers` paged, `Newsletter/LIST`), `components/NewsletterTab.tsx` (email + subscribed date table).
+- **`src/pages/OtherPage.tsx`** updated — added `messages` and `newsletter` tab keys; renders `MessagesTab` / `NewsletterTab`.
+- **`src/app/layout/SidebarNav.tsx`** — added `Returns` (`AssignmentReturnOutlined`) + `Users` (`PeopleOutlined`) nav items at `/returns` and `/users`.
+- **`src/app/router/AppRouter.tsx`** — added `/returns → ReturnsPage` and `/users → UsersPage` routes inside the admin shell.
+- **`src/shared/lib/statusColors.ts`** — added `requested → amber` tone; changed `completed → blue` (to distinguish from `approved`).
+- **i18n** — full `returns.*`, `users.*`, `messages.*`, `newsletter.*` blocks added to both `locales/en/common.json` and `locales/ru/common.json`; `nav.returns`/`nav.users` + `catalog.tabs.messages`/`catalog.tabs.newsletter` keys added.
+- **Verified:** `npm run build` (tsc strict + vite, **1397 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **All Phase 7 API shapes are ASSUMED** — responses are `200 undefined` in Swagger, no admin credentials available. `ReturnItem` fields (`orderNumber`, `productName`, `customerName`, `reason`, `returnStatus`, `createdAt`) and `UserListItem`/`UserDetail` fields are inferred from TRD descriptions + backend conventions. **First task with creds: GET `/admin/returns` and `/admin/users` and reconcile field names.**
+- **`GET /admin/users` returns a `PagedResult<UserListItem>`** (assumed paged like Orders/Products); `GET /admin/roles` returns a flat `Role[]` (assumed). If roles come paged, switch to `PagedResult<Role>` in `usersApi.ts`.
+- **`GET /admin/contact-messages`** and **`GET /admin/newsletter`** assumed to return `PagedResult<T>` enveloped in `ApiEnvelope`. If they return flat arrays, remove pagination UI.
+- **Role assignment uses `roleId` (string)** — `AssignRoleRequest { roleId }`. If the backend expects role name instead of id, adjust the POST body.
+- **Returns resolve actions are context-sensitive**: `Requested` → show Approve + Reject; `Approved` → show Complete; `Rejected`/`Completed` → no action buttons (terminal states). This mirrors standard return workflow.
+- **`completed` tone changed to `blue`** in `statusColors` to distinguish it from `approved` (green) — both are positive end states but semantically different.
+
+**Open questions / blockers**
+- **All Phase 7 data shapes unverified** — no admin credentials. Returns/Users/Messages/Newsletter GETs have not been exercised against the live backend.
+- Backend slow to cold-start (Render free tier).
+
+**NEXT ACTION (start here):**
+> Begin **Phase 8 — Profile & account**. Build the **Profile** screen: add `getProfile` (`GET /api/v1/Profile`) and `updateProfile` (`PUT /api/v1/Profile`, multipart: `Image`, `FirstName`, `LastName`, `Email`, `PhoneNumber`, `Dob`) to a new `features/profile/` feature (`types.ts`, `profileApi.ts`, `useUpdateProfile.ts` via axios `http` + `buildFormData`). Surface it at a new route (e.g. `/profile`) linked from the user chip/menu in the top bar. Reuse the existing visual language for the form card. Then add **Change password** (`POST /Auth/change-password` with `ChangePasswordRequest { currentPassword, newPassword, confirmPassword }`) as a separate card below the profile form. Full EN+RU i18n. Build passes, lint clean before stopping.

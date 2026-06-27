@@ -37,9 +37,10 @@ const STATUS_TONE: Record<string, StatusTone> = {
   failed: 'red',
   refunded: 'violet',
   // Return status
+  requested: 'amber',
   approved: 'green',
   rejected: 'red',
-  completed: 'green',
+  completed: 'blue',
   // Inventory (Products mockup shows "Out of Stock" as a neutral gray pill)
   instock: 'green',
   lowstock: 'amber',

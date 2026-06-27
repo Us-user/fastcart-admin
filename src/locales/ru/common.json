@@ -43,6 +43,8 @@
     "orders": "Заказы",
     "products": "Товары",
     "coupons": "Купоны",
+    "returns": "Возвраты",
+    "users": "Пользователи",
     "other": "Прочее",
     "logout": "Выйти",
     "notifications": "Уведомления",
@@ -423,11 +425,105 @@
       "couponDeleted": "Купон удалён"
     }
   },
+  "returns": {
+    "title": "Возвраты",
+    "allStatuses": "Все статусы",
+    "status": {
+      "Requested": "Запрошен",
+      "Approved": "Одобрен",
+      "Rejected": "Отклонён",
+      "Completed": "Завершён"
+    },
+    "action": {
+      "Approved": "Одобрить",
+      "Rejected": "Отклонить",
+      "Completed": "Завершить"
+    },
+    "columns": {
+      "id": "Возврат №",
+      "customer": "Покупатель",
+      "product": "Товар",
+      "reason": "Причина",
+      "status": "Статус",
+      "date": "Дата"
+    },
+    "empty": {
+      "title": "Возвратов пока нет",
+      "description": "Запросы на возврат от покупателей появятся здесь."
+    },
+    "confirm": {
+      "title": "{{action}} возврат",
+      "message": "Вы уверены, что хотите изменить статус возврата #{{id}} на «{{action}}»?"
+    },
+    "toast": {
+      "resolved": "Возврат: {{action}}"
+    }
+  },
+  "users": {
+    "title": "Пользователи",
+    "searchPlaceholder": "Поиск по имени пользователя…",
+    "noRoles": "Нет ролей",
+    "viewDetail": "Просмотр",
+    "columns": {
+      "username": "Имя пользователя",
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "roles": "Роли"
+    },
+    "detail": {
+      "title": "Данные пользователя",
+      "username": "Имя пользователя",
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "joined": "Дата регистрации",
+      "roles": "Роли",
+      "noRoles": "Роли не назначены",
+      "removeRole": "Удалить роль"
+    },
+    "empty": {
+      "title": "Пользователей не найдено",
+      "description": "Зарегистрированные пользователи появятся здесь."
+    },
+    "deleteDialog": {
+      "title": "Удалить пользователя",
+      "message": "Вы уверены, что хотите удалить пользователя «{{name}}»? Это действие нельзя отменить."
+    },
+    "toast": {
+      "deleted": "Пользователь «{{name}}» удалён",
+      "roleAssigned": "Роль «{{role}}» назначена",
+      "roleRemoved": "Роль «{{role}}» удалена"
+    }
+  },
+  "messages": {
+    "columns": {
+      "name": "Имя",
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "message": "Сообщение",
+      "date": "Дата"
+    },
+    "empty": {
+      "title": "Сообщений пока нет",
+      "description": "Сообщения от покупателей появятся здесь."
+    }
+  },
+  "newsletter": {
+    "columns": {
+      "email": "Эл. почта",
+      "subscribedAt": "Дата подписки"
+    },
+    "empty": {
+      "title": "Подписчиков пока нет",
+      "description": "Подписчики на рассылку появятся здесь."
+    }
+  },
   "catalog": {
     "tabs": {
       "categories": "Категории",
       "brands": "Бренды",
-      "banners": "Баннеры"
+      "banners": "Баннеры",
+      "messages": "Сообщения",
+      "newsletter": "Рассылка"
     },
     "addNew": "Добавить",
     "addCategory": "Добавить категорию",

@@ -12,6 +12,8 @@ import { OtherPage } from '@/pages/OtherPage';
 import { ProductEditPage } from '@/pages/ProductEditPage';
 import { ProductFormPage } from '@/pages/ProductFormPage';
 import { ProductsListPage } from '@/pages/ProductsListPage';
+import { ReturnsPage } from '@/pages/ReturnsPage';
+import { UsersPage } from '@/pages/UsersPage';
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage';
@@ -47,6 +49,8 @@ export function AppRouter() {
               <Route path="/products" element={<ProductsListPage />} />
               <Route path="/products/new" element={<ProductFormPage />} />
               <Route path="/products/:id/edit" element={<ProductEditPage />} />
+              <Route path="/returns" element={<ReturnsPage />} />
+              <Route path="/users" element={<UsersPage />} />
               <Route path="/other" element={<OtherPage />} />
             </Route>
           </Route>

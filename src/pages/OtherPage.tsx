@@ -9,19 +9,19 @@ import {
   CategoriesTab,
   type CategoryDialogState,
 } from '@/features/catalog/components/CategoriesTab';
+import { MessagesTab } from '@/features/messages/components/MessagesTab';
+import { NewsletterTab } from '@/features/newsletter/components/NewsletterTab';
 
-type TabKey = 'categories' | 'brands' | 'banners';
+type TabKey = 'categories' | 'brands' | 'banners' | 'messages' | 'newsletter';
 
 const TABS: { key: TabKey; labelKey: string }[] = [
   { key: 'categories', labelKey: 'catalog.tabs.categories' },
   { key: 'brands', labelKey: 'catalog.tabs.brands' },
   { key: 'banners', labelKey: 'catalog.tabs.banners' },
+  { key: 'messages', labelKey: 'catalog.tabs.messages' },
+  { key: 'newsletter', labelKey: 'catalog.tabs.newsletter' },
 ];
 
-/**
- * "Other" tabbed screen (TRD §5.4): Categories / Brands / Banners, in the
- * mockup's pill-tab style. Later phases add Messages / Newsletter tabs here.
- */
 export function OtherPage() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabKey>('categories');
@@ -30,7 +30,7 @@ export function OtherPage() {
   return (
     <>
       <div className="mb-6 flex items-center justify-between gap-4">
-        <nav className="flex gap-2">
+        <nav className="flex flex-wrap gap-2">
           {TABS.map(({ key, labelKey }) => (
             <button
               key={key}
@@ -63,6 +63,8 @@ export function OtherPage() {
       )}
       {activeTab === 'brands' && <BrandsTab />}
       {activeTab === 'banners' && <BannersTab />}
+      {activeTab === 'messages' && <MessagesTab />}
+      {activeTab === 'newsletter' && <NewsletterTab />}
     </>
   );
 }

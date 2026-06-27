@@ -1,9 +1,11 @@
 import type { SvgIconComponent } from '@mui/icons-material';
+import AssignmentReturnOutlinedIcon from '@mui/icons-material/AssignmentReturnOutlined';
 import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
@@ -20,6 +22,8 @@ const NAV_ITEMS: NavItem[] = [
   { to: '/orders', labelKey: 'nav.orders', icon: FormatListBulletedIcon },
   { to: '/products', labelKey: 'nav.products', icon: LocalOfferOutlinedIcon },
   { to: '/coupons', labelKey: 'nav.coupons', icon: CardGiftcardOutlinedIcon },
+  { to: '/returns', labelKey: 'nav.returns', icon: AssignmentReturnOutlinedIcon },
+  { to: '/users', labelKey: 'nav.users', icon: PeopleOutlinedIcon },
   { to: '/other', labelKey: 'nav.other', icon: FolderOutlinedIcon },
 ];
 

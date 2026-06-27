@@ -86,10 +86,10 @@
 - [x] **Coupons** — new sidebar item: table + create/edit form + delete modal (`CouponRequest`) (TRD §6.3).
 
 ## Phase 7 — Operations modules (no mockups — match existing visual language)
-- [ ] **Returns** — new sidebar item: table + status filter + resolve (Approve/Reject/Complete) (TRD §6.4).
-- [ ] **Users & Roles** — new sidebar item: list/search, detail, delete, assign/remove roles (TRD §6.5).
-- [ ] **Messages** — "Other" tab: paginated contact-messages list (read-only) (TRD §6.6).
-- [ ] **Newsletter** — "Other" tab: paginated subscribers list (TRD §6.7).
+- [x] **Returns** — new sidebar item: table + status filter + resolve (Approve/Reject/Complete) (TRD §6.4).
+- [x] **Users & Roles** — new sidebar item: list/search, detail, delete, assign/remove roles (TRD §6.5).
+- [x] **Messages** — "Other" tab: paginated contact-messages list (read-only) (TRD §6.6).
+- [x] **Newsletter** — "Other" tab: paginated subscribers list (TRD §6.7).
 
 ## Phase 8 — Profile & account
 - [ ] Profile get + update (multipart `PUT /Profile`) (TRD §10).

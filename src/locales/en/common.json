@@ -43,6 +43,8 @@
     "orders": "Orders",
     "products": "Products",
     "coupons": "Coupons",
+    "returns": "Returns",
+    "users": "Users",
     "other": "Other",
     "logout": "Log out",
     "notifications": "Notifications",
@@ -421,11 +423,105 @@
       "couponDeleted": "Coupon deleted"
     }
   },
+  "returns": {
+    "title": "Returns",
+    "allStatuses": "All statuses",
+    "status": {
+      "Requested": "Requested",
+      "Approved": "Approved",
+      "Rejected": "Rejected",
+      "Completed": "Completed"
+    },
+    "action": {
+      "Approved": "Approve",
+      "Rejected": "Reject",
+      "Completed": "Complete"
+    },
+    "columns": {
+      "id": "Return #",
+      "customer": "Customer",
+      "product": "Product",
+      "reason": "Reason",
+      "status": "Status",
+      "date": "Date"
+    },
+    "empty": {
+      "title": "No returns yet",
+      "description": "Return requests from customers will appear here."
+    },
+    "confirm": {
+      "title": "{{action}} return",
+      "message": "Are you sure you want to mark return #{{id}} as {{action}}?"
+    },
+    "toast": {
+      "resolved": "Return {{action}}"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "searchPlaceholder": "Search by username…",
+    "noRoles": "No roles",
+    "viewDetail": "View details",
+    "columns": {
+      "username": "Username",
+      "email": "Email",
+      "phone": "Phone",
+      "roles": "Roles"
+    },
+    "detail": {
+      "title": "User details",
+      "username": "Username",
+      "email": "Email",
+      "phone": "Phone",
+      "joined": "Joined",
+      "roles": "Roles",
+      "noRoles": "No roles assigned",
+      "removeRole": "Remove role"
+    },
+    "empty": {
+      "title": "No users found",
+      "description": "Registered users will appear here."
+    },
+    "deleteDialog": {
+      "title": "Delete user",
+      "message": "Are you sure you want to delete the user \"{{name}}\"? This action cannot be undone."
+    },
+    "toast": {
+      "deleted": "User \"{{name}}\" deleted",
+      "roleAssigned": "Role \"{{role}}\" assigned",
+      "roleRemoved": "Role \"{{role}}\" removed"
+    }
+  },
+  "messages": {
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "date": "Date"
+    },
+    "empty": {
+      "title": "No messages yet",
+      "description": "Contact messages from customers will appear here."
+    }
+  },
+  "newsletter": {
+    "columns": {
+      "email": "Email",
+      "subscribedAt": "Subscribed"
+    },
+    "empty": {
+      "title": "No subscribers yet",
+      "description": "Newsletter subscribers will appear here."
+    }
+  },
   "catalog": {
     "tabs": {
       "categories": "Categories",
       "brands": "Brands",
-      "banners": "Banners"
+      "banners": "Banners",
+      "messages": "Messages",
+      "newsletter": "Newsletter"
     },
     "addNew": "Add new",
     "addCategory": "Add category",
