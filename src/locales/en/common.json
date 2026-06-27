@@ -169,6 +169,59 @@
       "successMessage": "Do you want to add new product to your store?",
       "goToProducts": "Go to products",
       "addNew": "Add new"
+    },
+    "edit": {
+      "breadcrumb": "Edit",
+      "backToProducts": "Back to products",
+      "sectionedHint": "Each section saves on its own — use the Save button in that card.",
+      "saveDetails": "Save details",
+      "detailsSaved": "Product details saved",
+      "tagsHint": "Tags are saved with the product details.",
+      "imagesUploaded": "Images uploaded",
+      "imageDeleted": "Image deleted",
+      "noImages": "No images yet",
+      "deleteImage": {
+        "title": "Delete image",
+        "message": "Are you sure you want to delete this image?"
+      },
+      "addOption": "Add option",
+      "noOptions": "No options yet",
+      "optionIncomplete": "Add an option name and at least one value.",
+      "optionCreated": "Option added",
+      "optionUpdated": "Option updated",
+      "optionDeleted": "Option deleted",
+      "deleteOption": {
+        "title": "Delete option",
+        "message": "Are you sure you want to delete \"{{name}}\"?"
+      },
+      "variants": "Variants",
+      "addVariant": "Add variant",
+      "newVariant": "New variant",
+      "noVariants": "No variants yet",
+      "sku": "SKU",
+      "discountPrice": "Discount price",
+      "costPrice": "Cost price",
+      "unchanged": "Unchanged",
+      "stock": "Stock",
+      "updateStock": "Update stock",
+      "active": "Active",
+      "variantSaved": "Variant saved",
+      "stockSaved": "Stock updated",
+      "variantDeleted": "Variant deleted",
+      "variantCreated": "Variant added",
+      "pickAllOptions": "Pick a value for every option.",
+      "deleteVariant": {
+        "title": "Delete variant",
+        "message": "Are you sure you want to delete this variant?"
+      },
+      "reviews": "Reviews",
+      "noReviews": "No reviews yet",
+      "anonymous": "Anonymous",
+      "reviewDeleted": "Review deleted",
+      "deleteReview": {
+        "title": "Delete review",
+        "message": "Are you sure you want to delete this review?"
+      }
     }
   },
   "catalog": {

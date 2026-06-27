@@ -84,3 +84,51 @@ export interface ProductFormValues {
   isTaxable: boolean;
   hasOptions: boolean;
 }
+
+/**
+ * Base-info schema for the Edit screen (TRD §8.3). The base `PUT /Products/{id}`
+ * persists only the non-price fields — price/stock live on variants and are
+ * managed in their own section — so this is the product form minus price/count.
+ */
+export const productBaseSchema = (t: TFunction) =>
+  yup.object({
+    name: yup
+      .string()
+      .trim()
+      .required(t('validation.required'))
+      .max(150, t('validation.maxLength', { count: 150 })),
+    code: yup
+      .string()
+      .trim()
+      .required(t('validation.required'))
+      .max(50, t('validation.maxLength', { count: 50 })),
+    description: yup.string().max(5000, t('validation.maxLength', { count: 5000 })),
+    categoryId: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.required'))
+      .required(t('validation.required')),
+    subCategoryId: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.required'))
+      .required(t('validation.required')),
+    brandId: yup.number().transform(emptyToUndefined).optional(),
+    condition: yup
+      .mixed<ProductCondition>()
+      .oneOf(['BrandNew', 'Refurbished', 'Old'])
+      .required(t('validation.required')),
+    isTaxable: yup.boolean().required(),
+  });
+
+export interface ProductBaseFormValues {
+  name: string;
+  code: string;
+  description: string;
+  /** Filter only — not submitted; narrows the subcategory list (TRD §8.1). */
+  categoryId: number | '';
+  subCategoryId: number | '';
+  brandId: number | '';
+  condition: ProductCondition;
+  isTaxable: boolean;
+}

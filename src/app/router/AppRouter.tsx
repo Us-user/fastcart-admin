@@ -5,6 +5,7 @@ import { PublicOnly, RequireAdmin, RequireAuth } from '@/features/auth/guards';
 import { InsufficientPermissionsPage } from '@/pages/InsufficientPermissionsPage';
 import { OtherPage } from '@/pages/OtherPage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
+import { ProductEditPage } from '@/pages/ProductEditPage';
 import { ProductFormPage } from '@/pages/ProductFormPage';
 import { ProductsListPage } from '@/pages/ProductsListPage';
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
@@ -38,10 +39,7 @@ export function AppRouter() {
               <Route path="/orders" element={<PlaceholderPage titleKey="nav.orders" />} />
               <Route path="/products" element={<ProductsListPage />} />
               <Route path="/products/new" element={<ProductFormPage />} />
-              <Route
-                path="/products/:id/edit"
-                element={<PlaceholderPage titleKey="products.editProduct" />}
-              />
+              <Route path="/products/:id/edit" element={<ProductEditPage />} />
               <Route path="/other" element={<OtherPage />} />
             </Route>
           </Route>

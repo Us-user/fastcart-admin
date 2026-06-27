@@ -64,9 +64,9 @@
 - [x] **Add product** form — Information (incl. linked Category→Subcategory, Brand, **Condition** `BrandNew|Refurbished|Old`), Price block (+ `IsTaxable`), Options editor, Colour block, Tags block, Images uploader (TRD §5.3, §6.9, §8.1).
 - [x] Multipart create `POST /Products`: Options/Variants `JSON.stringify`'d into string fields, Images as binary, TagIds repeated (TRD §7).
 - [x] "Successfully add" success modal.
-- [ ] **Edit product** — sectioned saves: base (`PUT`), images, variants, options, stock — each via its own endpoint (TRD §5.3, §8.3).
-- [ ] Variant stock management; product detail/related as needed.
-- [ ] Review moderation on the product screen (list per product + delete) (TRD §6.8).
+- [x] **Edit product** — sectioned saves: base (`PUT`), images, variants, options, stock — each via its own endpoint (TRD §5.3, §8.3).
+- [x] Variant stock management; product detail/related as needed.
+- [x] Review moderation on the product screen (list per product + delete) (TRD §6.8).
 
 ## Phase 4 — Orders
 - [ ] Orders list — columns + payment/order status pills, search, filter/sort, multi-select, pagination, empty state "No Orders Yet" (TRD §5.2).

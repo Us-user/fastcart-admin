@@ -19,3 +19,10 @@ export function formatPriceRange(from: number, max: number, locale: string): str
     ? `${formatCurrency(from, locale)} – ${formatCurrency(max, locale)}`
     : formatCurrency(from, locale);
 }
+
+/** Locale-aware short date (e.g. "Jun 27, 2026"). Invalid input returns ''. */
+export function formatDate(value: string | number | Date, locale: string): string {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(date);
+}

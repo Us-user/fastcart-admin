@@ -105,3 +105,121 @@ export interface CreateProductPayload {
   variants: ProductVariantInput[];
   images: File[];
 }
+
+/* ------------------------------------------------------------------ *
+ * Product detail (`GET /Products/{id}`) — the full edit payload.
+ * Shape verified against the live backend; the detail response is not
+ * documented in Swagger (responses are `200 undefined`).
+ * ------------------------------------------------------------------ */
+
+/** A stored product image. No seeded product has images, so `imageUrl` is the
+ *  assumed field name (mirrors the list's `primaryImageUrl`); confirm on first
+ *  real upload. */
+export interface ProductImage {
+  id: number;
+  imageUrl: string | null;
+}
+
+/** Brand summary on the product detail. */
+export interface ProductBrandRef {
+  id: number;
+  name: string;
+}
+
+/** Tag summary on the product detail. */
+export interface ProductTagRef {
+  id: number;
+  name: string;
+}
+
+/** One option value as returned on the detail (carries the persisted color link). */
+export interface ProductDetailOptionValue {
+  id: number;
+  value: string;
+  colorId: number | null;
+  colorHex: string | null;
+  sortOrder: number;
+}
+
+/** One option group on the detail. */
+export interface ProductDetailOption {
+  id: number;
+  name: string;
+  sortOrder: number;
+  values: ProductDetailOptionValue[];
+}
+
+/** A variant's option labels (read-only summary on the detail). */
+export interface ProductVariantOptionRef {
+  optionName: string;
+  value: string;
+}
+
+/** A variant on the detail — price/discount/cost/stock all live here (TRD §7). */
+export interface ProductDetailVariant {
+  id: number;
+  sku: string | null;
+  price: number;
+  hasDiscount: boolean;
+  discountPrice: number | null;
+  effectivePrice: number;
+  stockCount: number;
+  isActive: boolean;
+  options: ProductVariantOptionRef[];
+}
+
+/** Full `GET /Products/{id}` payload backing the edit screen (TRD §5.3, §8.2). */
+export interface ProductDetail {
+  id: number;
+  name: string;
+  code: string;
+  description: string | null;
+  brand: ProductBrandRef | null;
+  categoryId: number | null;
+  categoryName: string | null;
+  subCategoryId: number;
+  subCategoryName: string | null;
+  condition: ProductCondition;
+  isTaxable: boolean;
+  createdAt: string;
+  images: ProductImage[];
+  tags: ProductTagRef[];
+  options: ProductDetailOption[];
+  variants: ProductDetailVariant[];
+  avgRating: number;
+  reviewCount: number;
+  fromPrice: number;
+  maxPrice: number;
+  inStock: boolean;
+}
+
+/* ------------------------------------------------------------------ *
+ * Sectioned-save request bodies (TRD §8.3). Each section persists via
+ * its own endpoint; bodies verified against Swagger.
+ * ------------------------------------------------------------------ */
+
+/** Base fields — `PUT /Products/{id}` (`UpdateProductRequest`). No price/variants. */
+export interface UpdateProductRequest {
+  name: string;
+  code: string;
+  description?: string | null;
+  subCategoryId: number;
+  brandId?: number | null;
+  isTaxable: boolean;
+  condition: ProductCondition;
+  tagIds: number[];
+}
+
+/** Variant update — `PUT /Products/{id}/variants/{variantId}` (`UpdateVariantRequest`).
+ *  All fields nullable server-side; omitted keys are left unchanged. No
+ *  `optionValueIds` (the option linkage is fixed once a variant exists), and
+ *  `count` is updated through the dedicated stock endpoint instead. */
+export interface UpdateVariantRequest {
+  sku?: string | null;
+  price?: number | null;
+  hasDiscount?: boolean | null;
+  discountPrice?: number | null;
+  costPrice?: number | null;
+  count?: number | null;
+  isActive?: boolean | null;
+}
