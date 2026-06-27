@@ -1,4 +1,5 @@
 import type { SvgIconComponent } from '@mui/icons-material';
+import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -14,11 +15,11 @@ interface NavItem {
   end?: boolean;
 }
 
-/** Original sidebar items (TRD §4). Later phases add Coupons / Returns / Users here. */
 const NAV_ITEMS: NavItem[] = [
   { to: '/', labelKey: 'nav.dashboard', icon: HomeOutlinedIcon, end: true },
   { to: '/orders', labelKey: 'nav.orders', icon: FormatListBulletedIcon },
   { to: '/products', labelKey: 'nav.products', icon: LocalOfferOutlinedIcon },
+  { to: '/coupons', labelKey: 'nav.coupons', icon: CardGiftcardOutlinedIcon },
   { to: '/other', labelKey: 'nav.other', icon: FolderOutlinedIcon },
 ];
 

@@ -81,9 +81,9 @@
 - [x] Date-range / year selectors wired to endpoints.
 
 ## Phase 6 — Marketing
-- [ ] Banners tab: **Main sliders** (multipart Title/Subtitle/**SortOrder**/IsActive/Image + order control) (TRD §5.4, §6.10).
-- [ ] Banners tab: **Banner** (Title/CategoryId/**EndsAt** countdown/IsActive/Image) (TRD §5.4).
-- [ ] **Coupons** — new sidebar item: table + create/edit form + delete modal (`CouponRequest`) (TRD §6.3).
+- [x] Banners tab: **Main sliders** (multipart Title/Subtitle/**SortOrder**/IsActive/Image + order control) (TRD §5.4, §6.10).
+- [x] Banners tab: **Banner** (Title/CategoryId/**EndsAt** countdown/IsActive/Image) (TRD §5.4).
+- [x] **Coupons** — new sidebar item: table + create/edit form + delete modal (`CouponRequest`) (TRD §6.3).
 
 ## Phase 7 — Operations modules (no mockups — match existing visual language)
 - [ ] **Returns** — new sidebar item: table + status filter + resolve (Approve/Reject/Complete) (TRD §6.4).

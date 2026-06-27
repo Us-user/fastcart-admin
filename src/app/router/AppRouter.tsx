@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { AppShell } from '@/app/layout/AppShell';
 import { PublicOnly, RequireAdmin, RequireAuth } from '@/features/auth/guards';
+import { CouponsPage } from '@/pages/CouponsPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { InsufficientPermissionsPage } from '@/pages/InsufficientPermissionsPage';
 import { OrderDetailPage } from '@/pages/OrderDetailPage';
@@ -39,6 +40,7 @@ export function AppRouter() {
           <Route element={<RequireAdmin />}>
             <Route element={<AppShell />}>
               <Route path="/" element={<DashboardPage />} />
+              <Route path="/coupons" element={<CouponsPage />} />
               <Route path="/orders" element={<OrdersListPage />} />
               <Route path="/orders/new" element={<OrderFormPage />} />
               <Route path="/orders/:id" element={<OrderDetailPage />} />

@@ -42,6 +42,7 @@
     "dashboard": "Dashboard",
     "orders": "Orders",
     "products": "Products",
+    "coupons": "Coupons",
     "other": "Other",
     "logout": "Log out",
     "notifications": "Notifications",
@@ -360,6 +361,64 @@
       "oct": "Oct",
       "nov": "Nov",
       "dec": "Dec"
+    }
+  },
+  "marketing": {
+    "mainSliders": "Main sliders",
+    "banners": "Banners",
+    "addSlider": "Add new slider",
+    "editSlider": "Edit slider",
+    "sliderTitle": "Title",
+    "sliderSubtitle": "Subtitle",
+    "sortOrder": "Sort order",
+    "isActive": "Active",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noSliders": "No sliders yet",
+    "deleteSlider": {
+      "title": "Delete slider",
+      "message": "Are you sure you want to delete \"{{title}}\"?"
+    },
+    "addBanner": "Add new banner",
+    "bannerTitle": "Title",
+    "bannerCategory": "Category",
+    "noCategory": "— No category —",
+    "endsAt": "Ends at",
+    "noBanners": "No banners yet",
+    "deleteBanner": {
+      "title": "Delete banner",
+      "message": "Are you sure you want to delete \"{{title}}\"?"
+    },
+    "coupons": "Coupons",
+    "addCoupon": "Add coupon",
+    "editCoupon": "Edit coupon",
+    "couponCode": "Code",
+    "discountType": "Discount type",
+    "discountType_Percentage": "Percentage",
+    "discountType_FixedAmount": "Fixed amount",
+    "discountValue": "Discount value",
+    "minOrderAmount": "Min order amount",
+    "maxDiscountAmount": "Max discount amount",
+    "startsAt": "Starts at",
+    "expiresAt": "Expires at",
+    "usageLimit": "Usage limit",
+    "perUserLimit": "Per-user limit",
+    "statusLabel": "Status",
+    "noCoupons": "No coupons yet",
+    "noCouponsDescription": "Create your first coupon to offer discounts to customers.",
+    "deleteCoupon": {
+      "title": "Delete coupon",
+      "message": "Are you sure you want to delete coupon \"{{code}}\"?"
+    },
+    "toast": {
+      "sliderCreated": "Slider created",
+      "sliderUpdated": "Slider updated",
+      "sliderDeleted": "Slider deleted",
+      "bannerCreated": "Banner created",
+      "bannerDeleted": "Banner deleted",
+      "couponCreated": "Coupon created",
+      "couponUpdated": "Coupon updated",
+      "couponDeleted": "Coupon deleted"
     }
   },
   "catalog": {

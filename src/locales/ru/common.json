@@ -42,6 +42,7 @@
     "dashboard": "Дашборд",
     "orders": "Заказы",
     "products": "Товары",
+    "coupons": "Купоны",
     "other": "Прочее",
     "logout": "Выйти",
     "notifications": "Уведомления",
@@ -362,6 +363,64 @@
       "oct": "Окт",
       "nov": "Ноя",
       "dec": "Дек"
+    }
+  },
+  "marketing": {
+    "mainSliders": "Главные слайдеры",
+    "banners": "Баннеры",
+    "addSlider": "Добавить слайдер",
+    "editSlider": "Редактировать слайдер",
+    "sliderTitle": "Заголовок",
+    "sliderSubtitle": "Подзаголовок",
+    "sortOrder": "Порядок сортировки",
+    "isActive": "Активен",
+    "active": "Активен",
+    "inactive": "Неактивен",
+    "noSliders": "Слайдеров пока нет",
+    "deleteSlider": {
+      "title": "Удалить слайдер",
+      "message": "Вы уверены, что хотите удалить «{{title}}»?"
+    },
+    "addBanner": "Добавить баннер",
+    "bannerTitle": "Заголовок",
+    "bannerCategory": "Категория",
+    "noCategory": "— Без категории —",
+    "endsAt": "Дата окончания",
+    "noBanners": "Баннеров пока нет",
+    "deleteBanner": {
+      "title": "Удалить баннер",
+      "message": "Вы уверены, что хотите удалить «{{title}}»?"
+    },
+    "coupons": "Купоны",
+    "addCoupon": "Добавить купон",
+    "editCoupon": "Редактировать купон",
+    "couponCode": "Код",
+    "discountType": "Тип скидки",
+    "discountType_Percentage": "Процент",
+    "discountType_FixedAmount": "Фиксированная сумма",
+    "discountValue": "Размер скидки",
+    "minOrderAmount": "Мин. сумма заказа",
+    "maxDiscountAmount": "Макс. сумма скидки",
+    "startsAt": "Начало",
+    "expiresAt": "Окончание",
+    "usageLimit": "Лимит использований",
+    "perUserLimit": "Лимит на пользователя",
+    "statusLabel": "Статус",
+    "noCoupons": "Купонов пока нет",
+    "noCouponsDescription": "Создайте первый купон, чтобы предлагать скидки покупателям.",
+    "deleteCoupon": {
+      "title": "Удалить купон",
+      "message": "Вы уверены, что хотите удалить купон «{{code}}»?"
+    },
+    "toast": {
+      "sliderCreated": "Слайдер создан",
+      "sliderUpdated": "Слайдер обновлён",
+      "sliderDeleted": "Слайдер удалён",
+      "bannerCreated": "Баннер создан",
+      "bannerDeleted": "Баннер удалён",
+      "couponCreated": "Купон создан",
+      "couponUpdated": "Купон обновлён",
+      "couponDeleted": "Купон удалён"
     }
   },
   "catalog": {

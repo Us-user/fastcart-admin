@@ -277,3 +277,35 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 6 — Marketing**. First task: **Banners tab — Main sliders** inside the existing `OtherPage` (replace the `BannersTab` placeholder). Run `/design` — there is no `images/Banners.png` mockup, so reuse the existing visual language (card grid style from Categories, list style from Brands). Verify live shapes first: `GET /api/v1/admin/sliders` or `GET /api/v1/Sliders` (multipart create: `POST` with `Title`, `Subtitle`, `SortOrder`, `IsActive`, `Image`). Check Swagger for exact endpoint paths under `Slider` and `Banner` tags. Then build **Banners** (Title/CategoryId/EndsAt countdown/IsActive/Image). After Marketing, build **Coupons** (new sidebar item, TRD §6.3).
+
+---
+
+## Session 10 — 2026-06-28 — Phase 6: Marketing (Sliders + Banners + Coupons)
+
+**Phase:** Phase 6 — Marketing — **COMPLETE** (all 3 tasks checked off in `ROADMAP.md`).
+
+**Done this session**
+- **Verified Swagger** (backend warm): confirmed all 6 Marketing endpoints. `GET/POST/PUT/DELETE /api/v1/admin/sliders` (multipart: Title, Subtitle, SortOrder, IsActive, Image); `GET/POST/PUT/DELETE /api/v1/admin/banners` (multipart: Title, CategoryId, EndsAt, IsActive, Image); `GET/POST/PUT/DELETE /api/v1/admin/coupons` (JSON `CouponRequest`). `DiscountType` enum = `Percentage | FixedAmount`.
+- **`src/features/marketing/`** created from scratch: `types.ts` (Slider, Banner, Coupon, CouponRequest, CouponFormValues), `slidersApi.ts` (RTK Query GET+DELETE, `Slider/LIST` tags), `bannersApi.ts` (RTK Query GET+DELETE, `Banner/LIST` tags), `couponsApi.ts` (RTK Query paged GET + JSON CRUD, `Coupon/LIST` tags), `useSliderMutations.ts` and `useBannerMutations.ts` (axios multipart POST/PUT + invalidate tags), `couponSchemas.ts` (Yup schema with typed optional numeric fields).
+- **`BannersTab.tsx`** replaced — two-column layout: left `SlidersSection`, right `BannerSection`. No Banners mockup → used existing card/list visual language.
+- **`SlidersSection.tsx`** (`features/marketing/components/`) — image dropzone + Title/Subtitle/SortOrder(number)/IsActive form card (create + inline edit); list of existing sliders with thumbnail, title, subtitle, `#sortOrder` badge, active pill, edit/delete icons.
+- **`BannerSection.tsx`** (`features/marketing/components/`) — image dropzone + Title/Category select/EndsAt(datetime-local)/IsActive form card (create only, no edit); list of existing banners with thumbnail, title, category, **live countdown** (`useCountdown` hook, `setInterval(1000)`, "Xd Yh Zm Ws" display), active pill, delete icon. Reuses the existing `useGetCategoriesQuery` (already cached from Categories tab).
+- **`CouponFormModal.tsx`** — create+edit modal with all `CouponRequest` fields (code, discountType select, discountValue, minOrderAmount, maxDiscountAmount, startsAt/expiresAt datetime-local, usageLimit, perUserLimit, isActive switch). Yup-validated via `useCouponSchema`; resolver cast `as Resolver<CouponFormValues>` to resolve yup optional-string type mismatch.
+- **`pages/CouponsPage.tsx`** — table of coupons (Code mono chip, Type, Value formatted as `X%` / `$X`, Min Order, Starts/Expires formatted via `formatDate`, Active pill, edit/delete actions), paged, `+ Add coupon` header button, empty state, `ConfirmDialog` for delete.
+- **Sidebar + Router**: `CardGiftcardOutlined` Coupons item at `/coupons` added to `SidebarNav.tsx`; route `/coupons → CouponsPage` added to `AppRouter.tsx`.
+- **i18n**: full `marketing.*` + `nav.coupons` key added to both `locales/en/common.json` and `locales/ru/common.json`.
+- **Verified:** `npm run build` (tsc strict + vite, **1379 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **GET response shapes for `admin/sliders` and `admin/banners` are assumed** as `ApiEnvelope<Slider[]>` and `ApiEnvelope<Banner[]>` (flat arrays, like Tags — not paged). Verify on first real admin login; if paged, switch to `PagedResult<T>` and add pagination.
+- **BannerSection has create+delete only** (no edit button) — the TRD description ("upload area + list + delete") implies one-shot banners. Edit can be added following `SlidersSection` pattern if needed.
+- **Countdown is a live `setInterval`** hook on `endsAt` per banner item — shows "Expired" when past, nothing when `endsAt` is null.
+- **Coupons are JSON** (not multipart) — RTK Query handles all CRUD; no axios mutation hook needed.
+- **Yup resolver type cast** (`as Resolver<CouponFormValues>`) used for the coupon form because yup infers optional string fields as `string | undefined` but all form defaults are `''`; this is the standard resolution.
+
+**Open questions / blockers**
+- **All mutations still unverified end-to-end** — no admin credentials. Slider/Banner multipart POST, coupon JSON CRUD have not hit the live backend (all swagger shapes confirmed, GETs unverified since no seeded data).
+- `admin/sliders` and `admin/banners` flat-array vs paged assumption needs confirmation on first login.
+
+**NEXT ACTION (start here):**
+> Begin **Phase 7 — Operations modules**. First: **Returns** — new sidebar item at `/returns`. Verify live shapes: `GET /api/v1/admin/returns?status&paging` (envelope + paged items with return fields), `PUT /admin/returns/{id}` (`ResolveReturnRequest{ returnStatus: 'Approved'|'Rejected'|'Completed' }`). Build `features/returns/{types,returnsApi}.ts` + `pages/ReturnsPage.tsx` (table with status filter, status pill using existing `statusColors`, resolve action). Add sidebar nav + route. Then **Users & Roles** (`GET /admin/users`, detail, delete, `POST/DELETE /admin/users/{id}/roles`), then **Messages** and **Newsletter** tabs in `OtherPage.tsx`.
