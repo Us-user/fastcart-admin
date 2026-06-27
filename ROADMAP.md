@@ -92,18 +92,18 @@
 - [x] **Newsletter** — "Other" tab: paginated subscribers list (TRD §6.7).
 
 ## Phase 8 — Profile & account
-- [ ] Profile get + update (multipart `PUT /Profile`) (TRD §10).
-- [ ] Change password flow (`POST /Auth/change-password`).
+- [x] Profile get + update (multipart `PUT /Profile`) (TRD §10).
+- [x] Change password flow (`POST /Auth/change-password`).
 
 ## Phase 9 — Polish, NFRs & delivery
-- [ ] Responsive down to tablet; sidebar → MUI Drawer on small screens (TRD §11).
-- [ ] Loading skeletons + error/retry states on every data screen.
-- [ ] RTK Query cache invalidation after all mutations.
-- [ ] Dark-mode parity on every screen (faithful dark equivalents where mockups are light-only).
-- [ ] i18n completeness — EN + RU parity, zero hardcoded display strings.
+- [x] Responsive down to tablet; sidebar → MUI Drawer on small screens (TRD §11).
+- [x] Loading skeletons + error/retry states on every data screen.
+- [x] RTK Query cache invalidation after all mutations.
+- [x] Dark-mode parity on every screen (faithful dark equivalents where mockups are light-only).
+- [x] i18n completeness — EN + RU parity, zero hardcoded display strings.
 - [ ] Accessibility — labelled inputs, focus-trapped dialogs, keyboard-navigable tables/menus.
-- [ ] README (setup, env, MUI+Tailwind dark-mode approach, multipart helper) (TRD §12).
-- [ ] **Endpoint coverage audit against TRD §10** — confirm every required endpoint is implemented.
+- [x] README (setup, env, MUI+Tailwind dark-mode approach, multipart helper) (TRD §12).
+- [x] **Endpoint coverage audit against TRD §10** — confirm every required endpoint is implemented.
 - [ ] Final visual QA pass against every mockup in `images/`.
 
 ---

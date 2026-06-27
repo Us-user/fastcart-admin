@@ -1,596 +1,619 @@
-{
-  "app": {
-    "name": "FastCart Admin"
-  },
-  "auth": {
-    "welcome": "Welcome to admin panel",
-    "login": "Log in",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm password",
-    "forgotPassword": "Forgot password?",
-    "forgotPasswordTitle": "Forgot password",
-    "resetPasswordTitle": "Reset password",
-    "sendResetLink": "Send reset link",
-    "reset": "Reset",
-    "showPassword": "Show password",
-    "hidePassword": "Hide password",
-    "loginError": "Unable to log in. Check your email and password.",
-    "genericError": "Something went wrong. Please try again.",
-    "resetLinkSent": "If an account exists, a reset link has been sent.",
-    "resetLinkInvalid": "This reset link is invalid or has expired.",
-    "passwordReset": "Your password has been reset. Please log in."
-  },
-  "validation": {
-    "required": "This field is required",
-    "email": "Enter a valid email address",
-    "passwordMin": "Password must be at least {{count}} characters",
-    "passwordsMatch": "Passwords do not match",
-    "maxLength": "Must be at most {{count}} characters",
-    "hexCode": "Enter a valid hex color (e.g. #00599C)",
-    "number": "Enter a valid number",
-    "positive": "Must be greater than 0",
-    "integer": "Must be a whole number",
-    "min": "Must be at least {{count}}"
-  },
-  "permissions": {
-    "title": "Insufficient permissions",
-    "description": "Your account doesn't have admin access to this panel. If you think this is a mistake, contact an administrator.",
-    "logout": "Log out"
-  },
-  "nav": {
-    "dashboard": "Dashboard",
-    "orders": "Orders",
-    "products": "Products",
-    "coupons": "Coupons",
-    "returns": "Returns",
-    "users": "Users",
-    "other": "Other",
-    "logout": "Log out",
-    "notifications": "Notifications",
-    "openMenu": "Open menu"
-  },
-  "user": {
-    "menu": "Account menu",
-    "fallbackName": "Admin"
-  },
-  "theme": {
-    "light": "Light mode",
-    "dark": "Dark mode"
-  },
-  "language": {
-    "switchTo": "Switch to {{lang}}"
-  },
-  "common": {
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "create": "Create",
-    "edit": "Edit",
-    "add": "Add",
-    "action": "Action",
-    "confirm": "Confirm",
-    "search": "Search",
-    "searchPlaceholder": "Search…",
-    "loading": "Loading…",
-    "retry": "Retry",
-    "comingSoon": "Coming soon",
-    "noItems": "No items yet",
-    "resultsCount": "{{count}} Results",
-    "loadError": "Failed to load. Please try again.",
-    "saveError": "Couldn't save your changes. Please try again.",
-    "deleteError": "Couldn't delete. Please try again."
-  },
-  "products": {
-    "addProduct": "Add product",
-    "editProduct": "Edit product",
-    "filter": "Filter",
-    "inStock": "In stock",
-    "outOfStock": "Out of Stock",
-    "selectAll": "Select all",
-    "selectRow": "Select {{name}}",
-    "bulkEdit": "Edit selected",
-    "bulkDelete": "Delete selected",
-    "noSearchResults": "No products match your search.",
-    "columns": {
-      "product": "Product",
-      "inventory": "Inventory",
-      "category": "Category",
-      "price": "Price",
-      "action": "Action"
-    },
-    "sort": {
-      "newest": "Newest",
-      "priceAsc": "Price: low to high",
-      "priceDesc": "Price: high to low",
-      "topRated": "Top rated"
-    },
-    "empty": {
-      "title": "Add new products",
-      "description": "Start making sales by adding your products. You can import and manage your products at any time."
-    },
-    "delete": {
-      "title": "Delete product",
-      "message": "Are you sure you want to delete this product?"
-    },
-    "bulkDeleteModal": {
-      "title": "Delete Items",
-      "message_one": "Are you sure you want to delete {{count}} selected item?",
-      "message_other": "Are you sure you want to delete {{count}} selected items?"
-    },
-    "toast": {
-      "deleted": "Product deleted",
-      "bulkDeleted_one": "{{count}} product deleted",
-      "bulkDeleted_other": "{{count}} products deleted",
-      "created": "Product created"
-    },
-    "condition": {
-      "brandNew": "Brand new",
-      "refurbished": "Refurbished",
-      "old": "Old"
-    },
-    "form": {
-      "breadcrumbAdd": "Add new",
-      "information": "Information",
-      "productName": "Product name",
-      "code": "Code",
-      "description": "Description",
-      "category": "Categories",
-      "subcategory": "Subcategory",
-      "selectCategoryFirst": "Select a category first",
-      "brand": "Brands",
-      "condition": "Condition",
-      "price": "Price",
-      "productPrice": "Product price",
-      "discount": "Discount",
-      "count": "Count",
-      "addTax": "Add tax for this product",
-      "differentOptions": "Different Options",
-      "differentOptionsHint": "This product has multiple options",
-      "options": "Options",
-      "optionN": "Option {{n}}",
-      "value": "Value",
-      "addValue": "Add value",
-      "addMore": "Add more",
-      "removeOption": "Remove option",
-      "colour": "Colour",
-      "tags": "Tags",
-      "images": "Images",
-      "image": "Image",
-      "fileName": "File name",
-      "normal": "Normal",
-      "bold": "Bold",
-      "italic": "Italic",
-      "underline": "Underline",
-      "link": "Insert link",
-      "linkPrompt": "Enter a URL",
-      "orderedList": "Numbered list",
-      "bulletList": "Bulleted list",
-      "clearFormatting": "Clear formatting",
-      "discountMax": "Discount can't exceed the price",
-      "successTitle": "Successfully add",
-      "successMessage": "Do you want to add new product to your store?",
-      "goToProducts": "Go to products",
-      "addNew": "Add new"
-    },
-    "edit": {
-      "breadcrumb": "Edit",
-      "backToProducts": "Back to products",
-      "sectionedHint": "Each section saves on its own — use the Save button in that card.",
-      "saveDetails": "Save details",
-      "detailsSaved": "Product details saved",
-      "tagsHint": "Tags are saved with the product details.",
-      "imagesUploaded": "Images uploaded",
-      "imageDeleted": "Image deleted",
-      "noImages": "No images yet",
-      "deleteImage": {
-        "title": "Delete image",
-        "message": "Are you sure you want to delete this image?"
-      },
-      "addOption": "Add option",
-      "noOptions": "No options yet",
-      "optionIncomplete": "Add an option name and at least one value.",
-      "optionCreated": "Option added",
-      "optionUpdated": "Option updated",
-      "optionDeleted": "Option deleted",
-      "deleteOption": {
-        "title": "Delete option",
-        "message": "Are you sure you want to delete \"{{name}}\"?"
-      },
-      "variants": "Variants",
-      "addVariant": "Add variant",
-      "newVariant": "New variant",
-      "noVariants": "No variants yet",
-      "sku": "SKU",
-      "discountPrice": "Discount price",
-      "costPrice": "Cost price",
-      "unchanged": "Unchanged",
-      "stock": "Stock",
-      "updateStock": "Update stock",
-      "active": "Active",
-      "variantSaved": "Variant saved",
-      "stockSaved": "Stock updated",
-      "variantDeleted": "Variant deleted",
-      "variantCreated": "Variant added",
-      "pickAllOptions": "Pick a value for every option.",
-      "deleteVariant": {
-        "title": "Delete variant",
-        "message": "Are you sure you want to delete this variant?"
-      },
-      "reviews": "Reviews",
-      "noReviews": "No reviews yet",
-      "anonymous": "Anonymous",
-      "reviewDeleted": "Review deleted",
-      "deleteReview": {
-        "title": "Delete review",
-        "message": "Are you sure you want to delete this review?"
-      }
-    }
-  },
-  "orders": {
-    "addOrder": "+ Add order",
-    "filter": "Filter",
-    "editSelected": "Edit selected",
-    "deleteSelected": "Delete selected",
-    "selectAll": "Select all",
-    "selectRow": "Select order",
-    "noSearchResults": "No orders match your search.",
-    "backToOrders": "Back to orders",
-    "columns": {
-      "order": "Order",
-      "date": "Date",
-      "customer": "Customer",
-      "paymentStatus": "Payment status",
-      "orderStatus": "Order Status",
-      "total": "Total"
-    },
-    "sort": {
-      "newest": "Newest",
-      "oldest": "Oldest",
-      "totalAsc": "Total: low to high",
-      "totalDesc": "Total: high to low"
-    },
-    "empty": {
-      "title": "No Orders Yet",
-      "description": "All the upcoming orders from your store will be visible in this page. You can add orders by yourself if you sell offline."
-    },
-    "orderStatus": {
-      "New": "New",
-      "Ready": "Ready",
-      "Shipped": "Shipped",
-      "Received": "Received",
-      "Cancelled": "Cancelled",
-      "Returned": "Returned"
-    },
-    "paymentStatus": {
-      "Pending": "Pending",
-      "Paid": "Paid",
-      "Failed": "Failed",
-      "Refunded": "Refunded"
-    },
-    "paymentMethod": {
-      "CashOnDelivery": "Cash on Delivery",
-      "Bank": "Bank Transfer"
-    },
-    "form": {
-      "title": "Add order",
-      "createOrder": "Create order",
-      "customer": "Customer",
-      "customerName": "Customer name",
-      "customerEmail": "Customer email",
-      "items": "Order items",
-      "variantId": "Product variant ID",
-      "quantity": "Quantity",
-      "addItem": "Add item",
-      "removeItem": "Remove item",
-      "itemsRequired": "At least one item is required",
-      "shippingAddress": "Shipping address",
-      "billingAddress": "Billing address",
-      "differentBilling": "Use different billing address",
-      "street": "Street",
-      "city": "City",
-      "state": "State / Region",
-      "postalCode": "Postal code",
-      "country": "Country",
-      "payment": "Payment",
-      "paymentMethod": "Payment method",
-      "paymentStatus": "Payment status (optional)",
-      "paymentStatusOptional": "— Not set —",
-      "note": "Note",
-      "customerNote": "Customer note"
-    },
-    "detail": {
-      "order": "Order",
-      "items": "Order items",
-      "product": "Product",
-      "sku": "SKU",
-      "qty": "Qty",
-      "unit": "Unit price",
-      "total": "Total",
-      "subtotal": "Subtotal",
-      "shipping": "Shipping",
-      "discount": "Discount",
-      "grandTotal": "Grand total",
-      "shippingAddress": "Shipping address",
-      "billingAddress": "Billing address",
-      "sameAsShipping": "Same as shipping",
-      "note": "Customer note",
-      "statusTitle": "Status",
-      "orderStatus": "Order status",
-      "paymentStatus": "Payment status",
-      "customerInfo": "Customer & order info",
-      "name": "Name",
-      "email": "Email",
-      "paymentMethod": "Payment method",
-      "createdAt": "Created",
-      "updatedAt": "Updated"
-    },
-    "toast": {
-      "created": "Order created",
-      "statusUpdated": "Order status updated",
-      "paymentStatusUpdated": "Payment status updated"
-    }
-  },
-  "dashboard": {
-    "sales": "Sales",
-    "cost": "Cost",
-    "profit": "Profit",
-    "salesRevenue": "Sales Revenue",
-    "orders": "Orders",
-    "topSellingProducts": "Top selling products",
-    "seeAll": "See All",
-    "inSales": "in sales",
-    "recentTransactions": "Recent Transactions",
-    "topProductsByUnits": "Top Products by Units Sold",
-    "columns": {
-      "name": "Name",
-      "date": "Date",
-      "amount": "Amount",
-      "status": "Status",
-      "price": "Price",
-      "units": "Units"
-    },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    }
-  },
-  "marketing": {
-    "mainSliders": "Main sliders",
-    "banners": "Banners",
-    "addSlider": "Add new slider",
-    "editSlider": "Edit slider",
-    "sliderTitle": "Title",
-    "sliderSubtitle": "Subtitle",
-    "sortOrder": "Sort order",
-    "isActive": "Active",
-    "active": "Active",
-    "inactive": "Inactive",
-    "noSliders": "No sliders yet",
-    "deleteSlider": {
-      "title": "Delete slider",
-      "message": "Are you sure you want to delete \"{{title}}\"?"
-    },
-    "addBanner": "Add new banner",
-    "bannerTitle": "Title",
-    "bannerCategory": "Category",
-    "noCategory": "— No category —",
-    "endsAt": "Ends at",
-    "noBanners": "No banners yet",
-    "deleteBanner": {
-      "title": "Delete banner",
-      "message": "Are you sure you want to delete \"{{title}}\"?"
-    },
-    "coupons": "Coupons",
-    "addCoupon": "Add coupon",
-    "editCoupon": "Edit coupon",
-    "couponCode": "Code",
-    "discountType": "Discount type",
-    "discountType_Percentage": "Percentage",
-    "discountType_FixedAmount": "Fixed amount",
-    "discountValue": "Discount value",
-    "minOrderAmount": "Min order amount",
-    "maxDiscountAmount": "Max discount amount",
-    "startsAt": "Starts at",
-    "expiresAt": "Expires at",
-    "usageLimit": "Usage limit",
-    "perUserLimit": "Per-user limit",
-    "statusLabel": "Status",
-    "noCoupons": "No coupons yet",
-    "noCouponsDescription": "Create your first coupon to offer discounts to customers.",
-    "deleteCoupon": {
-      "title": "Delete coupon",
-      "message": "Are you sure you want to delete coupon \"{{code}}\"?"
-    },
-    "toast": {
-      "sliderCreated": "Slider created",
-      "sliderUpdated": "Slider updated",
-      "sliderDeleted": "Slider deleted",
-      "bannerCreated": "Banner created",
-      "bannerDeleted": "Banner deleted",
-      "couponCreated": "Coupon created",
-      "couponUpdated": "Coupon updated",
-      "couponDeleted": "Coupon deleted"
-    }
-  },
-  "returns": {
-    "title": "Returns",
-    "allStatuses": "All statuses",
-    "status": {
-      "Requested": "Requested",
-      "Approved": "Approved",
-      "Rejected": "Rejected",
-      "Completed": "Completed"
-    },
-    "action": {
-      "Approved": "Approve",
-      "Rejected": "Reject",
-      "Completed": "Complete"
-    },
-    "columns": {
-      "id": "Return #",
-      "customer": "Customer",
-      "product": "Product",
-      "reason": "Reason",
-      "status": "Status",
-      "date": "Date"
-    },
-    "empty": {
-      "title": "No returns yet",
-      "description": "Return requests from customers will appear here."
-    },
-    "confirm": {
-      "title": "{{action}} return",
-      "message": "Are you sure you want to mark return #{{id}} as {{action}}?"
-    },
-    "toast": {
-      "resolved": "Return {{action}}"
-    }
-  },
-  "users": {
-    "title": "Users",
-    "searchPlaceholder": "Search by username…",
-    "noRoles": "No roles",
-    "viewDetail": "View details",
-    "columns": {
-      "username": "Username",
-      "email": "Email",
-      "phone": "Phone",
-      "roles": "Roles"
-    },
-    "detail": {
-      "title": "User details",
-      "username": "Username",
-      "email": "Email",
-      "phone": "Phone",
-      "joined": "Joined",
-      "roles": "Roles",
-      "noRoles": "No roles assigned",
-      "removeRole": "Remove role"
-    },
-    "empty": {
-      "title": "No users found",
-      "description": "Registered users will appear here."
-    },
-    "deleteDialog": {
-      "title": "Delete user",
-      "message": "Are you sure you want to delete the user \"{{name}}\"? This action cannot be undone."
-    },
-    "toast": {
-      "deleted": "User \"{{name}}\" deleted",
-      "roleAssigned": "Role \"{{role}}\" assigned",
-      "roleRemoved": "Role \"{{role}}\" removed"
-    }
-  },
-  "messages": {
-    "columns": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "message": "Message",
-      "date": "Date"
-    },
-    "empty": {
-      "title": "No messages yet",
-      "description": "Contact messages from customers will appear here."
-    }
-  },
-  "newsletter": {
-    "columns": {
-      "email": "Email",
-      "subscribedAt": "Subscribed"
-    },
-    "empty": {
-      "title": "No subscribers yet",
-      "description": "Newsletter subscribers will appear here."
-    }
-  },
-  "catalog": {
-    "tabs": {
-      "categories": "Categories",
-      "brands": "Brands",
-      "banners": "Banners",
-      "messages": "Messages",
-      "newsletter": "Newsletter"
-    },
-    "addNew": "Add new",
-    "addCategory": "Add category",
-    "editCategory": "Edit category",
-    "categoryName": "Category name",
-    "currentImage": "Current image",
-    "clickToUpload": "Click to upload",
-    "orDragAndDrop": "or drag and drop",
-    "uploadFormats": "SVG, JPG, PNG, or gif maximum 900×400",
-    "noSearchResults": "No categories match your search.",
-    "deleteCategory": {
-      "title": "Delete category",
-      "message": "Are you sure you want to delete \"{{name}}\"?"
-    },
-    "subcategories": "Subcategories",
-    "subcategoriesOf": "Subcategories of {{name}}",
-    "addSubcategory": "Add subcategory",
-    "editSubcategory": "Edit subcategory",
-    "subcategoryName": "Subcategory name",
-    "noSubcategories": "No subcategories yet",
-    "deleteSubcategory": {
-      "title": "Delete subcategory",
-      "message": "Are you sure you want to delete \"{{name}}\"?"
-    },
-    "brands": "Brands",
-    "addBrand": "Add new brand",
-    "editBrand": "Edit brand",
-    "brandName": "Brand name",
-    "noBrands": "No brands yet",
-    "deleteBrand": {
-      "title": "Delete brand",
-      "message": "Are you sure you want to delete \"{{name}}\"?"
-    },
-    "newColor": "New color",
-    "editColor": "Edit color",
-    "colorName": "Color name",
-    "hexCode": "Hex code",
-    "pickColor": "Pick a color",
-    "createNewColor": "Create new",
-    "deleteColor": {
-      "title": "Delete color",
-      "message": "Are you sure you want to delete \"{{name}}\"?"
-    },
-    "tagName": "Tag name",
-    "existingTags": "Existing tags",
-    "deleteTag": {
-      "title": "Delete tag",
-      "message": "Are you sure you want to delete \"{{name}}\"?"
-    },
-    "empty": {
-      "categoriesTitle": "No categories yet",
-      "categoriesDescription": "Create your first category to start organizing your catalog."
-    },
-    "toast": {
-      "categoryCreated": "Category created",
-      "categoryUpdated": "Category updated",
-      "categoryDeleted": "Category deleted",
-      "subcategoryCreated": "Subcategory created",
-      "subcategoryUpdated": "Subcategory updated",
-      "subcategoryDeleted": "Subcategory deleted",
-      "brandCreated": "Brand created",
-      "brandUpdated": "Brand updated",
-      "brandDeleted": "Brand deleted",
-      "colorCreated": "Color created",
-      "colorUpdated": "Color updated",
-      "colorDeleted": "Color deleted",
-      "tagCreated": "Tag created",
-      "tagUpdated": "Tag updated",
-      "tagDeleted": "Tag deleted"
-    }
-  }
+﻿{
+    "app":  {
+                "name":  "FastCart Admin"
+            },
+    "auth":  {
+                 "welcome":  "Welcome to admin panel",
+                 "login":  "Log in",
+                 "email":  "Email",
+                 "password":  "Password",
+                 "confirmPassword":  "Confirm password",
+                 "forgotPassword":  "Forgot password?",
+                 "forgotPasswordTitle":  "Forgot password",
+                 "resetPasswordTitle":  "Reset password",
+                 "sendResetLink":  "Send reset link",
+                 "reset":  "Reset",
+                 "showPassword":  "Show password",
+                 "hidePassword":  "Hide password",
+                 "loginError":  "Unable to log in. Check your email and password.",
+                 "genericError":  "Something went wrong. Please try again.",
+                 "resetLinkSent":  "If an account exists, a reset link has been sent.",
+                 "resetLinkInvalid":  "This reset link is invalid or has expired.",
+                 "passwordReset":  "Your password has been reset. Please log in."
+             },
+    "validation":  {
+                       "required":  "This field is required",
+                       "email":  "Enter a valid email address",
+                       "passwordMin":  "Password must be at least {{count}} characters",
+                       "passwordsMatch":  "Passwords do not match",
+                       "maxLength":  "Must be at most {{count}} characters",
+                       "hexCode":  "Enter a valid hex color (e.g. #00599C)",
+                       "number":  "Enter a valid number",
+                       "positive":  "Must be greater than 0",
+                       "integer":  "Must be a whole number",
+                       "min":  "Must be at least {{count}}"
+                   },
+    "permissions":  {
+                        "title":  "Insufficient permissions",
+                        "description":  "Your account doesn\u0027t have admin access to this panel. If you think this is a mistake, contact an administrator.",
+                        "logout":  "Log out"
+                    },
+    "nav":  {
+                "dashboard":  "Dashboard",
+                "orders":  "Orders",
+                "products":  "Products",
+                "coupons":  "Coupons",
+                "returns":  "Returns",
+                "users":  "Users",
+                "other":  "Other",
+                "logout":  "Log out",
+                "notifications":  "Notifications",
+                "openMenu":  "Open menu"
+            },
+    "user":  {
+                 "menu":  "Account menu",
+                 "fallbackName":  "Admin"
+             },
+    "theme":  {
+                  "light":  "Light mode",
+                  "dark":  "Dark mode"
+              },
+    "language":  {
+                     "switchTo":  "Switch to {{lang}}"
+                 },
+    "common":  {
+                   "save":  "Save",
+                   "cancel":  "Cancel",
+                   "delete":  "Delete",
+                   "create":  "Create",
+                   "edit":  "Edit",
+                   "add":  "Add",
+                   "action":  "Action",
+                   "confirm":  "Confirm",
+                   "search":  "Search",
+                   "searchPlaceholder":  "Search…",
+                   "loading":  "Loading…",
+                   "retry":  "Retry",
+                   "comingSoon":  "Coming soon",
+                   "noItems":  "No items yet",
+                   "resultsCount":  "{{count}} Results",
+                   "loadError":  "Failed to load. Please try again.",
+                   "saveError":  "Couldn\u0027t save your changes. Please try again.",
+                   "deleteError":  "Couldn\u0027t delete. Please try again."
+               },
+    "products":  {
+                     "addProduct":  "Add product",
+                     "editProduct":  "Edit product",
+                     "filter":  "Filter",
+                     "inStock":  "In stock",
+                     "outOfStock":  "Out of Stock",
+                     "selectAll":  "Select all",
+                     "selectRow":  "Select {{name}}",
+                     "bulkEdit":  "Edit selected",
+                     "bulkDelete":  "Delete selected",
+                     "noSearchResults":  "No products match your search.",
+                     "columns":  {
+                                     "product":  "Product",
+                                     "inventory":  "Inventory",
+                                     "category":  "Category",
+                                     "price":  "Price",
+                                     "action":  "Action"
+                                 },
+                     "sort":  {
+                                  "newest":  "Newest",
+                                  "priceAsc":  "Price: low to high",
+                                  "priceDesc":  "Price: high to low",
+                                  "topRated":  "Top rated"
+                              },
+                     "empty":  {
+                                   "title":  "Add new products",
+                                   "description":  "Start making sales by adding your products. You can import and manage your products at any time."
+                               },
+                     "delete":  {
+                                    "title":  "Delete product",
+                                    "message":  "Are you sure you want to delete this product?"
+                                },
+                     "bulkDeleteModal":  {
+                                             "title":  "Delete Items",
+                                             "message_one":  "Are you sure you want to delete {{count}} selected item?",
+                                             "message_other":  "Are you sure you want to delete {{count}} selected items?"
+                                         },
+                     "toast":  {
+                                   "deleted":  "Product deleted",
+                                   "bulkDeleted_one":  "{{count}} product deleted",
+                                   "bulkDeleted_other":  "{{count}} products deleted",
+                                   "created":  "Product created"
+                               },
+                     "condition":  {
+                                       "brandNew":  "Brand new",
+                                       "refurbished":  "Refurbished",
+                                       "old":  "Old"
+                                   },
+                     "form":  {
+                                  "breadcrumbAdd":  "Add new",
+                                  "information":  "Information",
+                                  "productName":  "Product name",
+                                  "code":  "Code",
+                                  "description":  "Description",
+                                  "category":  "Categories",
+                                  "subcategory":  "Subcategory",
+                                  "selectCategoryFirst":  "Select a category first",
+                                  "brand":  "Brands",
+                                  "condition":  "Condition",
+                                  "price":  "Price",
+                                  "productPrice":  "Product price",
+                                  "discount":  "Discount",
+                                  "count":  "Count",
+                                  "addTax":  "Add tax for this product",
+                                  "differentOptions":  "Different Options",
+                                  "differentOptionsHint":  "This product has multiple options",
+                                  "options":  "Options",
+                                  "optionN":  "Option {{n}}",
+                                  "value":  "Value",
+                                  "addValue":  "Add value",
+                                  "addMore":  "Add more",
+                                  "removeOption":  "Remove option",
+                                  "colour":  "Colour",
+                                  "tags":  "Tags",
+                                  "images":  "Images",
+                                  "image":  "Image",
+                                  "fileName":  "File name",
+                                  "normal":  "Normal",
+                                  "bold":  "Bold",
+                                  "italic":  "Italic",
+                                  "underline":  "Underline",
+                                  "link":  "Insert link",
+                                  "linkPrompt":  "Enter a URL",
+                                  "orderedList":  "Numbered list",
+                                  "bulletList":  "Bulleted list",
+                                  "clearFormatting":  "Clear formatting",
+                                  "discountMax":  "Discount can\u0027t exceed the price",
+                                  "successTitle":  "Successfully add",
+                                  "successMessage":  "Do you want to add new product to your store?",
+                                  "goToProducts":  "Go to products",
+                                  "addNew":  "Add new"
+                              },
+                     "edit":  {
+                                  "breadcrumb":  "Edit",
+                                  "backToProducts":  "Back to products",
+                                  "sectionedHint":  "Each section saves on its own — use the Save button in that card.",
+                                  "saveDetails":  "Save details",
+                                  "detailsSaved":  "Product details saved",
+                                  "tagsHint":  "Tags are saved with the product details.",
+                                  "imagesUploaded":  "Images uploaded",
+                                  "imageDeleted":  "Image deleted",
+                                  "noImages":  "No images yet",
+                                  "deleteImage":  {
+                                                      "title":  "Delete image",
+                                                      "message":  "Are you sure you want to delete this image?"
+                                                  },
+                                  "addOption":  "Add option",
+                                  "noOptions":  "No options yet",
+                                  "optionIncomplete":  "Add an option name and at least one value.",
+                                  "optionCreated":  "Option added",
+                                  "optionUpdated":  "Option updated",
+                                  "optionDeleted":  "Option deleted",
+                                  "deleteOption":  {
+                                                       "title":  "Delete option",
+                                                       "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                                   },
+                                  "variants":  "Variants",
+                                  "addVariant":  "Add variant",
+                                  "newVariant":  "New variant",
+                                  "noVariants":  "No variants yet",
+                                  "sku":  "SKU",
+                                  "discountPrice":  "Discount price",
+                                  "costPrice":  "Cost price",
+                                  "unchanged":  "Unchanged",
+                                  "stock":  "Stock",
+                                  "updateStock":  "Update stock",
+                                  "active":  "Active",
+                                  "variantSaved":  "Variant saved",
+                                  "stockSaved":  "Stock updated",
+                                  "variantDeleted":  "Variant deleted",
+                                  "variantCreated":  "Variant added",
+                                  "pickAllOptions":  "Pick a value for every option.",
+                                  "deleteVariant":  {
+                                                        "title":  "Delete variant",
+                                                        "message":  "Are you sure you want to delete this variant?"
+                                                    },
+                                  "reviews":  "Reviews",
+                                  "noReviews":  "No reviews yet",
+                                  "anonymous":  "Anonymous",
+                                  "reviewDeleted":  "Review deleted",
+                                  "deleteReview":  {
+                                                       "title":  "Delete review",
+                                                       "message":  "Are you sure you want to delete this review?"
+                                                   }
+                              }
+                 },
+    "orders":  {
+                   "addOrder":  "+ Add order",
+                   "filter":  "Filter",
+                   "editSelected":  "Edit selected",
+                   "deleteSelected":  "Delete selected",
+                   "selectAll":  "Select all",
+                   "selectRow":  "Select order",
+                   "noSearchResults":  "No orders match your search.",
+                   "backToOrders":  "Back to orders",
+                   "columns":  {
+                                   "order":  "Order",
+                                   "date":  "Date",
+                                   "customer":  "Customer",
+                                   "paymentStatus":  "Payment status",
+                                   "orderStatus":  "Order Status",
+                                   "total":  "Total"
+                               },
+                   "sort":  {
+                                "newest":  "Newest",
+                                "oldest":  "Oldest",
+                                "totalAsc":  "Total: low to high",
+                                "totalDesc":  "Total: high to low"
+                            },
+                   "empty":  {
+                                 "title":  "No Orders Yet",
+                                 "description":  "All the upcoming orders from your store will be visible in this page. You can add orders by yourself if you sell offline."
+                             },
+                   "orderStatus":  {
+                                       "New":  "New",
+                                       "Ready":  "Ready",
+                                       "Shipped":  "Shipped",
+                                       "Received":  "Received",
+                                       "Cancelled":  "Cancelled",
+                                       "Returned":  "Returned"
+                                   },
+                   "paymentStatus":  {
+                                         "Pending":  "Pending",
+                                         "Paid":  "Paid",
+                                         "Failed":  "Failed",
+                                         "Refunded":  "Refunded"
+                                     },
+                   "paymentMethod":  {
+                                         "CashOnDelivery":  "Cash on Delivery",
+                                         "Bank":  "Bank Transfer"
+                                     },
+                   "form":  {
+                                "title":  "Add order",
+                                "createOrder":  "Create order",
+                                "customer":  "Customer",
+                                "customerName":  "Customer name",
+                                "customerEmail":  "Customer email",
+                                "items":  "Order items",
+                                "variantId":  "Product variant ID",
+                                "quantity":  "Quantity",
+                                "addItem":  "Add item",
+                                "removeItem":  "Remove item",
+                                "itemsRequired":  "At least one item is required",
+                                "shippingAddress":  "Shipping address",
+                                "billingAddress":  "Billing address",
+                                "differentBilling":  "Use different billing address",
+                                "street":  "Street",
+                                "city":  "City",
+                                "state":  "State / Region",
+                                "postalCode":  "Postal code",
+                                "country":  "Country",
+                                "payment":  "Payment",
+                                "paymentMethod":  "Payment method",
+                                "paymentStatus":  "Payment status (optional)",
+                                "paymentStatusOptional":  "— Not set —",
+                                "note":  "Note",
+                                "customerNote":  "Customer note"
+                            },
+                   "detail":  {
+                                  "order":  "Order",
+                                  "items":  "Order items",
+                                  "product":  "Product",
+                                  "sku":  "SKU",
+                                  "qty":  "Qty",
+                                  "unit":  "Unit price",
+                                  "total":  "Total",
+                                  "subtotal":  "Subtotal",
+                                  "shipping":  "Shipping",
+                                  "discount":  "Discount",
+                                  "grandTotal":  "Grand total",
+                                  "shippingAddress":  "Shipping address",
+                                  "billingAddress":  "Billing address",
+                                  "sameAsShipping":  "Same as shipping",
+                                  "note":  "Customer note",
+                                  "statusTitle":  "Status",
+                                  "orderStatus":  "Order status",
+                                  "paymentStatus":  "Payment status",
+                                  "customerInfo":  "Customer \u0026 order info",
+                                  "name":  "Name",
+                                  "email":  "Email",
+                                  "paymentMethod":  "Payment method",
+                                  "createdAt":  "Created",
+                                  "updatedAt":  "Updated"
+                              },
+                   "toast":  {
+                                 "created":  "Order created",
+                                 "statusUpdated":  "Order status updated",
+                                 "paymentStatusUpdated":  "Payment status updated"
+                             }
+               },
+    "dashboard":  {
+                      "sales":  "Sales",
+                      "cost":  "Cost",
+                      "profit":  "Profit",
+                      "salesRevenue":  "Sales Revenue",
+                      "orders":  "Orders",
+                      "topSellingProducts":  "Top selling products",
+                      "seeAll":  "See All",
+                      "inSales":  "in sales",
+                      "recentTransactions":  "Recent Transactions",
+                      "topProductsByUnits":  "Top Products by Units Sold",
+                      "columns":  {
+                                      "name":  "Name",
+                                      "date":  "Date",
+                                      "amount":  "Amount",
+                                      "status":  "Status",
+                                      "price":  "Price",
+                                      "units":  "Units"
+                                  },
+                      "months":  {
+                                     "jan":  "Jan",
+                                     "feb":  "Feb",
+                                     "mar":  "Mar",
+                                     "apr":  "Apr",
+                                     "may":  "May",
+                                     "jun":  "Jun",
+                                     "jul":  "Jul",
+                                     "aug":  "Aug",
+                                     "sep":  "Sep",
+                                     "oct":  "Oct",
+                                     "nov":  "Nov",
+                                     "dec":  "Dec"
+                                 }
+                  },
+    "marketing":  {
+                      "mainSliders":  "Main sliders",
+                      "banners":  "Banners",
+                      "addSlider":  "Add new slider",
+                      "editSlider":  "Edit slider",
+                      "sliderTitle":  "Title",
+                      "sliderSubtitle":  "Subtitle",
+                      "sortOrder":  "Sort order",
+                      "isActive":  "Active",
+                      "active":  "Active",
+                      "inactive":  "Inactive",
+                      "noSliders":  "No sliders yet",
+                      "deleteSlider":  {
+                                           "title":  "Delete slider",
+                                           "message":  "Are you sure you want to delete \"{{title}}\"?"
+                                       },
+                      "addBanner":  "Add new banner",
+                      "bannerTitle":  "Title",
+                      "bannerCategory":  "Category",
+                      "noCategory":  "— No category —",
+                      "endsAt":  "Ends at",
+                      "noBanners":  "No banners yet",
+                      "deleteBanner":  {
+                                           "title":  "Delete banner",
+                                           "message":  "Are you sure you want to delete \"{{title}}\"?"
+                                       },
+                      "coupons":  "Coupons",
+                      "addCoupon":  "Add coupon",
+                      "editCoupon":  "Edit coupon",
+                      "couponCode":  "Code",
+                      "discountType":  "Discount type",
+                      "discountType_Percentage":  "Percentage",
+                      "discountType_FixedAmount":  "Fixed amount",
+                      "discountValue":  "Discount value",
+                      "minOrderAmount":  "Min order amount",
+                      "maxDiscountAmount":  "Max discount amount",
+                      "startsAt":  "Starts at",
+                      "expiresAt":  "Expires at",
+                      "usageLimit":  "Usage limit",
+                      "perUserLimit":  "Per-user limit",
+                      "statusLabel":  "Status",
+                      "noCoupons":  "No coupons yet",
+                      "noCouponsDescription":  "Create your first coupon to offer discounts to customers.",
+                      "deleteCoupon":  {
+                                           "title":  "Delete coupon",
+                                           "message":  "Are you sure you want to delete coupon \"{{code}}\"?"
+                                       },
+                      "toast":  {
+                                    "sliderCreated":  "Slider created",
+                                    "sliderUpdated":  "Slider updated",
+                                    "sliderDeleted":  "Slider deleted",
+                                    "bannerCreated":  "Banner created",
+                                    "bannerDeleted":  "Banner deleted",
+                                    "couponCreated":  "Coupon created",
+                                    "couponUpdated":  "Coupon updated",
+                                    "couponDeleted":  "Coupon deleted"
+                                }
+                  },
+    "returns":  {
+                    "title":  "Returns",
+                    "allStatuses":  "All statuses",
+                    "status":  {
+                                   "Requested":  "Requested",
+                                   "Approved":  "Approved",
+                                   "Rejected":  "Rejected",
+                                   "Completed":  "Completed"
+                               },
+                    "action":  {
+                                   "Approved":  "Approve",
+                                   "Rejected":  "Reject",
+                                   "Completed":  "Complete"
+                               },
+                    "columns":  {
+                                    "id":  "Return #",
+                                    "customer":  "Customer",
+                                    "product":  "Product",
+                                    "reason":  "Reason",
+                                    "status":  "Status",
+                                    "date":  "Date"
+                                },
+                    "empty":  {
+                                  "title":  "No returns yet",
+                                  "description":  "Return requests from customers will appear here."
+                              },
+                    "confirm":  {
+                                    "title":  "{{action}} return",
+                                    "message":  "Are you sure you want to mark return #{{id}} as {{action}}?"
+                                },
+                    "toast":  {
+                                  "resolved":  "Return {{action}}"
+                              }
+                },
+    "users":  {
+                  "title":  "Users",
+                  "searchPlaceholder":  "Search by username…",
+                  "noRoles":  "No roles",
+                  "viewDetail":  "View details",
+                  "columns":  {
+                                  "username":  "Username",
+                                  "email":  "Email",
+                                  "phone":  "Phone",
+                                  "roles":  "Roles"
+                              },
+                  "detail":  {
+                                 "title":  "User details",
+                                 "username":  "Username",
+                                 "email":  "Email",
+                                 "phone":  "Phone",
+                                 "joined":  "Joined",
+                                 "roles":  "Roles",
+                                 "noRoles":  "No roles assigned",
+                                 "removeRole":  "Remove role"
+                             },
+                  "empty":  {
+                                "title":  "No users found",
+                                "description":  "Registered users will appear here."
+                            },
+                  "deleteDialog":  {
+                                       "title":  "Delete user",
+                                       "message":  "Are you sure you want to delete the user \"{{name}}\"? This action cannot be undone."
+                                   },
+                  "toast":  {
+                                "deleted":  "User \"{{name}}\" deleted",
+                                "roleAssigned":  "Role \"{{role}}\" assigned",
+                                "roleRemoved":  "Role \"{{role}}\" removed"
+                            }
+              },
+    "messages":  {
+                     "columns":  {
+                                     "name":  "Name",
+                                     "email":  "Email",
+                                     "phone":  "Phone",
+                                     "message":  "Message",
+                                     "date":  "Date"
+                                 },
+                     "empty":  {
+                                   "title":  "No messages yet",
+                                   "description":  "Contact messages from customers will appear here."
+                               }
+                 },
+    "newsletter":  {
+                       "columns":  {
+                                       "email":  "Email",
+                                       "subscribedAt":  "Subscribed"
+                                   },
+                       "empty":  {
+                                     "title":  "No subscribers yet",
+                                     "description":  "Newsletter subscribers will appear here."
+                                 }
+                   },
+    "catalog":  {
+                    "tabs":  {
+                                 "categories":  "Categories",
+                                 "brands":  "Brands",
+                                 "banners":  "Banners",
+                                 "messages":  "Messages",
+                                 "newsletter":  "Newsletter"
+                             },
+                    "addNew":  "Add new",
+                    "addCategory":  "Add category",
+                    "editCategory":  "Edit category",
+                    "categoryName":  "Category name",
+                    "currentImage":  "Current image",
+                    "clickToUpload":  "Click to upload",
+                    "orDragAndDrop":  "or drag and drop",
+                    "uploadFormats":  "SVG, JPG, PNG, or gif maximum 900×400",
+                    "noSearchResults":  "No categories match your search.",
+                    "deleteCategory":  {
+                                           "title":  "Delete category",
+                                           "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                       },
+                    "subcategories":  "Subcategories",
+                    "subcategoriesOf":  "Subcategories of {{name}}",
+                    "addSubcategory":  "Add subcategory",
+                    "editSubcategory":  "Edit subcategory",
+                    "subcategoryName":  "Subcategory name",
+                    "noSubcategories":  "No subcategories yet",
+                    "deleteSubcategory":  {
+                                              "title":  "Delete subcategory",
+                                              "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                          },
+                    "brands":  "Brands",
+                    "addBrand":  "Add new brand",
+                    "editBrand":  "Edit brand",
+                    "brandName":  "Brand name",
+                    "noBrands":  "No brands yet",
+                    "deleteBrand":  {
+                                        "title":  "Delete brand",
+                                        "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                    },
+                    "newColor":  "New color",
+                    "editColor":  "Edit color",
+                    "colorName":  "Color name",
+                    "hexCode":  "Hex code",
+                    "pickColor":  "Pick a color",
+                    "createNewColor":  "Create new",
+                    "deleteColor":  {
+                                        "title":  "Delete color",
+                                        "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                    },
+                    "tagName":  "Tag name",
+                    "existingTags":  "Existing tags",
+                    "deleteTag":  {
+                                      "title":  "Delete tag",
+                                      "message":  "Are you sure you want to delete \"{{name}}\"?"
+                                  },
+                    "empty":  {
+                                  "categoriesTitle":  "No categories yet",
+                                  "categoriesDescription":  "Create your first category to start organizing your catalog."
+                              },
+                    "toast":  {
+                                  "categoryCreated":  "Category created",
+                                  "categoryUpdated":  "Category updated",
+                                  "categoryDeleted":  "Category deleted",
+                                  "subcategoryCreated":  "Subcategory created",
+                                  "subcategoryUpdated":  "Subcategory updated",
+                                  "subcategoryDeleted":  "Subcategory deleted",
+                                  "brandCreated":  "Brand created",
+                                  "brandUpdated":  "Brand updated",
+                                  "brandDeleted":  "Brand deleted",
+                                  "colorCreated":  "Color created",
+                                  "colorUpdated":  "Color updated",
+                                  "colorDeleted":  "Color deleted",
+                                  "tagCreated":  "Tag created",
+                                  "tagUpdated":  "Tag updated",
+                                  "tagDeleted":  "Tag deleted"
+                              }
+                },
+    "profile":  {
+                    "title":  "Profile",
+                    "changePhoto":  "Change photo",
+                    "changePasswordBtn":  "Update password",
+                    "section":  {
+                                    "info":  "Personal information",
+                                    "changePassword":  "Change password"
+                                },
+                    "fields":  {
+                                   "firstName":  "First name",
+                                   "lastName":  "Last name",
+                                   "email":  "Email",
+                                   "phoneNumber":  "Phone number",
+                                   "dob":  "Date of birth",
+                                   "currentPassword":  "Current password",
+                                   "newPassword":  "New password",
+                                   "confirmPassword":  "Confirm new password"
+                               },
+                    "toast":  {
+                                  "updated":  "Profile updated",
+                                  "passwordChanged":  "Password changed successfully"
+                              }
+                }
 }

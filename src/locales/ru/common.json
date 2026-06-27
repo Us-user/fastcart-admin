@@ -1,598 +1,621 @@
-{
-  "app": {
-    "name": "FastCart Админ"
-  },
-  "auth": {
-    "welcome": "Добро пожаловать в панель администратора",
-    "login": "Войти",
-    "email": "Эл. почта",
-    "password": "Пароль",
-    "confirmPassword": "Подтвердите пароль",
-    "forgotPassword": "Забыли пароль?",
-    "forgotPasswordTitle": "Забыли пароль",
-    "resetPasswordTitle": "Сброс пароля",
-    "sendResetLink": "Отправить ссылку для сброса",
-    "reset": "Сбросить",
-    "showPassword": "Показать пароль",
-    "hidePassword": "Скрыть пароль",
-    "loginError": "Не удалось войти. Проверьте эл. почту и пароль.",
-    "genericError": "Что-то пошло не так. Попробуйте ещё раз.",
-    "resetLinkSent": "Если аккаунт существует, ссылка для сброса отправлена.",
-    "resetLinkInvalid": "Ссылка для сброса недействительна или истекла.",
-    "passwordReset": "Пароль сброшен. Пожалуйста, войдите."
-  },
-  "validation": {
-    "required": "Обязательное поле",
-    "email": "Введите корректный адрес эл. почты",
-    "passwordMin": "Пароль должен содержать не менее {{count}} символов",
-    "passwordsMatch": "Пароли не совпадают",
-    "maxLength": "Не более {{count}} символов",
-    "hexCode": "Введите корректный hex-цвет (напр. #00599C)",
-    "number": "Введите корректное число",
-    "positive": "Должно быть больше 0",
-    "integer": "Должно быть целым числом",
-    "min": "Минимум {{count}}"
-  },
-  "permissions": {
-    "title": "Недостаточно прав",
-    "description": "У вашего аккаунта нет прав администратора для этой панели. Если это ошибка, обратитесь к администратору.",
-    "logout": "Выйти"
-  },
-  "nav": {
-    "dashboard": "Дашборд",
-    "orders": "Заказы",
-    "products": "Товары",
-    "coupons": "Купоны",
-    "returns": "Возвраты",
-    "users": "Пользователи",
-    "other": "Прочее",
-    "logout": "Выйти",
-    "notifications": "Уведомления",
-    "openMenu": "Открыть меню"
-  },
-  "user": {
-    "menu": "Меню аккаунта",
-    "fallbackName": "Админ"
-  },
-  "theme": {
-    "light": "Светлая тема",
-    "dark": "Тёмная тема"
-  },
-  "language": {
-    "switchTo": "Переключить на {{lang}}"
-  },
-  "common": {
-    "save": "Сохранить",
-    "cancel": "Отмена",
-    "delete": "Удалить",
-    "create": "Создать",
-    "edit": "Редактировать",
-    "add": "Добавить",
-    "action": "Действие",
-    "confirm": "Подтвердить",
-    "search": "Поиск",
-    "searchPlaceholder": "Поиск…",
-    "loading": "Загрузка…",
-    "retry": "Повторить",
-    "comingSoon": "Скоро будет",
-    "noItems": "Пока нет записей",
-    "resultsCount": "Результатов: {{count}}",
-    "loadError": "Не удалось загрузить. Попробуйте ещё раз.",
-    "saveError": "Не удалось сохранить изменения. Попробуйте ещё раз.",
-    "deleteError": "Не удалось удалить. Попробуйте ещё раз."
-  },
-  "products": {
-    "addProduct": "Добавить товар",
-    "editProduct": "Редактировать товар",
-    "filter": "Фильтр",
-    "inStock": "В наличии",
-    "outOfStock": "Нет в наличии",
-    "selectAll": "Выбрать все",
-    "selectRow": "Выбрать {{name}}",
-    "bulkEdit": "Редактировать выбранное",
-    "bulkDelete": "Удалить выбранное",
-    "noSearchResults": "Нет товаров по вашему запросу.",
-    "columns": {
-      "product": "Товар",
-      "inventory": "Наличие",
-      "category": "Категория",
-      "price": "Цена",
-      "action": "Действие"
-    },
-    "sort": {
-      "newest": "Сначала новые",
-      "priceAsc": "Цена: по возрастанию",
-      "priceDesc": "Цена: по убыванию",
-      "topRated": "По рейтингу"
-    },
-    "empty": {
-      "title": "Добавьте товары",
-      "description": "Начните продавать, добавив свои товары. Вы можете импортировать и управлять товарами в любое время."
-    },
-    "delete": {
-      "title": "Удалить товар",
-      "message": "Вы уверены, что хотите удалить этот товар?"
-    },
-    "bulkDeleteModal": {
-      "title": "Удалить элементы",
-      "message_one": "Вы уверены, что хотите удалить {{count}} выбранный элемент?",
-      "message_few": "Вы уверены, что хотите удалить {{count}} выбранных элемента?",
-      "message_many": "Вы уверены, что хотите удалить {{count}} выбранных элементов?"
-    },
-    "toast": {
-      "deleted": "Товар удалён",
-      "bulkDeleted_one": "{{count}} товар удалён",
-      "bulkDeleted_few": "{{count}} товара удалено",
-      "bulkDeleted_many": "{{count}} товаров удалено",
-      "created": "Товар создан"
-    },
-    "condition": {
-      "brandNew": "Новый",
-      "refurbished": "Восстановленный",
-      "old": "Б/у"
-    },
-    "form": {
-      "breadcrumbAdd": "Добавить",
-      "information": "Информация",
-      "productName": "Название товара",
-      "code": "Код",
-      "description": "Описание",
-      "category": "Категории",
-      "subcategory": "Подкатегория",
-      "selectCategoryFirst": "Сначала выберите категорию",
-      "brand": "Бренды",
-      "condition": "Состояние",
-      "price": "Цена",
-      "productPrice": "Цена товара",
-      "discount": "Скидка",
-      "count": "Количество",
-      "addTax": "Добавить налог на этот товар",
-      "differentOptions": "Разные варианты",
-      "differentOptionsHint": "У этого товара несколько вариантов",
-      "options": "Варианты",
-      "optionN": "Вариант {{n}}",
-      "value": "Значение",
-      "addValue": "Добавить значение",
-      "addMore": "Добавить ещё",
-      "removeOption": "Удалить вариант",
-      "colour": "Цвет",
-      "tags": "Теги",
-      "images": "Изображения",
-      "image": "Изображение",
-      "fileName": "Имя файла",
-      "normal": "Обычный",
-      "bold": "Жирный",
-      "italic": "Курсив",
-      "underline": "Подчёркнутый",
-      "link": "Вставить ссылку",
-      "linkPrompt": "Введите URL",
-      "orderedList": "Нумерованный список",
-      "bulletList": "Маркированный список",
-      "clearFormatting": "Очистить форматирование",
-      "discountMax": "Скидка не может превышать цену",
-      "successTitle": "Успешно добавлено",
-      "successMessage": "Хотите добавить новый товар в магазин?",
-      "goToProducts": "К списку товаров",
-      "addNew": "Добавить"
-    },
-    "edit": {
-      "breadcrumb": "Редактирование",
-      "backToProducts": "К списку товаров",
-      "sectionedHint": "Каждый раздел сохраняется отдельно — используйте кнопку «Сохранить» в нужной карточке.",
-      "saveDetails": "Сохранить данные",
-      "detailsSaved": "Данные товара сохранены",
-      "tagsHint": "Теги сохраняются вместе с данными товара.",
-      "imagesUploaded": "Изображения загружены",
-      "imageDeleted": "Изображение удалено",
-      "noImages": "Изображений пока нет",
-      "deleteImage": {
-        "title": "Удалить изображение",
-        "message": "Вы уверены, что хотите удалить это изображение?"
-      },
-      "addOption": "Добавить вариант",
-      "noOptions": "Вариантов пока нет",
-      "optionIncomplete": "Укажите название варианта и хотя бы одно значение.",
-      "optionCreated": "Вариант добавлен",
-      "optionUpdated": "Вариант обновлён",
-      "optionDeleted": "Вариант удалён",
-      "deleteOption": {
-        "title": "Удалить вариант",
-        "message": "Вы уверены, что хотите удалить «{{name}}»?"
-      },
-      "variants": "Варианты товара",
-      "addVariant": "Добавить вариант",
-      "newVariant": "Новый вариант",
-      "noVariants": "Вариантов пока нет",
-      "sku": "Артикул",
-      "discountPrice": "Цена со скидкой",
-      "costPrice": "Себестоимость",
-      "unchanged": "Без изменений",
-      "stock": "Остаток",
-      "updateStock": "Обновить остаток",
-      "active": "Активен",
-      "variantSaved": "Вариант сохранён",
-      "stockSaved": "Остаток обновлён",
-      "variantDeleted": "Вариант удалён",
-      "variantCreated": "Вариант добавлен",
-      "pickAllOptions": "Выберите значение для каждого варианта.",
-      "deleteVariant": {
-        "title": "Удалить вариант",
-        "message": "Вы уверены, что хотите удалить этот вариант?"
-      },
-      "reviews": "Отзывы",
-      "noReviews": "Отзывов пока нет",
-      "anonymous": "Аноним",
-      "reviewDeleted": "Отзыв удалён",
-      "deleteReview": {
-        "title": "Удалить отзыв",
-        "message": "Вы уверены, что хотите удалить этот отзыв?"
-      }
-    }
-  },
-  "orders": {
-    "addOrder": "+ Добавить заказ",
-    "filter": "Фильтр",
-    "editSelected": "Редактировать выбранное",
-    "deleteSelected": "Удалить выбранное",
-    "selectAll": "Выбрать все",
-    "selectRow": "Выбрать заказ",
-    "noSearchResults": "Нет заказов по вашему запросу.",
-    "backToOrders": "К списку заказов",
-    "columns": {
-      "order": "Заказ",
-      "date": "Дата",
-      "customer": "Покупатель",
-      "paymentStatus": "Статус оплаты",
-      "orderStatus": "Статус заказа",
-      "total": "Сумма"
-    },
-    "sort": {
-      "newest": "Сначала новые",
-      "oldest": "Сначала старые",
-      "totalAsc": "Сумма: по возрастанию",
-      "totalDesc": "Сумма: по убыванию"
-    },
-    "empty": {
-      "title": "Заказов пока нет",
-      "description": "Все предстоящие заказы из вашего магазина будут отображаться на этой странице. Вы можете добавлять заказы вручную, если продаёте офлайн."
-    },
-    "orderStatus": {
-      "New": "Новый",
-      "Ready": "Готов",
-      "Shipped": "Отправлен",
-      "Received": "Получен",
-      "Cancelled": "Отменён",
-      "Returned": "Возврат"
-    },
-    "paymentStatus": {
-      "Pending": "Ожидается",
-      "Paid": "Оплачен",
-      "Failed": "Ошибка",
-      "Refunded": "Возврат"
-    },
-    "paymentMethod": {
-      "CashOnDelivery": "Наличными при доставке",
-      "Bank": "Банковский перевод"
-    },
-    "form": {
-      "title": "Добавить заказ",
-      "createOrder": "Создать заказ",
-      "customer": "Покупатель",
-      "customerName": "Имя покупателя",
-      "customerEmail": "Email покупателя",
-      "items": "Товары в заказе",
-      "variantId": "ID варианта товара",
-      "quantity": "Количество",
-      "addItem": "Добавить товар",
-      "removeItem": "Удалить товар",
-      "itemsRequired": "Необходим хотя бы один товар",
-      "shippingAddress": "Адрес доставки",
-      "billingAddress": "Адрес выставления счёта",
-      "differentBilling": "Использовать другой адрес выставления счёта",
-      "street": "Улица",
-      "city": "Город",
-      "state": "Регион / область",
-      "postalCode": "Почтовый индекс",
-      "country": "Страна",
-      "payment": "Оплата",
-      "paymentMethod": "Способ оплаты",
-      "paymentStatus": "Статус оплаты (необязательно)",
-      "paymentStatusOptional": "— Не задан —",
-      "note": "Примечание",
-      "customerNote": "Примечание покупателя"
-    },
-    "detail": {
-      "order": "Заказ",
-      "items": "Товары в заказе",
-      "product": "Товар",
-      "sku": "Артикул",
-      "qty": "Кол-во",
-      "unit": "Цена за ед.",
-      "total": "Сумма",
-      "subtotal": "Подытог",
-      "shipping": "Доставка",
-      "discount": "Скидка",
-      "grandTotal": "Итого",
-      "shippingAddress": "Адрес доставки",
-      "billingAddress": "Адрес выставления счёта",
-      "sameAsShipping": "Совпадает с адресом доставки",
-      "note": "Примечание покупателя",
-      "statusTitle": "Статус",
-      "orderStatus": "Статус заказа",
-      "paymentStatus": "Статус оплаты",
-      "customerInfo": "Информация о покупателе и заказе",
-      "name": "Имя",
-      "email": "Email",
-      "paymentMethod": "Способ оплаты",
-      "createdAt": "Создан",
-      "updatedAt": "Обновлён"
-    },
-    "toast": {
-      "created": "Заказ создан",
-      "statusUpdated": "Статус заказа обновлён",
-      "paymentStatusUpdated": "Статус оплаты обновлён"
-    }
-  },
-  "dashboard": {
-    "sales": "Продажи",
-    "cost": "Расходы",
-    "profit": "Прибыль",
-    "salesRevenue": "Выручка от продаж",
-    "orders": "заказов",
-    "topSellingProducts": "Топ продаж",
-    "seeAll": "Все",
-    "inSales": "в продажах",
-    "recentTransactions": "Последние транзакции",
-    "topProductsByUnits": "Топ товаров по количеству",
-    "columns": {
-      "name": "Название",
-      "date": "Дата",
-      "amount": "Сумма",
-      "status": "Статус",
-      "price": "Цена",
-      "units": "Кол-во"
-    },
-    "months": {
-      "jan": "Янв",
-      "feb": "Фев",
-      "mar": "Мар",
-      "apr": "Апр",
-      "may": "Май",
-      "jun": "Июн",
-      "jul": "Июл",
-      "aug": "Авг",
-      "sep": "Сен",
-      "oct": "Окт",
-      "nov": "Ноя",
-      "dec": "Дек"
-    }
-  },
-  "marketing": {
-    "mainSliders": "Главные слайдеры",
-    "banners": "Баннеры",
-    "addSlider": "Добавить слайдер",
-    "editSlider": "Редактировать слайдер",
-    "sliderTitle": "Заголовок",
-    "sliderSubtitle": "Подзаголовок",
-    "sortOrder": "Порядок сортировки",
-    "isActive": "Активен",
-    "active": "Активен",
-    "inactive": "Неактивен",
-    "noSliders": "Слайдеров пока нет",
-    "deleteSlider": {
-      "title": "Удалить слайдер",
-      "message": "Вы уверены, что хотите удалить «{{title}}»?"
-    },
-    "addBanner": "Добавить баннер",
-    "bannerTitle": "Заголовок",
-    "bannerCategory": "Категория",
-    "noCategory": "— Без категории —",
-    "endsAt": "Дата окончания",
-    "noBanners": "Баннеров пока нет",
-    "deleteBanner": {
-      "title": "Удалить баннер",
-      "message": "Вы уверены, что хотите удалить «{{title}}»?"
-    },
-    "coupons": "Купоны",
-    "addCoupon": "Добавить купон",
-    "editCoupon": "Редактировать купон",
-    "couponCode": "Код",
-    "discountType": "Тип скидки",
-    "discountType_Percentage": "Процент",
-    "discountType_FixedAmount": "Фиксированная сумма",
-    "discountValue": "Размер скидки",
-    "minOrderAmount": "Мин. сумма заказа",
-    "maxDiscountAmount": "Макс. сумма скидки",
-    "startsAt": "Начало",
-    "expiresAt": "Окончание",
-    "usageLimit": "Лимит использований",
-    "perUserLimit": "Лимит на пользователя",
-    "statusLabel": "Статус",
-    "noCoupons": "Купонов пока нет",
-    "noCouponsDescription": "Создайте первый купон, чтобы предлагать скидки покупателям.",
-    "deleteCoupon": {
-      "title": "Удалить купон",
-      "message": "Вы уверены, что хотите удалить купон «{{code}}»?"
-    },
-    "toast": {
-      "sliderCreated": "Слайдер создан",
-      "sliderUpdated": "Слайдер обновлён",
-      "sliderDeleted": "Слайдер удалён",
-      "bannerCreated": "Баннер создан",
-      "bannerDeleted": "Баннер удалён",
-      "couponCreated": "Купон создан",
-      "couponUpdated": "Купон обновлён",
-      "couponDeleted": "Купон удалён"
-    }
-  },
-  "returns": {
-    "title": "Возвраты",
-    "allStatuses": "Все статусы",
-    "status": {
-      "Requested": "Запрошен",
-      "Approved": "Одобрен",
-      "Rejected": "Отклонён",
-      "Completed": "Завершён"
-    },
-    "action": {
-      "Approved": "Одобрить",
-      "Rejected": "Отклонить",
-      "Completed": "Завершить"
-    },
-    "columns": {
-      "id": "Возврат №",
-      "customer": "Покупатель",
-      "product": "Товар",
-      "reason": "Причина",
-      "status": "Статус",
-      "date": "Дата"
-    },
-    "empty": {
-      "title": "Возвратов пока нет",
-      "description": "Запросы на возврат от покупателей появятся здесь."
-    },
-    "confirm": {
-      "title": "{{action}} возврат",
-      "message": "Вы уверены, что хотите изменить статус возврата #{{id}} на «{{action}}»?"
-    },
-    "toast": {
-      "resolved": "Возврат: {{action}}"
-    }
-  },
-  "users": {
-    "title": "Пользователи",
-    "searchPlaceholder": "Поиск по имени пользователя…",
-    "noRoles": "Нет ролей",
-    "viewDetail": "Просмотр",
-    "columns": {
-      "username": "Имя пользователя",
-      "email": "Эл. почта",
-      "phone": "Телефон",
-      "roles": "Роли"
-    },
-    "detail": {
-      "title": "Данные пользователя",
-      "username": "Имя пользователя",
-      "email": "Эл. почта",
-      "phone": "Телефон",
-      "joined": "Дата регистрации",
-      "roles": "Роли",
-      "noRoles": "Роли не назначены",
-      "removeRole": "Удалить роль"
-    },
-    "empty": {
-      "title": "Пользователей не найдено",
-      "description": "Зарегистрированные пользователи появятся здесь."
-    },
-    "deleteDialog": {
-      "title": "Удалить пользователя",
-      "message": "Вы уверены, что хотите удалить пользователя «{{name}}»? Это действие нельзя отменить."
-    },
-    "toast": {
-      "deleted": "Пользователь «{{name}}» удалён",
-      "roleAssigned": "Роль «{{role}}» назначена",
-      "roleRemoved": "Роль «{{role}}» удалена"
-    }
-  },
-  "messages": {
-    "columns": {
-      "name": "Имя",
-      "email": "Эл. почта",
-      "phone": "Телефон",
-      "message": "Сообщение",
-      "date": "Дата"
-    },
-    "empty": {
-      "title": "Сообщений пока нет",
-      "description": "Сообщения от покупателей появятся здесь."
-    }
-  },
-  "newsletter": {
-    "columns": {
-      "email": "Эл. почта",
-      "subscribedAt": "Дата подписки"
-    },
-    "empty": {
-      "title": "Подписчиков пока нет",
-      "description": "Подписчики на рассылку появятся здесь."
-    }
-  },
-  "catalog": {
-    "tabs": {
-      "categories": "Категории",
-      "brands": "Бренды",
-      "banners": "Баннеры",
-      "messages": "Сообщения",
-      "newsletter": "Рассылка"
-    },
-    "addNew": "Добавить",
-    "addCategory": "Добавить категорию",
-    "editCategory": "Редактировать категорию",
-    "categoryName": "Название категории",
-    "currentImage": "Текущее изображение",
-    "clickToUpload": "Нажмите для загрузки",
-    "orDragAndDrop": "или перетащите файл",
-    "uploadFormats": "SVG, JPG, PNG или gif, максимум 900×400",
-    "noSearchResults": "Нет категорий по вашему запросу.",
-    "deleteCategory": {
-      "title": "Удалить категорию",
-      "message": "Вы уверены, что хотите удалить «{{name}}»?"
-    },
-    "subcategories": "Подкатегории",
-    "subcategoriesOf": "Подкатегории: {{name}}",
-    "addSubcategory": "Добавить подкатегорию",
-    "editSubcategory": "Редактировать подкатегорию",
-    "subcategoryName": "Название подкатегории",
-    "noSubcategories": "Пока нет подкатегорий",
-    "deleteSubcategory": {
-      "title": "Удалить подкатегорию",
-      "message": "Вы уверены, что хотите удалить «{{name}}»?"
-    },
-    "brands": "Бренды",
-    "addBrand": "Добавить бренд",
-    "editBrand": "Редактировать бренд",
-    "brandName": "Название бренда",
-    "noBrands": "Пока нет брендов",
-    "deleteBrand": {
-      "title": "Удалить бренд",
-      "message": "Вы уверены, что хотите удалить «{{name}}»?"
-    },
-    "newColor": "Новый цвет",
-    "editColor": "Редактировать цвет",
-    "colorName": "Название цвета",
-    "hexCode": "Hex-код",
-    "pickColor": "Выбрать цвет",
-    "createNewColor": "Создать",
-    "deleteColor": {
-      "title": "Удалить цвет",
-      "message": "Вы уверены, что хотите удалить «{{name}}»?"
-    },
-    "tagName": "Название тега",
-    "existingTags": "Существующие теги",
-    "deleteTag": {
-      "title": "Удалить тег",
-      "message": "Вы уверены, что хотите удалить «{{name}}»?"
-    },
-    "empty": {
-      "categoriesTitle": "Пока нет категорий",
-      "categoriesDescription": "Создайте первую категорию, чтобы начать организовывать каталог."
-    },
-    "toast": {
-      "categoryCreated": "Категория создана",
-      "categoryUpdated": "Категория обновлена",
-      "categoryDeleted": "Категория удалена",
-      "subcategoryCreated": "Подкатегория создана",
-      "subcategoryUpdated": "Подкатегория обновлена",
-      "subcategoryDeleted": "Подкатегория удалена",
-      "brandCreated": "Бренд создан",
-      "brandUpdated": "Бренд обновлён",
-      "brandDeleted": "Бренд удалён",
-      "colorCreated": "Цвет создан",
-      "colorUpdated": "Цвет обновлён",
-      "colorDeleted": "Цвет удалён",
-      "tagCreated": "Тег создан",
-      "tagUpdated": "Тег обновлён",
-      "tagDeleted": "Тег удалён"
-    }
-  }
+﻿{
+    "app":  {
+                "name":  "FastCart Админ"
+            },
+    "auth":  {
+                 "welcome":  "Добро пожаловать в панель администратора",
+                 "login":  "Войти",
+                 "email":  "Эл. почта",
+                 "password":  "Пароль",
+                 "confirmPassword":  "Подтвердите пароль",
+                 "forgotPassword":  "Забыли пароль?",
+                 "forgotPasswordTitle":  "Забыли пароль",
+                 "resetPasswordTitle":  "Сброс пароля",
+                 "sendResetLink":  "Отправить ссылку для сброса",
+                 "reset":  "Сбросить",
+                 "showPassword":  "Показать пароль",
+                 "hidePassword":  "Скрыть пароль",
+                 "loginError":  "Не удалось войти. Проверьте эл. почту и пароль.",
+                 "genericError":  "Что-то пошло не так. Попробуйте ещё раз.",
+                 "resetLinkSent":  "Если аккаунт существует, ссылка для сброса отправлена.",
+                 "resetLinkInvalid":  "Ссылка для сброса недействительна или истекла.",
+                 "passwordReset":  "Пароль сброшен. Пожалуйста, войдите."
+             },
+    "validation":  {
+                       "required":  "Обязательное поле",
+                       "email":  "Введите корректный адрес эл. почты",
+                       "passwordMin":  "Пароль должен содержать не менее {{count}} символов",
+                       "passwordsMatch":  "Пароли не совпадают",
+                       "maxLength":  "Не более {{count}} символов",
+                       "hexCode":  "Введите корректный hex-цвет (напр. #00599C)",
+                       "number":  "Введите корректное число",
+                       "positive":  "Должно быть больше 0",
+                       "integer":  "Должно быть целым числом",
+                       "min":  "Минимум {{count}}"
+                   },
+    "permissions":  {
+                        "title":  "Недостаточно прав",
+                        "description":  "У вашего аккаунта нет прав администратора для этой панели. Если это ошибка, обратитесь к администратору.",
+                        "logout":  "Выйти"
+                    },
+    "nav":  {
+                "dashboard":  "Дашборд",
+                "orders":  "Заказы",
+                "products":  "Товары",
+                "coupons":  "Купоны",
+                "returns":  "Возвраты",
+                "users":  "Пользователи",
+                "other":  "Прочее",
+                "logout":  "Выйти",
+                "notifications":  "Уведомления",
+                "openMenu":  "Открыть меню"
+            },
+    "user":  {
+                 "menu":  "Меню аккаунта",
+                 "fallbackName":  "Админ"
+             },
+    "theme":  {
+                  "light":  "Светлая тема",
+                  "dark":  "Тёмная тема"
+              },
+    "language":  {
+                     "switchTo":  "Переключить на {{lang}}"
+                 },
+    "common":  {
+                   "save":  "Сохранить",
+                   "cancel":  "Отмена",
+                   "delete":  "Удалить",
+                   "create":  "Создать",
+                   "edit":  "Редактировать",
+                   "add":  "Добавить",
+                   "action":  "Действие",
+                   "confirm":  "Подтвердить",
+                   "search":  "Поиск",
+                   "searchPlaceholder":  "Поиск…",
+                   "loading":  "Загрузка…",
+                   "retry":  "Повторить",
+                   "comingSoon":  "Скоро будет",
+                   "noItems":  "Пока нет записей",
+                   "resultsCount":  "Результатов: {{count}}",
+                   "loadError":  "Не удалось загрузить. Попробуйте ещё раз.",
+                   "saveError":  "Не удалось сохранить изменения. Попробуйте ещё раз.",
+                   "deleteError":  "Не удалось удалить. Попробуйте ещё раз."
+               },
+    "products":  {
+                     "addProduct":  "Добавить товар",
+                     "editProduct":  "Редактировать товар",
+                     "filter":  "Фильтр",
+                     "inStock":  "В наличии",
+                     "outOfStock":  "Нет в наличии",
+                     "selectAll":  "Выбрать все",
+                     "selectRow":  "Выбрать {{name}}",
+                     "bulkEdit":  "Редактировать выбранное",
+                     "bulkDelete":  "Удалить выбранное",
+                     "noSearchResults":  "Нет товаров по вашему запросу.",
+                     "columns":  {
+                                     "product":  "Товар",
+                                     "inventory":  "Наличие",
+                                     "category":  "Категория",
+                                     "price":  "Цена",
+                                     "action":  "Действие"
+                                 },
+                     "sort":  {
+                                  "newest":  "Сначала новые",
+                                  "priceAsc":  "Цена: по возрастанию",
+                                  "priceDesc":  "Цена: по убыванию",
+                                  "topRated":  "По рейтингу"
+                              },
+                     "empty":  {
+                                   "title":  "Добавьте товары",
+                                   "description":  "Начните продавать, добавив свои товары. Вы можете импортировать и управлять товарами в любое время."
+                               },
+                     "delete":  {
+                                    "title":  "Удалить товар",
+                                    "message":  "Вы уверены, что хотите удалить этот товар?"
+                                },
+                     "bulkDeleteModal":  {
+                                             "title":  "Удалить элементы",
+                                             "message_one":  "Вы уверены, что хотите удалить {{count}} выбранный элемент?",
+                                             "message_few":  "Вы уверены, что хотите удалить {{count}} выбранных элемента?",
+                                             "message_many":  "Вы уверены, что хотите удалить {{count}} выбранных элементов?"
+                                         },
+                     "toast":  {
+                                   "deleted":  "Товар удалён",
+                                   "bulkDeleted_one":  "{{count}} товар удалён",
+                                   "bulkDeleted_few":  "{{count}} товара удалено",
+                                   "bulkDeleted_many":  "{{count}} товаров удалено",
+                                   "created":  "Товар создан"
+                               },
+                     "condition":  {
+                                       "brandNew":  "Новый",
+                                       "refurbished":  "Восстановленный",
+                                       "old":  "Б/у"
+                                   },
+                     "form":  {
+                                  "breadcrumbAdd":  "Добавить",
+                                  "information":  "Информация",
+                                  "productName":  "Название товара",
+                                  "code":  "Код",
+                                  "description":  "Описание",
+                                  "category":  "Категории",
+                                  "subcategory":  "Подкатегория",
+                                  "selectCategoryFirst":  "Сначала выберите категорию",
+                                  "brand":  "Бренды",
+                                  "condition":  "Состояние",
+                                  "price":  "Цена",
+                                  "productPrice":  "Цена товара",
+                                  "discount":  "Скидка",
+                                  "count":  "Количество",
+                                  "addTax":  "Добавить налог на этот товар",
+                                  "differentOptions":  "Разные варианты",
+                                  "differentOptionsHint":  "У этого товара несколько вариантов",
+                                  "options":  "Варианты",
+                                  "optionN":  "Вариант {{n}}",
+                                  "value":  "Значение",
+                                  "addValue":  "Добавить значение",
+                                  "addMore":  "Добавить ещё",
+                                  "removeOption":  "Удалить вариант",
+                                  "colour":  "Цвет",
+                                  "tags":  "Теги",
+                                  "images":  "Изображения",
+                                  "image":  "Изображение",
+                                  "fileName":  "Имя файла",
+                                  "normal":  "Обычный",
+                                  "bold":  "Жирный",
+                                  "italic":  "Курсив",
+                                  "underline":  "Подчёркнутый",
+                                  "link":  "Вставить ссылку",
+                                  "linkPrompt":  "Введите URL",
+                                  "orderedList":  "Нумерованный список",
+                                  "bulletList":  "Маркированный список",
+                                  "clearFormatting":  "Очистить форматирование",
+                                  "discountMax":  "Скидка не может превышать цену",
+                                  "successTitle":  "Успешно добавлено",
+                                  "successMessage":  "Хотите добавить новый товар в магазин?",
+                                  "goToProducts":  "К списку товаров",
+                                  "addNew":  "Добавить"
+                              },
+                     "edit":  {
+                                  "breadcrumb":  "Редактирование",
+                                  "backToProducts":  "К списку товаров",
+                                  "sectionedHint":  "Каждый раздел сохраняется отдельно — используйте кнопку «Сохранить» в нужной карточке.",
+                                  "saveDetails":  "Сохранить данные",
+                                  "detailsSaved":  "Данные товара сохранены",
+                                  "tagsHint":  "Теги сохраняются вместе с данными товара.",
+                                  "imagesUploaded":  "Изображения загружены",
+                                  "imageDeleted":  "Изображение удалено",
+                                  "noImages":  "Изображений пока нет",
+                                  "deleteImage":  {
+                                                      "title":  "Удалить изображение",
+                                                      "message":  "Вы уверены, что хотите удалить это изображение?"
+                                                  },
+                                  "addOption":  "Добавить вариант",
+                                  "noOptions":  "Вариантов пока нет",
+                                  "optionIncomplete":  "Укажите название варианта и хотя бы одно значение.",
+                                  "optionCreated":  "Вариант добавлен",
+                                  "optionUpdated":  "Вариант обновлён",
+                                  "optionDeleted":  "Вариант удалён",
+                                  "deleteOption":  {
+                                                       "title":  "Удалить вариант",
+                                                       "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                                   },
+                                  "variants":  "Варианты товара",
+                                  "addVariant":  "Добавить вариант",
+                                  "newVariant":  "Новый вариант",
+                                  "noVariants":  "Вариантов пока нет",
+                                  "sku":  "Артикул",
+                                  "discountPrice":  "Цена со скидкой",
+                                  "costPrice":  "Себестоимость",
+                                  "unchanged":  "Без изменений",
+                                  "stock":  "Остаток",
+                                  "updateStock":  "Обновить остаток",
+                                  "active":  "Активен",
+                                  "variantSaved":  "Вариант сохранён",
+                                  "stockSaved":  "Остаток обновлён",
+                                  "variantDeleted":  "Вариант удалён",
+                                  "variantCreated":  "Вариант добавлен",
+                                  "pickAllOptions":  "Выберите значение для каждого варианта.",
+                                  "deleteVariant":  {
+                                                        "title":  "Удалить вариант",
+                                                        "message":  "Вы уверены, что хотите удалить этот вариант?"
+                                                    },
+                                  "reviews":  "Отзывы",
+                                  "noReviews":  "Отзывов пока нет",
+                                  "anonymous":  "Аноним",
+                                  "reviewDeleted":  "Отзыв удалён",
+                                  "deleteReview":  {
+                                                       "title":  "Удалить отзыв",
+                                                       "message":  "Вы уверены, что хотите удалить этот отзыв?"
+                                                   }
+                              }
+                 },
+    "orders":  {
+                   "addOrder":  "+ Добавить заказ",
+                   "filter":  "Фильтр",
+                   "editSelected":  "Редактировать выбранное",
+                   "deleteSelected":  "Удалить выбранное",
+                   "selectAll":  "Выбрать все",
+                   "selectRow":  "Выбрать заказ",
+                   "noSearchResults":  "Нет заказов по вашему запросу.",
+                   "backToOrders":  "К списку заказов",
+                   "columns":  {
+                                   "order":  "Заказ",
+                                   "date":  "Дата",
+                                   "customer":  "Покупатель",
+                                   "paymentStatus":  "Статус оплаты",
+                                   "orderStatus":  "Статус заказа",
+                                   "total":  "Сумма"
+                               },
+                   "sort":  {
+                                "newest":  "Сначала новые",
+                                "oldest":  "Сначала старые",
+                                "totalAsc":  "Сумма: по возрастанию",
+                                "totalDesc":  "Сумма: по убыванию"
+                            },
+                   "empty":  {
+                                 "title":  "Заказов пока нет",
+                                 "description":  "Все предстоящие заказы из вашего магазина будут отображаться на этой странице. Вы можете добавлять заказы вручную, если продаёте офлайн."
+                             },
+                   "orderStatus":  {
+                                       "New":  "Новый",
+                                       "Ready":  "Готов",
+                                       "Shipped":  "Отправлен",
+                                       "Received":  "Получен",
+                                       "Cancelled":  "Отменён",
+                                       "Returned":  "Возврат"
+                                   },
+                   "paymentStatus":  {
+                                         "Pending":  "Ожидается",
+                                         "Paid":  "Оплачен",
+                                         "Failed":  "Ошибка",
+                                         "Refunded":  "Возврат"
+                                     },
+                   "paymentMethod":  {
+                                         "CashOnDelivery":  "Наличными при доставке",
+                                         "Bank":  "Банковский перевод"
+                                     },
+                   "form":  {
+                                "title":  "Добавить заказ",
+                                "createOrder":  "Создать заказ",
+                                "customer":  "Покупатель",
+                                "customerName":  "Имя покупателя",
+                                "customerEmail":  "Email покупателя",
+                                "items":  "Товары в заказе",
+                                "variantId":  "ID варианта товара",
+                                "quantity":  "Количество",
+                                "addItem":  "Добавить товар",
+                                "removeItem":  "Удалить товар",
+                                "itemsRequired":  "Необходим хотя бы один товар",
+                                "shippingAddress":  "Адрес доставки",
+                                "billingAddress":  "Адрес выставления счёта",
+                                "differentBilling":  "Использовать другой адрес выставления счёта",
+                                "street":  "Улица",
+                                "city":  "Город",
+                                "state":  "Регион / область",
+                                "postalCode":  "Почтовый индекс",
+                                "country":  "Страна",
+                                "payment":  "Оплата",
+                                "paymentMethod":  "Способ оплаты",
+                                "paymentStatus":  "Статус оплаты (необязательно)",
+                                "paymentStatusOptional":  "— Не задан —",
+                                "note":  "Примечание",
+                                "customerNote":  "Примечание покупателя"
+                            },
+                   "detail":  {
+                                  "order":  "Заказ",
+                                  "items":  "Товары в заказе",
+                                  "product":  "Товар",
+                                  "sku":  "Артикул",
+                                  "qty":  "Кол-во",
+                                  "unit":  "Цена за ед.",
+                                  "total":  "Сумма",
+                                  "subtotal":  "Подытог",
+                                  "shipping":  "Доставка",
+                                  "discount":  "Скидка",
+                                  "grandTotal":  "Итого",
+                                  "shippingAddress":  "Адрес доставки",
+                                  "billingAddress":  "Адрес выставления счёта",
+                                  "sameAsShipping":  "Совпадает с адресом доставки",
+                                  "note":  "Примечание покупателя",
+                                  "statusTitle":  "Статус",
+                                  "orderStatus":  "Статус заказа",
+                                  "paymentStatus":  "Статус оплаты",
+                                  "customerInfo":  "Информация о покупателе и заказе",
+                                  "name":  "Имя",
+                                  "email":  "Email",
+                                  "paymentMethod":  "Способ оплаты",
+                                  "createdAt":  "Создан",
+                                  "updatedAt":  "Обновлён"
+                              },
+                   "toast":  {
+                                 "created":  "Заказ создан",
+                                 "statusUpdated":  "Статус заказа обновлён",
+                                 "paymentStatusUpdated":  "Статус оплаты обновлён"
+                             }
+               },
+    "dashboard":  {
+                      "sales":  "Продажи",
+                      "cost":  "Расходы",
+                      "profit":  "Прибыль",
+                      "salesRevenue":  "Выручка от продаж",
+                      "orders":  "заказов",
+                      "topSellingProducts":  "Топ продаж",
+                      "seeAll":  "Все",
+                      "inSales":  "в продажах",
+                      "recentTransactions":  "Последние транзакции",
+                      "topProductsByUnits":  "Топ товаров по количеству",
+                      "columns":  {
+                                      "name":  "Название",
+                                      "date":  "Дата",
+                                      "amount":  "Сумма",
+                                      "status":  "Статус",
+                                      "price":  "Цена",
+                                      "units":  "Кол-во"
+                                  },
+                      "months":  {
+                                     "jan":  "Янв",
+                                     "feb":  "Фев",
+                                     "mar":  "Мар",
+                                     "apr":  "Апр",
+                                     "may":  "Май",
+                                     "jun":  "Июн",
+                                     "jul":  "Июл",
+                                     "aug":  "Авг",
+                                     "sep":  "Сен",
+                                     "oct":  "Окт",
+                                     "nov":  "Ноя",
+                                     "dec":  "Дек"
+                                 }
+                  },
+    "marketing":  {
+                      "mainSliders":  "Главные слайдеры",
+                      "banners":  "Баннеры",
+                      "addSlider":  "Добавить слайдер",
+                      "editSlider":  "Редактировать слайдер",
+                      "sliderTitle":  "Заголовок",
+                      "sliderSubtitle":  "Подзаголовок",
+                      "sortOrder":  "Порядок сортировки",
+                      "isActive":  "Активен",
+                      "active":  "Активен",
+                      "inactive":  "Неактивен",
+                      "noSliders":  "Слайдеров пока нет",
+                      "deleteSlider":  {
+                                           "title":  "Удалить слайдер",
+                                           "message":  "Вы уверены, что хотите удалить «{{title}}»?"
+                                       },
+                      "addBanner":  "Добавить баннер",
+                      "bannerTitle":  "Заголовок",
+                      "bannerCategory":  "Категория",
+                      "noCategory":  "— Без категории —",
+                      "endsAt":  "Дата окончания",
+                      "noBanners":  "Баннеров пока нет",
+                      "deleteBanner":  {
+                                           "title":  "Удалить баннер",
+                                           "message":  "Вы уверены, что хотите удалить «{{title}}»?"
+                                       },
+                      "coupons":  "Купоны",
+                      "addCoupon":  "Добавить купон",
+                      "editCoupon":  "Редактировать купон",
+                      "couponCode":  "Код",
+                      "discountType":  "Тип скидки",
+                      "discountType_Percentage":  "Процент",
+                      "discountType_FixedAmount":  "Фиксированная сумма",
+                      "discountValue":  "Размер скидки",
+                      "minOrderAmount":  "Мин. сумма заказа",
+                      "maxDiscountAmount":  "Макс. сумма скидки",
+                      "startsAt":  "Начало",
+                      "expiresAt":  "Окончание",
+                      "usageLimit":  "Лимит использований",
+                      "perUserLimit":  "Лимит на пользователя",
+                      "statusLabel":  "Статус",
+                      "noCoupons":  "Купонов пока нет",
+                      "noCouponsDescription":  "Создайте первый купон, чтобы предлагать скидки покупателям.",
+                      "deleteCoupon":  {
+                                           "title":  "Удалить купон",
+                                           "message":  "Вы уверены, что хотите удалить купон «{{code}}»?"
+                                       },
+                      "toast":  {
+                                    "sliderCreated":  "Слайдер создан",
+                                    "sliderUpdated":  "Слайдер обновлён",
+                                    "sliderDeleted":  "Слайдер удалён",
+                                    "bannerCreated":  "Баннер создан",
+                                    "bannerDeleted":  "Баннер удалён",
+                                    "couponCreated":  "Купон создан",
+                                    "couponUpdated":  "Купон обновлён",
+                                    "couponDeleted":  "Купон удалён"
+                                }
+                  },
+    "returns":  {
+                    "title":  "Возвраты",
+                    "allStatuses":  "Все статусы",
+                    "status":  {
+                                   "Requested":  "Запрошен",
+                                   "Approved":  "Одобрен",
+                                   "Rejected":  "Отклонён",
+                                   "Completed":  "Завершён"
+                               },
+                    "action":  {
+                                   "Approved":  "Одобрить",
+                                   "Rejected":  "Отклонить",
+                                   "Completed":  "Завершить"
+                               },
+                    "columns":  {
+                                    "id":  "Возврат №",
+                                    "customer":  "Покупатель",
+                                    "product":  "Товар",
+                                    "reason":  "Причина",
+                                    "status":  "Статус",
+                                    "date":  "Дата"
+                                },
+                    "empty":  {
+                                  "title":  "Возвратов пока нет",
+                                  "description":  "Запросы на возврат от покупателей появятся здесь."
+                              },
+                    "confirm":  {
+                                    "title":  "{{action}} возврат",
+                                    "message":  "Вы уверены, что хотите изменить статус возврата #{{id}} на «{{action}}»?"
+                                },
+                    "toast":  {
+                                  "resolved":  "Возврат: {{action}}"
+                              }
+                },
+    "users":  {
+                  "title":  "Пользователи",
+                  "searchPlaceholder":  "Поиск по имени пользователя…",
+                  "noRoles":  "Нет ролей",
+                  "viewDetail":  "Просмотр",
+                  "columns":  {
+                                  "username":  "Имя пользователя",
+                                  "email":  "Эл. почта",
+                                  "phone":  "Телефон",
+                                  "roles":  "Роли"
+                              },
+                  "detail":  {
+                                 "title":  "Данные пользователя",
+                                 "username":  "Имя пользователя",
+                                 "email":  "Эл. почта",
+                                 "phone":  "Телефон",
+                                 "joined":  "Дата регистрации",
+                                 "roles":  "Роли",
+                                 "noRoles":  "Роли не назначены",
+                                 "removeRole":  "Удалить роль"
+                             },
+                  "empty":  {
+                                "title":  "Пользователей не найдено",
+                                "description":  "Зарегистрированные пользователи появятся здесь."
+                            },
+                  "deleteDialog":  {
+                                       "title":  "Удалить пользователя",
+                                       "message":  "Вы уверены, что хотите удалить пользователя «{{name}}»? Это действие нельзя отменить."
+                                   },
+                  "toast":  {
+                                "deleted":  "Пользователь «{{name}}» удалён",
+                                "roleAssigned":  "Роль «{{role}}» назначена",
+                                "roleRemoved":  "Роль «{{role}}» удалена"
+                            }
+              },
+    "messages":  {
+                     "columns":  {
+                                     "name":  "Имя",
+                                     "email":  "Эл. почта",
+                                     "phone":  "Телефон",
+                                     "message":  "Сообщение",
+                                     "date":  "Дата"
+                                 },
+                     "empty":  {
+                                   "title":  "Сообщений пока нет",
+                                   "description":  "Сообщения от покупателей появятся здесь."
+                               }
+                 },
+    "newsletter":  {
+                       "columns":  {
+                                       "email":  "Эл. почта",
+                                       "subscribedAt":  "Дата подписки"
+                                   },
+                       "empty":  {
+                                     "title":  "Подписчиков пока нет",
+                                     "description":  "Подписчики на рассылку появятся здесь."
+                                 }
+                   },
+    "catalog":  {
+                    "tabs":  {
+                                 "categories":  "Категории",
+                                 "brands":  "Бренды",
+                                 "banners":  "Баннеры",
+                                 "messages":  "Сообщения",
+                                 "newsletter":  "Рассылка"
+                             },
+                    "addNew":  "Добавить",
+                    "addCategory":  "Добавить категорию",
+                    "editCategory":  "Редактировать категорию",
+                    "categoryName":  "Название категории",
+                    "currentImage":  "Текущее изображение",
+                    "clickToUpload":  "Нажмите для загрузки",
+                    "orDragAndDrop":  "или перетащите файл",
+                    "uploadFormats":  "SVG, JPG, PNG или gif, максимум 900×400",
+                    "noSearchResults":  "Нет категорий по вашему запросу.",
+                    "deleteCategory":  {
+                                           "title":  "Удалить категорию",
+                                           "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                       },
+                    "subcategories":  "Подкатегории",
+                    "subcategoriesOf":  "Подкатегории: {{name}}",
+                    "addSubcategory":  "Добавить подкатегорию",
+                    "editSubcategory":  "Редактировать подкатегорию",
+                    "subcategoryName":  "Название подкатегории",
+                    "noSubcategories":  "Пока нет подкатегорий",
+                    "deleteSubcategory":  {
+                                              "title":  "Удалить подкатегорию",
+                                              "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                          },
+                    "brands":  "Бренды",
+                    "addBrand":  "Добавить бренд",
+                    "editBrand":  "Редактировать бренд",
+                    "brandName":  "Название бренда",
+                    "noBrands":  "Пока нет брендов",
+                    "deleteBrand":  {
+                                        "title":  "Удалить бренд",
+                                        "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                    },
+                    "newColor":  "Новый цвет",
+                    "editColor":  "Редактировать цвет",
+                    "colorName":  "Название цвета",
+                    "hexCode":  "Hex-код",
+                    "pickColor":  "Выбрать цвет",
+                    "createNewColor":  "Создать",
+                    "deleteColor":  {
+                                        "title":  "Удалить цвет",
+                                        "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                    },
+                    "tagName":  "Название тега",
+                    "existingTags":  "Существующие теги",
+                    "deleteTag":  {
+                                      "title":  "Удалить тег",
+                                      "message":  "Вы уверены, что хотите удалить «{{name}}»?"
+                                  },
+                    "empty":  {
+                                  "categoriesTitle":  "Пока нет категорий",
+                                  "categoriesDescription":  "Создайте первую категорию, чтобы начать организовывать каталог."
+                              },
+                    "toast":  {
+                                  "categoryCreated":  "Категория создана",
+                                  "categoryUpdated":  "Категория обновлена",
+                                  "categoryDeleted":  "Категория удалена",
+                                  "subcategoryCreated":  "Подкатегория создана",
+                                  "subcategoryUpdated":  "Подкатегория обновлена",
+                                  "subcategoryDeleted":  "Подкатегория удалена",
+                                  "brandCreated":  "Бренд создан",
+                                  "brandUpdated":  "Бренд обновлён",
+                                  "brandDeleted":  "Бренд удалён",
+                                  "colorCreated":  "Цвет создан",
+                                  "colorUpdated":  "Цвет обновлён",
+                                  "colorDeleted":  "Цвет удалён",
+                                  "tagCreated":  "Тег создан",
+                                  "tagUpdated":  "Тег обновлён",
+                                  "tagDeleted":  "Тег удалён"
+                              }
+                },
+    "profile":  {
+                    "title":  "Профиль",
+                    "changePhoto":  "Изменить фото",
+                    "changePasswordBtn":  "Обновить пароль",
+                    "section":  {
+                                    "info":  "Личная информация",
+                                    "changePassword":  "Изменить пароль"
+                                },
+                    "fields":  {
+                                   "firstName":  "Имя",
+                                   "lastName":  "Фамилия",
+                                   "email":  "Эл. почта",
+                                   "phoneNumber":  "Номер телефона",
+                                   "dob":  "Дата рождения",
+                                   "currentPassword":  "Текущий пароль",
+                                   "newPassword":  "Новый пароль",
+                                   "confirmPassword":  "Подтвердите новый пароль"
+                               },
+                    "toast":  {
+                                  "updated":  "Профиль обновлён",
+                                  "passwordChanged":  "Пароль успешно изменён"
+                              }
+                }
 }

@@ -345,3 +345,32 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 8 — Profile & account**. Build the **Profile** screen: add `getProfile` (`GET /api/v1/Profile`) and `updateProfile` (`PUT /api/v1/Profile`, multipart: `Image`, `FirstName`, `LastName`, `Email`, `PhoneNumber`, `Dob`) to a new `features/profile/` feature (`types.ts`, `profileApi.ts`, `useUpdateProfile.ts` via axios `http` + `buildFormData`). Surface it at a new route (e.g. `/profile`) linked from the user chip/menu in the top bar. Reuse the existing visual language for the form card. Then add **Change password** (`POST /Auth/change-password` with `ChangePasswordRequest { currentPassword, newPassword, confirmPassword }`) as a separate card below the profile form. Full EN+RU i18n. Build passes, lint clean before stopping.
+
+---
+
+## Session 12 — 2026-06-28 — Phase 8: Profile & account + Phase 9 polish
+
+**Phase:** Phase 8 — **COMPLETE**. Phase 9 — partially complete (7/9 tasks checked off).
+
+**Done this session**
+- **`src/features/profile/`** created: `types.ts` (`ProfileData`, `UpdateProfileRequest`, `ProfileFormValues`), `profileApi.ts` (RTK Query `getProfile` — `GET /Profile`, provides `Profile` tag), `useUpdateProfile.ts` (multipart `PUT /Profile` via axios `http` + `buildFormData`, invalidates `Profile` + `Auth` tags), `schemas.ts` (`profileSchema` + `changePasswordSchema` + `ChangePasswordFormValues`).
+- **`src/pages/ProfilePage.tsx`** — centered max-w-2xl two-card layout: (1) avatar with camera-button overlay for image upload + personal info form (firstName/lastName/email/phoneNumber/dob grid), submits via `useUpdateProfile`; (2) change-password card using `PasswordField` for all three fields, submits via existing `useChangePasswordMutation`. Full `dark:` class support; all strings via i18n.
+- **`src/app/router/AppRouter.tsx`** — added `/profile → ProfilePage` inside the admin shell.
+- **`src/app/layout/UserMenu.tsx`** — added "Profile" menu item (above theme toggle) navigating to `/profile` via `useNavigate`.
+- **i18n** — `profile.*` block added to both `locales/en/common.json` and `locales/ru/common.json` (title, changePhoto, changePasswordBtn, section.info, section.changePassword, fields.*, toast.updated, toast.passwordChanged).
+- **Phase 9 endpoint coverage audit:** added `getRelatedProducts` (`GET /Products/{id}/related`) to `src/features/products/productsApi.ts` — the only TRD §10 endpoint not yet wired. All other endpoints confirmed implemented across previous phases.
+- **Verified:** `npm run build` (tsc strict + vite, **1402 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **No Profile.png mockup** — used existing visual language: `rounded-2xl border border-slate-200 bg-white` card style matching UsersPage / ReturnsPage. Two stacked cards (info + password) centered at `max-w-2xl`.
+- **Avatar upload uses a hidden `<input type=file>` behind a camera `IconButton` overlaid on the MUI `Avatar`** — no new library. Preview via `URL.createObjectURL`.
+- **`getRelatedProducts` is wired as an RTK Query endpoint but has no dedicated UI** — the TRD §10 checklist requires the endpoint to be implemented; there's no §5 screen defined for related products in the admin panel.
+- **Profile shapes assumed** — `GET /Profile` returns `{ data: ProfileData }` envelope (same pattern as every other endpoint). `ProfileData` fields match the `PUT /Profile` multipart fields: `firstName`, `lastName`, `email`, `phoneNumber`, `dob`, `imageUrl`. Verify on first real login.
+
+**Open questions / blockers**
+- **Profile API shapes unverified** — no admin credentials. `GET /Profile` and `PUT /Profile` response shapes are assumed from TRD description. First task with creds: load the profile page and verify field names.
+- **Phase 9 remaining:** two tasks still open — (1) Accessibility improvements (labelled inputs, focus-trapped dialogs, keyboard navigation); (2) Final visual QA pass against every `images/` mockup. Both are polish work; the app is functionally complete.
+- Backend slow to cold-start (Render free tier).
+
+**NEXT ACTION (start here):**
+> Continue **Phase 9 — Polish**. Two tasks remain: (1) **Accessibility audit** — scan each screen for unlabelled inputs (`aria-label` on icon buttons, `label` on all form fields), confirm MUI Dialog has `aria-labelledby`/`aria-describedby`, and verify table headers have `scope="col"`. (2) **Final visual QA** — open each PNG in `images/` and compare to the running app; flag any color, spacing, or layout mismatches and fix them. After both tasks are done, mark Phase 9 complete and the project is delivered.

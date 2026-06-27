@@ -3,9 +3,11 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { selectCurrentUser } from '@/features/auth/authSlice';
@@ -21,6 +23,7 @@ export function UserMenu() {
   const logout = useLogout();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
+  const navigate = useNavigate();
   const name =
     [user?.firstName, user?.lastName].filter(Boolean).join(' ') ||
     user?.userName ||
@@ -55,6 +58,18 @@ export function UserMenu() {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         slotProps={{ paper: { sx: { minWidth: 200, mt: 1 } } }}
       >
+        <MenuItem
+          onClick={() => {
+            setAnchorEl(null);
+            navigate('/profile');
+          }}
+        >
+          <ListItemIcon>
+            <PersonOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          {t('profile.title')}
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={() => dispatch(toggleThemeMode())}>
           <ListItemIcon>
             {mode === 'dark' ? (

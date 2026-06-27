@@ -53,6 +53,10 @@ export const productsApi = baseApi.injectEndpoints({
       transformResponse: (raw: ApiEnvelope<ProductDetail>) => raw.data,
       providesTags: (_result, _error, id) => [{ type: 'Product', id }],
     }),
+    getRelatedProducts: builder.query<ProductListItem[], number>({
+      query: (id) => `/Products/${id}/related`,
+      transformResponse: (raw: ApiEnvelope<ProductListItem[]>) => raw.data,
+    }),
     deleteProduct: builder.mutation<void, number>({
       query: (id) => ({ url: `/Products/${id}`, method: 'DELETE' }),
       invalidatesTags: [{ type: 'Product', id: 'LIST' }],
@@ -151,6 +155,7 @@ export const productsApi = baseApi.injectEndpoints({
 export const {
   useGetProductsQuery,
   useGetProductQuery,
+  useGetRelatedProductsQuery,
   useDeleteProductMutation,
   useBulkDeleteProductsMutation,
   useUpdateProductBaseMutation,
