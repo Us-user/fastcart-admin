@@ -226,6 +226,110 @@
       }
     }
   },
+  "orders": {
+    "addOrder": "+ Добавить заказ",
+    "filter": "Фильтр",
+    "editSelected": "Редактировать выбранное",
+    "deleteSelected": "Удалить выбранное",
+    "selectAll": "Выбрать все",
+    "selectRow": "Выбрать заказ",
+    "noSearchResults": "Нет заказов по вашему запросу.",
+    "backToOrders": "К списку заказов",
+    "columns": {
+      "order": "Заказ",
+      "date": "Дата",
+      "customer": "Покупатель",
+      "paymentStatus": "Статус оплаты",
+      "orderStatus": "Статус заказа",
+      "total": "Сумма"
+    },
+    "sort": {
+      "newest": "Сначала новые",
+      "oldest": "Сначала старые",
+      "totalAsc": "Сумма: по возрастанию",
+      "totalDesc": "Сумма: по убыванию"
+    },
+    "empty": {
+      "title": "Заказов пока нет",
+      "description": "Все предстоящие заказы из вашего магазина будут отображаться на этой странице. Вы можете добавлять заказы вручную, если продаёте офлайн."
+    },
+    "orderStatus": {
+      "New": "Новый",
+      "Ready": "Готов",
+      "Shipped": "Отправлен",
+      "Received": "Получен",
+      "Cancelled": "Отменён",
+      "Returned": "Возврат"
+    },
+    "paymentStatus": {
+      "Pending": "Ожидается",
+      "Paid": "Оплачен",
+      "Failed": "Ошибка",
+      "Refunded": "Возврат"
+    },
+    "paymentMethod": {
+      "CashOnDelivery": "Наличными при доставке",
+      "Bank": "Банковский перевод"
+    },
+    "form": {
+      "title": "Добавить заказ",
+      "createOrder": "Создать заказ",
+      "customer": "Покупатель",
+      "customerName": "Имя покупателя",
+      "customerEmail": "Email покупателя",
+      "items": "Товары в заказе",
+      "variantId": "ID варианта товара",
+      "quantity": "Количество",
+      "addItem": "Добавить товар",
+      "removeItem": "Удалить товар",
+      "itemsRequired": "Необходим хотя бы один товар",
+      "shippingAddress": "Адрес доставки",
+      "billingAddress": "Адрес выставления счёта",
+      "differentBilling": "Использовать другой адрес выставления счёта",
+      "street": "Улица",
+      "city": "Город",
+      "state": "Регион / область",
+      "postalCode": "Почтовый индекс",
+      "country": "Страна",
+      "payment": "Оплата",
+      "paymentMethod": "Способ оплаты",
+      "paymentStatus": "Статус оплаты (необязательно)",
+      "paymentStatusOptional": "— Не задан —",
+      "note": "Примечание",
+      "customerNote": "Примечание покупателя"
+    },
+    "detail": {
+      "order": "Заказ",
+      "items": "Товары в заказе",
+      "product": "Товар",
+      "sku": "Артикул",
+      "qty": "Кол-во",
+      "unit": "Цена за ед.",
+      "total": "Сумма",
+      "subtotal": "Подытог",
+      "shipping": "Доставка",
+      "discount": "Скидка",
+      "grandTotal": "Итого",
+      "shippingAddress": "Адрес доставки",
+      "billingAddress": "Адрес выставления счёта",
+      "sameAsShipping": "Совпадает с адресом доставки",
+      "note": "Примечание покупателя",
+      "statusTitle": "Статус",
+      "orderStatus": "Статус заказа",
+      "paymentStatus": "Статус оплаты",
+      "customerInfo": "Информация о покупателе и заказе",
+      "name": "Имя",
+      "email": "Email",
+      "paymentMethod": "Способ оплаты",
+      "createdAt": "Создан",
+      "updatedAt": "Обновлён"
+    },
+    "toast": {
+      "created": "Заказ создан",
+      "statusUpdated": "Статус заказа обновлён",
+      "paymentStatusUpdated": "Статус оплаты обновлён"
+    }
+  },
   "catalog": {
     "tabs": {
       "categories": "Категории",

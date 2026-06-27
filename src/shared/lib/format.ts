@@ -26,3 +26,10 @@ export function formatDate(value: string | number | Date, locale: string): strin
   if (Number.isNaN(date.getTime())) return '';
   return new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(date);
 }
+
+/** Locale-aware date + time (e.g. "May 5, 4:20 PM"). Invalid input returns ''. */
+export function formatDateTime(value: string | number | Date, locale: string): string {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(date);
+}

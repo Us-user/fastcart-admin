@@ -224,6 +224,110 @@
       }
     }
   },
+  "orders": {
+    "addOrder": "+ Add order",
+    "filter": "Filter",
+    "editSelected": "Edit selected",
+    "deleteSelected": "Delete selected",
+    "selectAll": "Select all",
+    "selectRow": "Select order",
+    "noSearchResults": "No orders match your search.",
+    "backToOrders": "Back to orders",
+    "columns": {
+      "order": "Order",
+      "date": "Date",
+      "customer": "Customer",
+      "paymentStatus": "Payment status",
+      "orderStatus": "Order Status",
+      "total": "Total"
+    },
+    "sort": {
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "totalAsc": "Total: low to high",
+      "totalDesc": "Total: high to low"
+    },
+    "empty": {
+      "title": "No Orders Yet",
+      "description": "All the upcoming orders from your store will be visible in this page. You can add orders by yourself if you sell offline."
+    },
+    "orderStatus": {
+      "New": "New",
+      "Ready": "Ready",
+      "Shipped": "Shipped",
+      "Received": "Received",
+      "Cancelled": "Cancelled",
+      "Returned": "Returned"
+    },
+    "paymentStatus": {
+      "Pending": "Pending",
+      "Paid": "Paid",
+      "Failed": "Failed",
+      "Refunded": "Refunded"
+    },
+    "paymentMethod": {
+      "CashOnDelivery": "Cash on Delivery",
+      "Bank": "Bank Transfer"
+    },
+    "form": {
+      "title": "Add order",
+      "createOrder": "Create order",
+      "customer": "Customer",
+      "customerName": "Customer name",
+      "customerEmail": "Customer email",
+      "items": "Order items",
+      "variantId": "Product variant ID",
+      "quantity": "Quantity",
+      "addItem": "Add item",
+      "removeItem": "Remove item",
+      "itemsRequired": "At least one item is required",
+      "shippingAddress": "Shipping address",
+      "billingAddress": "Billing address",
+      "differentBilling": "Use different billing address",
+      "street": "Street",
+      "city": "City",
+      "state": "State / Region",
+      "postalCode": "Postal code",
+      "country": "Country",
+      "payment": "Payment",
+      "paymentMethod": "Payment method",
+      "paymentStatus": "Payment status (optional)",
+      "paymentStatusOptional": "— Not set —",
+      "note": "Note",
+      "customerNote": "Customer note"
+    },
+    "detail": {
+      "order": "Order",
+      "items": "Order items",
+      "product": "Product",
+      "sku": "SKU",
+      "qty": "Qty",
+      "unit": "Unit price",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "discount": "Discount",
+      "grandTotal": "Grand total",
+      "shippingAddress": "Shipping address",
+      "billingAddress": "Billing address",
+      "sameAsShipping": "Same as shipping",
+      "note": "Customer note",
+      "statusTitle": "Status",
+      "orderStatus": "Order status",
+      "paymentStatus": "Payment status",
+      "customerInfo": "Customer & order info",
+      "name": "Name",
+      "email": "Email",
+      "paymentMethod": "Payment method",
+      "createdAt": "Created",
+      "updatedAt": "Updated"
+    },
+    "toast": {
+      "created": "Order created",
+      "statusUpdated": "Order status updated",
+      "paymentStatusUpdated": "Payment status updated"
+    }
+  },
   "catalog": {
     "tabs": {
       "categories": "Categories",

@@ -69,10 +69,10 @@
 - [x] Review moderation on the product screen (list per product + delete) (TRD §6.8).
 
 ## Phase 4 — Orders
-- [ ] Orders list — columns + payment/order status pills, search, filter/sort, multi-select, pagination, empty state "No Orders Yet" (TRD §5.2).
-- [ ] **Add order** form (`AdminCreateOrderRequest`), reuse product-form visual language.
-- [ ] **Order detail** page (route by id): items, customer, addresses, totals (TRD §6.2).
-- [ ] Two separate controls: Order status (`New/Ready/Shipped/Received/Cancelled/Returned`) + Payment status (`Pending/Paid/Failed/Refunded`) → two PUT endpoints.
+- [x] Orders list — columns + payment/order status pills, search, filter/sort, multi-select, pagination, empty state "No Orders Yet" (TRD §5.2).
+- [x] **Add order** form (`AdminCreateOrderRequest`), reuse product-form visual language.
+- [x] **Order detail** page (route by id): items, customer, addresses, totals (TRD §6.2).
+- [x] Two separate controls: Order status (`New/Ready/Shipped/Received/Cancelled/Returned`) + Payment status (`Pending/Paid/Failed/Refunded`) → two PUT endpoints.
 
 ## Phase 5 — Dashboard
 - [ ] Summary cards (Sales / Cost / Profit) from `dashboard/summary` (TRD §5.1).

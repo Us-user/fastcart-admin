@@ -208,3 +208,37 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 4 — Orders**. First build the **Orders list** at `/orders` (replace the `PlaceholderPage`): run `/design` and open `images/Orders.png` + `images/Orders-1.png` (empty state "No Orders Yet") BEFORE writing UI. Verify live shapes against the running backend first: `GET /api/v1/admin/orders?status&paymentStatus&q&from&to&sort&pageNumber&pageSize` (likely the `{success,message,data,errors}` envelope + paged `data`). Build `features/orders/{types,ordersApi}.ts` + `components/OrdersList.tsx` + `pages/OrdersListPage.tsx` matching the mockup columns (checkbox, Order #id, Date, Customer, **Payment status** pill, **Order status** pill, Total) — reuse `statusColors` (the single status→color map already covers order/payment statuses), `PaginationFooter`, `DataState`, debounced search + Filter (sort) dropdown, multi-select toolbar, results count. Order statuses `New/Ready/Shipped/Received/Cancelled/Returned`, payment `Pending/Paid/Failed/Refunded` (TRD §5.2). Then Add-order form, then Order detail page with the two separate status PUTs (§6.2).
+
+---
+
+## Session 8 — 2026-06-27 — Phase 4: Orders (list + add + detail + status management)
+
+**Phase:** Phase 4 — Orders — **COMPLETE** (all 4 tasks checked off in `ROADMAP.md`).
+
+**Done this session**
+- **`src/features/orders/types.ts`:** `OrderListItem`, `OrderDetail` (with sub-shapes `OrderItemDetail`, `OrderAddress`), `AdminCreateOrderRequest`, `SetOrderStatusRequest`, `SetPaymentStatusRequest`, `OrderFormValues` (flat RHF type), enum arrays `ORDER_STATUSES`/`PAYMENT_STATUSES`/`PAYMENT_METHODS`, sort type `OrderSort`.
+- **`src/features/orders/ordersApi.ts`:** RTK Query `getOrders` (paged, `Order/LIST` tags), `getOrder` (by id), `createOrder` (JSON POST, returns detail), `setOrderStatus` (`PUT …/status`), `setPaymentStatus` (`PUT …/payment-status`). Endpoint prefix `/admin/orders` (baseUrl is already `…/api/v1`).
+- **`src/features/orders/schemas.ts`:** Yup validation for the Add-order form; `billingStreet/City/Country` conditionally required when `useSeparateBilling` is true.
+- **`OrdersList.tsx`** — matches `Orders.png` + `Orders-1.png` mockups: debounced search + sort Filter dropdown, multi-select checkboxes, edit icon (1 selected → navigate to detail) + delete icon (disabled — no DELETE endpoint in TRD §10), paginated table with Order #/Date (datetime)/Customer/Payment status pill/Order status pill/Total columns. Row click navigates to detail. Empty state "No Orders Yet" with "+ Add order" button (header Add button hidden in empty state, matching mockup).
+- **`OrderForm.tsx`** — Add order: Customer section (name/email), Items section (variant ID + qty rows, add/remove), Shipping address, Billing address (toggle with `useSeparateBilling`), Payment section (CashOnDelivery|Bank radio + optional paymentStatus), Customer note. On success navigates to the created order's detail page.
+- **`OrderDetail.tsx`** — Order detail (TRD §6.2, no mockup — uses existing visual language): items table (product name/sku/options/qty/unit price/total), subtotal/shipping/discount/grand total summary, shipping + billing address cards, customer & order info card. **Two separate status controls:** Order status dropdown → `PUT …/status`; Payment status dropdown → `PUT …/payment-status`. Each fires on change (with loading spinner).
+- **Pages:** `OrdersListPage`, `OrderFormPage`, `OrderDetailPage` (thin wrappers).
+- **Router:** `AppRouter.tsx` updated — `/orders` → `OrdersListPage`, `/orders/new` → `OrderFormPage`, `/orders/:id` → `OrderDetailPage`.
+- **`shared/lib/format.ts` += `formatDateTime`** (date + time, e.g. "May 5, 4:20 PM") — used in orders list and detail; `formatDate` unchanged.
+- **Full EN + RU i18n** (`orders.*` block in both locale files): list/columns/sort/status labels, form labels, detail labels, toasts — all translated.
+- **Verified:** `npm run build` (tsc strict + vite, **931 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **Order list endpoint API shapes are UNVERIFIED** — no admin credentials available. Response envelope assumed `{success,message,data,errors}` wrapping a `PagedResult<OrderListItem>`. `OrderListItem` field names (`orderNumber`, `customerName`, `orderStatus`, `paymentStatus`, `total`, `createdAt`) are assumed from convention + TRD descriptions; **must verify on first real GET `/admin/orders`**.
+- **`OrderDetail` field names are also assumed** (`subtotal`, `shippingCost`, `discount`, `items[].unitPrice/totalPrice/variantOptions`, `updatedAt`) — the TRD gives no response schema for `GET /admin/orders/{id}`. First task with creds: fetch a real order and reconcile field names.
+- **Delete order is intentionally disabled** — TRD §10 lists only list/create/detail/set-status/set-payment-status; no DELETE endpoint. The trash icon in the toolbar is visible (matches mockup) but permanently disabled.
+- **Order form items use numeric variant ID input** — a searchable product picker would require additional API complexity; the simple numeric field is the correct scope for Phase 4.
+- `formatDateTime` added to `shared/lib/format.ts` (not a new lib; uses `Intl.DateTimeFormat` with `timeStyle: 'short'`).
+
+**Open questions / blockers**
+- **All order mutations + GETs unverified end-to-end** — no admin credentials. `OrderListItem` and `OrderDetail` field names are assumptions; reconcile on first real login.
+- **`orderNumber` field name** — the mockup shows "#12512B" style order codes; the API may return this as `orderNumber`, `code`, `reference`, or embed it in the id. The component falls back to `#${id}` if `orderNumber` is null.
+- Backend slow to cold-start (Render free tier).
+
+**NEXT ACTION (start here):**
+> Begin **Phase 5 — Dashboard**. Open `images/Dashboard.png` BEFORE writing UI (run `/design`). Verify live shapes first: `GET /api/v1/dashboard/summary` (summary cards: Sales, Cost, Profit) and the revenue/chart endpoint. Build `features/dashboard/{types,dashboardApi}.ts` + `components/DashboardPage.tsx` at route `/`. Add a chart library (e.g. `recharts` — compatible with the stack, widely used with React) for the Sales Revenue line chart; note it in README. Implement summary cards, line chart with month axis + hover tooltip, Top Selling Products list, Top Products by Units Sold table, Recent Transactions table, and date-range/year selectors wired to endpoints.
