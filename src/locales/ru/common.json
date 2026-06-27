@@ -25,7 +25,8 @@
     "required": "Обязательное поле",
     "email": "Введите корректный адрес эл. почты",
     "passwordMin": "Пароль должен содержать не менее {{count}} символов",
-    "passwordsMatch": "Пароли не совпадают"
+    "passwordsMatch": "Пароли не совпадают",
+    "maxLength": "Не более {{count}} символов"
   },
   "permissions": {
     "title": "Недостаточно прав",
@@ -58,11 +59,72 @@
     "delete": "Удалить",
     "create": "Создать",
     "edit": "Редактировать",
+    "add": "Добавить",
+    "action": "Действие",
     "confirm": "Подтвердить",
     "search": "Поиск",
     "searchPlaceholder": "Поиск…",
     "loading": "Загрузка…",
     "retry": "Повторить",
-    "comingSoon": "Скоро будет"
+    "comingSoon": "Скоро будет",
+    "noItems": "Пока нет записей",
+    "resultsCount": "Результатов: {{count}}",
+    "loadError": "Не удалось загрузить. Попробуйте ещё раз.",
+    "saveError": "Не удалось сохранить изменения. Попробуйте ещё раз.",
+    "deleteError": "Не удалось удалить. Попробуйте ещё раз."
+  },
+  "catalog": {
+    "tabs": {
+      "categories": "Категории",
+      "brands": "Бренды",
+      "banners": "Баннеры"
+    },
+    "addNew": "Добавить",
+    "addCategory": "Добавить категорию",
+    "editCategory": "Редактировать категорию",
+    "categoryName": "Название категории",
+    "currentImage": "Текущее изображение",
+    "clickToUpload": "Нажмите для загрузки",
+    "orDragAndDrop": "или перетащите файл",
+    "uploadFormats": "SVG, JPG, PNG или gif, максимум 900×400",
+    "noSearchResults": "Нет категорий по вашему запросу.",
+    "deleteCategory": {
+      "title": "Удалить категорию",
+      "message": "Вы уверены, что хотите удалить «{{name}}»?"
+    },
+    "subcategories": "Подкатегории",
+    "subcategoriesOf": "Подкатегории: {{name}}",
+    "addSubcategory": "Добавить подкатегорию",
+    "editSubcategory": "Редактировать подкатегорию",
+    "subcategoryName": "Название подкатегории",
+    "noSubcategories": "Пока нет подкатегорий",
+    "deleteSubcategory": {
+      "title": "Удалить подкатегорию",
+      "message": "Вы уверены, что хотите удалить «{{name}}»?"
+    },
+    "brands": "Бренды",
+    "addBrand": "Добавить бренд",
+    "editBrand": "Редактировать бренд",
+    "brandName": "Название бренда",
+    "noBrands": "Пока нет брендов",
+    "deleteBrand": {
+      "title": "Удалить бренд",
+      "message": "Вы уверены, что хотите удалить «{{name}}»?"
+    },
+    "empty": {
+      "categoriesTitle": "Пока нет категорий",
+      "categoriesDescription": "Создайте первую категорию, чтобы начать организовывать каталог."
+    },
+    "toast": {
+      "categoryCreated": "Категория создана",
+      "categoryUpdated": "Категория обновлена",
+      "categoryDeleted": "Категория удалена",
+      "subcategoryCreated": "Подкатегория создана",
+      "subcategoryUpdated": "Подкатегория обновлена",
+      "subcategoryDeleted": "Подкатегория удалена",
+      "brandCreated": "Бренд создан",
+      "brandUpdated": "Бренд обновлён",
+      "brandDeleted": "Бренд удалён"
+    }
   }
 }

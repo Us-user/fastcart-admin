@@ -18,9 +18,11 @@ export function getApiErrorMessage(error: unknown, fallback: string): string {
     return fallback;
   }
 
-  // RTK Query FetchBaseQueryError carries the body on `data`.
-  const maybeFbqe = error as RtkError & { data?: unknown };
-  const data = maybeFbqe.data;
+  // RTK Query FetchBaseQueryError carries the body on `data`; axios errors carry
+  // it on `response.data`. Support both so the helper works for the multipart
+  // (axios) endpoints too (TRD §7).
+  const maybeFbqe = error as RtkError & { data?: unknown; response?: { data?: unknown } };
+  const data = maybeFbqe.data ?? maybeFbqe.response?.data;
 
   if (typeof data === 'string' && data.trim()) {
     return data;

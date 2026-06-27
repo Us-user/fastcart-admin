@@ -87,3 +87,33 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 2 — Catalog foundations**. First build the **"Other" tabbed screen shell** (replace the `/other` `PlaceholderPage` route) reusing the shell visual language, then **Categories CRUD + "Add category" modal** (multipart `Name` + `Image` via the axios `http` instance + `buildFormData`). Run `/design` and open `images/Categories.png` (+ the Add-category modal mockup) and `images/Brands.png` BEFORE writing UI. Endpoints: `GET/POST/PUT/DELETE /Categories`. Then Subcategories master–detail (TRD §6.1) inside the Categories tab.
+
+---
+
+## Session 4 — 2026-06-27 — Phase 2: Other shell + Categories/Subcategories/Brands
+
+**Phase:** Phase 2 — Catalog foundations (4 of 6 tasks done; **Colors + Tags CRUD remain**).
+
+**Done this session**
+- **Verified real API shapes** against live Swagger + the running backend (not just the spec): every response is wrapped in `{ success, message, data, errors }`. `GET /Categories?includeSubcategories=true` → `Category{ id, name, imageUrl, subCategories:[{id,categoryId,name}] }`. `GET /Brands` is **paged** → `data:{ items, pageNumber, pageSize, totalCount, totalPages }`. `SubCategoryRequest{categoryId,name}`, `BrandRequest{name}`. Categories POST/PUT are **multipart** (`Name`,`Image`); SubCategories/Brands are **JSON**.
+- **catalog feature** (`src/features/catalog/`): `types.ts` (incl. `ApiEnvelope<T>`, `PagedResult<T>`), `categoriesApi.ts` (RTK Query GET+DELETE, tag `Category`/`LIST`), `subCategoriesApi.ts` (JSON POST/PUT/DELETE → invalidate `Category` LIST), `brandsApi.ts` (paged GET + CRUD), `schemas.ts` (translated Yup), `useCategoryMutations.ts` (**multipart create/update via axios `http` + `buildFormData`**, then `dispatch(baseApi.util.invalidateTags([{type:'Category',id:'LIST'}]))`).
+- **"Other" tab shell** (`src/pages/OtherPage.tsx`): pill-tabs Categories/Brands/Banners; "+ Add new" sits on the tab row, Categories tab only. Wired into router (`/other` → `OtherPage`, replaced `PlaceholderPage`).
+- **Categories tab** (`features/catalog/components/CategoriesTab.tsx`): client-side search + client-side pagination (PAGE_SIZE 15, 5-col grid), `CategoryCard` (icon/image, name, edit pencil + delete trash), **`AddCategoryModal`** (name + dashed upload dropzone w/ preview, matches `images/02 Destructive-2.png`), delete `ConfirmDialog`.
+- **Subcategories master–detail** (`SubcategoryPanel.tsx`): appears below the grid when a card is selected; subs read **inline** from the Categories query, add/edit/delete via `subCategoriesApi`.
+- **Brands tab** (`BrandsTab.tsx`): two-column list + add/edit form, matches `images/Brands.png`. **`BannersTab.tsx`** is a Phase-6 placeholder.
+- **Reusable shared/ui** added: `DataState` (loading/error+retry/empty), `EmptyState`, `PaginationFooter` (MUI Pagination styled to mockup + results count), `NameListEditor` (shared "list + add/edit form" used by both Brands and Subcategories). Extended `getApiErrorMessage` to also read axios `response.data`.
+- **i18n:** full `catalog.*` block + new `common.*`/`validation.maxLength` keys, **EN + RU parity**.
+- **Verified:** `npm run build` (tsc strict + vite, 796 modules) ✓, `npm run lint` ✓, `npm run format:check` ✓.
+
+**Decisions made**
+- **Subcategories are read inline** via `includeSubcategories=true` on the Categories query (no separate `getSubCategories` query yet); sub-mutations invalidate `Category` LIST. The Phase-3 product form will need a standalone `GET /SubCategories?categoryId` query — add it then.
+- **Multipart Categories use axios `http`** (not RTK Query) per TRD §7; cache kept coherent by invalidating the RTK Query `Category` LIST tag after the axios call.
+- **Visual extension:** category cards show a delete trash next to the pencil (mockup shows only the pencil) — required for §10 delete coverage and consistent with the Brands cards. Brand/Subcategory **edit reuses the right-side form card** ("Edit …" + Save/Cancel).
+- Deferred **Colors + Tags CRUD** to Phase 3 — they have no standalone screen and are managed inside the product-form modals ("New color" picker, Tags chips).
+
+**Open questions / blockers**
+- **Mutations still unverified end-to-end** — no admin test credentials, so POST/PUT/DELETE for Categories/Subcategories/Brands haven't been exercised against the live backend (GETs are confirmed with real data). First task once creds exist: create/edit/delete one of each and confirm the envelope + multipart category upload succeed.
+- Backend is slow to cold-start (Render free tier) — Swagger/API fetch took a couple minutes this session.
+
+**NEXT ACTION (start here):**
+> Continue **Phase 2**: build **Colors CRUD** (`GET/POST /Colors`, `GET/PUT/DELETE /Colors/{id}`, `ColorRequest{ name, hexCode }`) and **Tags CRUD** (`GET/POST /Tags`, `GET/PUT/DELETE /Tags/{id}`, `TagRequest{ name }`) as RTK Query slices in `src/features/catalog/`. These have **no standalone screen** — surface them as the **"New color" picker modal** (matches `images/02 Destructive-4/-5.png`: Color name + hex with color picker) and the **Tags chip block**, which will be embedded in the Phase-3 Add/Edit product form. Verify the response envelope shape with a live `GET /Colors` / `GET /Tags` first. Then move to **Phase 3 — Products** (start with the Products list: open `images/Products.png` + the delete-modal mockups).

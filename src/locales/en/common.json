@@ -25,7 +25,8 @@
     "required": "This field is required",
     "email": "Enter a valid email address",
     "passwordMin": "Password must be at least {{count}} characters",
-    "passwordsMatch": "Passwords do not match"
+    "passwordsMatch": "Passwords do not match",
+    "maxLength": "Must be at most {{count}} characters"
   },
   "permissions": {
     "title": "Insufficient permissions",
@@ -58,11 +59,72 @@
     "delete": "Delete",
     "create": "Create",
     "edit": "Edit",
+    "add": "Add",
+    "action": "Action",
     "confirm": "Confirm",
     "search": "Search",
     "searchPlaceholder": "Search…",
     "loading": "Loading…",
     "retry": "Retry",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "noItems": "No items yet",
+    "resultsCount": "{{count}} Results",
+    "loadError": "Failed to load. Please try again.",
+    "saveError": "Couldn't save your changes. Please try again.",
+    "deleteError": "Couldn't delete. Please try again."
+  },
+  "catalog": {
+    "tabs": {
+      "categories": "Categories",
+      "brands": "Brands",
+      "banners": "Banners"
+    },
+    "addNew": "Add new",
+    "addCategory": "Add category",
+    "editCategory": "Edit category",
+    "categoryName": "Category name",
+    "currentImage": "Current image",
+    "clickToUpload": "Click to upload",
+    "orDragAndDrop": "or drag and drop",
+    "uploadFormats": "SVG, JPG, PNG, or gif maximum 900×400",
+    "noSearchResults": "No categories match your search.",
+    "deleteCategory": {
+      "title": "Delete category",
+      "message": "Are you sure you want to delete \"{{name}}\"?"
+    },
+    "subcategories": "Subcategories",
+    "subcategoriesOf": "Subcategories of {{name}}",
+    "addSubcategory": "Add subcategory",
+    "editSubcategory": "Edit subcategory",
+    "subcategoryName": "Subcategory name",
+    "noSubcategories": "No subcategories yet",
+    "deleteSubcategory": {
+      "title": "Delete subcategory",
+      "message": "Are you sure you want to delete \"{{name}}\"?"
+    },
+    "brands": "Brands",
+    "addBrand": "Add new brand",
+    "editBrand": "Edit brand",
+    "brandName": "Brand name",
+    "noBrands": "No brands yet",
+    "deleteBrand": {
+      "title": "Delete brand",
+      "message": "Are you sure you want to delete \"{{name}}\"?"
+    },
+    "empty": {
+      "categoriesTitle": "No categories yet",
+      "categoriesDescription": "Create your first category to start organizing your catalog."
+    },
+    "toast": {
+      "categoryCreated": "Category created",
+      "categoryUpdated": "Category updated",
+      "categoryDeleted": "Category deleted",
+      "subcategoryCreated": "Subcategory created",
+      "subcategoryUpdated": "Subcategory updated",
+      "subcategoryDeleted": "Subcategory deleted",
+      "brandCreated": "Brand created",
+      "brandUpdated": "Brand updated",
+      "brandDeleted": "Brand deleted"
+    }
   }
 }

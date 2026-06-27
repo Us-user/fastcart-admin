@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppShell } from '@/app/layout/AppShell';
 import { PublicOnly, RequireAdmin, RequireAuth } from '@/features/auth/guards';
 import { InsufficientPermissionsPage } from '@/pages/InsufficientPermissionsPage';
+import { OtherPage } from '@/pages/OtherPage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage';
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
@@ -34,7 +35,7 @@ export function AppRouter() {
               <Route path="/" element={<PlaceholderPage titleKey="nav.dashboard" />} />
               <Route path="/orders" element={<PlaceholderPage titleKey="nav.orders" />} />
               <Route path="/products" element={<PlaceholderPage titleKey="nav.products" />} />
-              <Route path="/other" element={<PlaceholderPage titleKey="nav.other" />} />
+              <Route path="/other" element={<OtherPage />} />
             </Route>
           </Route>
         </Route>

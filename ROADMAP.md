@@ -49,12 +49,12 @@
 ## Phase 2 — Catalog foundations
 *Goal: the entities the product form depends on. Build before Products.*
 
-- [ ] Categories CRUD + **Add category** modal (multipart Name + Image) (TRD §5.4).
-- [ ] Subcategories master–detail inside the Categories tab (Category → Subcategory) (TRD §6.1, §8).
-- [ ] Brands CRUD — two-column list + Add new brand (TRD §5.4, §9).
+- [x] Categories CRUD + **Add category** modal (multipart Name + Image) (TRD §5.4).
+- [x] Subcategories master–detail inside the Categories tab (Category → Subcategory) (TRD §6.1, §8).
+- [x] Brands CRUD — two-column list + Add new brand (TRD §5.4, §9).
 - [ ] Colors CRUD — used by product Colour block + "New color" picker modal (TRD §9).
 - [ ] Tags CRUD — used by product Tags block (TRD §9).
-- [ ] "Other" tabbed screen shell hosting Categories / Brands / Banners (+ later tabs).
+- [x] "Other" tabbed screen shell hosting Categories / Brands / Banners (+ later tabs).
 
 ## Phase 3 — Products
 *Goal: the largest module — list, create (multipart), edit (sectioned), variants/options/images.*
