@@ -34,17 +34,17 @@
 ## Phase 1 — Auth, role gating & app shell
 *Goal: log in, refresh, admin-only access, and the shared layout every screen lives in.*
 
-- [ ] Auth endpoints (TRD §3.1): login, refresh, logout, forgot-password, reset-password, change-password, me.
-- [ ] Token storage in `localStorage` + hydrate into Redux on load (TRD §3.2).
-- [ ] **Login** screen — split layout, email/password, eye toggle, "Forgot password?", blue Log in (match mockup).
-- [ ] **Forgot password** screen (match mockup).
-- [ ] **Reset password** screen (match mockup).
-- [ ] `GET /Auth/me` → admin-role check; **"Insufficient permissions"** screen for non-admins (TRD §3.3).
-- [ ] Route guards: unauth → `/login`; non-admin → permissions screen; admin → full access.
-- [ ] App shell: top bar (logo, search, notification bell + badge, user chip), dark navy sidebar (active pill), content card surface (TRD §4).
-- [ ] Global MUI snackbar system for mutation success/error (TRD §4.1).
-- [ ] Reusable confirm dialog matching the delete-modal style.
-- [ ] Theme toggle + language switch in the UI (user dropdown) (TRD §4.2).
+- [x] Auth endpoints (TRD §3.1): login, refresh, logout, forgot-password, reset-password, change-password, me.
+- [x] Token storage in `localStorage` + hydrate into Redux on load (TRD §3.2).
+- [x] **Login** screen — split layout, email/password, eye toggle, "Forgot password?", blue Log in (match mockup).
+- [x] **Forgot password** screen (match mockup).
+- [x] **Reset password** screen (match mockup).
+- [x] `GET /Auth/me` → admin-role check; **"Insufficient permissions"** screen for non-admins (TRD §3.3).
+- [x] Route guards: unauth → `/login`; non-admin → permissions screen; admin → full access.
+- [x] App shell: top bar (logo, search, notification bell + badge, user chip), dark navy sidebar (active pill), content card surface (TRD §4).
+- [x] Global MUI snackbar system for mutation success/error (TRD §4.1).
+- [x] Reusable confirm dialog matching the delete-modal style.
+- [x] Theme toggle + language switch in the UI (user dropdown) (TRD §4.2).
 
 ## Phase 2 — Catalog foundations
 *Goal: the entities the product form depends on. Build before Products.*
@@ -112,5 +112,5 @@
 - [x] Status → color map (single source).
 - [ ] Locale-aware date / number / currency formatting.
 - [ ] Default pagination page size (backend default 20 unless a mockup implies otherwise).
-- [ ] Toast copy patterns (success / error).
-- [ ] Yup validation schemas per entity (translated messages).
+- [~] Toast copy patterns (success / error). *(global snackbar + `getApiErrorMessage` fallback established; per-entity copy fills in per phase)*
+- [~] Yup validation schemas per entity (translated messages). *(auth schemas done; other entities per phase)*

@@ -4,12 +4,14 @@ import { baseApi } from '@/shared/api/baseApi';
 import { storeRef } from '@/shared/api/storeRef';
 import { authReducer } from '@/features/auth/authSlice';
 import { themeReducer } from '@/features/theme/themeSlice';
+import { uiReducer } from '@/features/ui/uiSlice';
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: authReducer,
     theme: themeReducer,
+    ui: uiReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
 });

@@ -7,6 +7,7 @@ import '@/app/i18n';
 import { store } from '@/app/store';
 import { AppThemeProvider } from '@/app/providers/AppThemeProvider';
 import { AppRouter } from '@/app/router/AppRouter';
+import { GlobalSnackbar } from '@/shared/ui/GlobalSnackbar';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -18,6 +19,7 @@ createRoot(rootElement).render(
     <Provider store={store}>
       <AppThemeProvider>
         <AppRouter />
+        <GlobalSnackbar />
       </AppThemeProvider>
     </Provider>
   </StrictMode>,

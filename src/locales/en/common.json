@@ -2,16 +2,55 @@
   "app": {
     "name": "FastCart Admin"
   },
-  "scaffold": {
-    "ready": "Scaffolding & infrastructure are wired up.",
-    "stackOk": "MUI + Tailwind + Redux + RTK Query + i18n + dark mode are all working."
+  "auth": {
+    "welcome": "Welcome to admin panel",
+    "login": "Log in",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordTitle": "Forgot password",
+    "resetPasswordTitle": "Reset password",
+    "sendResetLink": "Send reset link",
+    "reset": "Reset",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "loginError": "Unable to log in. Check your email and password.",
+    "genericError": "Something went wrong. Please try again.",
+    "resetLinkSent": "If an account exists, a reset link has been sent.",
+    "resetLinkInvalid": "This reset link is invalid or has expired.",
+    "passwordReset": "Your password has been reset. Please log in."
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Enter a valid email address",
+    "passwordMin": "Password must be at least {{count}} characters",
+    "passwordsMatch": "Passwords do not match"
+  },
+  "permissions": {
+    "title": "Insufficient permissions",
+    "description": "Your account doesn't have admin access to this panel. If you think this is a mistake, contact an administrator.",
+    "logout": "Log out"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "products": "Products",
+    "other": "Other",
+    "logout": "Log out",
+    "notifications": "Notifications",
+    "openMenu": "Open menu"
+  },
+  "user": {
+    "menu": "Account menu",
+    "fallbackName": "Admin"
   },
   "theme": {
     "light": "Light mode",
     "dark": "Dark mode"
   },
   "language": {
-    "switch": "RU / EN"
+    "switchTo": "Switch to {{lang}}"
   },
   "common": {
     "save": "Save",
@@ -19,8 +58,11 @@
     "delete": "Delete",
     "create": "Create",
     "edit": "Edit",
+    "confirm": "Confirm",
     "search": "Search",
+    "searchPlaceholder": "Search…",
     "loading": "Loading…",
-    "retry": "Retry"
+    "retry": "Retry",
+    "comingSoon": "Coming soon"
   }
 }

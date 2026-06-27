@@ -58,3 +58,32 @@
 
 **NEXT ACTION (start here):**
 > Begin **Phase 1 — Auth, role gating & app shell**. First screen is **Login**: run `/design` and open `images/Log in.png` (+ `Log in-1/-2.png`) BEFORE writing UI. Build the auth RTK Query endpoints (`POST /Auth/login`, `GET /Auth/me`) in `features/auth/`, then the split-layout Login screen at `pages/`. Replace the temporary `ScaffoldReady` route in `app/router/AppRouter.tsx`.
+
+---
+
+## Session 3 — 2026-06-27 — Phase 1: auth, role gating & app shell
+
+**Phase:** Phase 1 — **COMPLETE** (all 11 tasks checked off in `ROADMAP.md`).
+
+**Done this session**
+- **Auth API** (`src/features/auth/authApi.ts`): `login`, `logout`, `forgotPassword`, `resetPassword`, `changePassword`, `getMe` injected into `baseApi`. Verified every request schema against live Swagger — all match (`LoginRequest{login,password}`, `RefreshRequest{refreshToken}`, `ResetPasswordRequest{email,token,newPassword,confirmPassword}`, etc.). `mapToAuthUser` normalizes roles (`roles[]` or single `role`).
+- **Bootstrap + guards** (`src/features/auth/guards.tsx`): `RequireAuth` fetches `GET /Auth/me`, syncs user→Redux, holds render behind `FullScreenLoader`, clears session on `me` failure. `RequireAdmin` (nested) → `/no-access` for non-admins. `PublicOnly` keeps logged-in users off auth screens. `useLogout` = best-effort `POST /Auth/logout` → clear tokens → `resetApiState` → `/login`.
+- **Auth screens** (matched to the 3 mockups): `AuthLayout` (split: teal→navy panel + `BrandLogo` + "Welcome…"), `PasswordField` (eye toggle), `BackToLoginLink`. Pages: `pages/auth/{Login,ForgotPassword,ResetPassword}Page.tsx` — RHF + translated Yup schemas (`features/auth/schemas.ts`), snackbar feedback. `pages/InsufficientPermissionsPage.tsx` (non-admin, lock icon + log out).
+- **App shell** (matched to Dashboard/Orders mockups): `src/app/layout/{AppShell,TopBar,SidebarNav,UserMenu}.tsx`. Navy `#16243b` top bar (logo / borderless search / bell / user chip) + sidebar (white active pill) + light-gray content surface; collapses to MUI Drawer on mobile. `UserMenu` = theme toggle + EN/RU switch + logout.
+- **Shared infra:** `GlobalSnackbar` + `useSnackbar` + `features/ui/uiSlice` (TRD §4.1); reusable `ConfirmDialog` (delete-modal style: Cancel=blue filled, Delete=outlined red); `getApiErrorMessage`; `PageHeader`; `FullScreenLoader`; `BrandLogo` (SVG). MUI theme centralized in `AppThemeProvider` (primary `#2563EB`, radius 8, non-uppercase buttons).
+- **Router** rewritten with guard nesting; placeholder routes (`/`, `/orders`, `/products`, `/other`) via `PlaceholderPage` so the shell is navigable. `ScaffoldReady.tsx` deleted. Full EN+RU i18n; no hardcoded strings.
+- **Verified:** `npm run build` (tsc strict + vite) ✓, `npm run lint` ✓, `npm run format:check` ✓, dev server boots & serves all modules (200, no transform errors).
+
+**Decisions made**
+- **Login/`me`/refresh response bodies are undocumented in Swagger** (responses `200 undefined`). Kept the assumed shape `{ accessToken, refreshToken }` (consistent with Phase-0 `tokenRefresh.ts`) and a tolerant `AuthMeResponse`. **Must verify on a first real login** (no test creds available).
+- **Reset password** reads `email` + `token` from URL query params (`useSearchParams`); the form only collects the two passwords, matching the mockup + `ResetPasswordRequest`. Heading uses "Reset password" — the mockup's literal "Forgot password" heading on that screen is treated as a copy artifact (TRD §3.4 names it Reset password).
+- **Decorative shell counts deferred:** notification bell shows a dot (no notifications endpoint); Orders sidebar count badge omitted until Orders data (Phase 4). `SidebarNav` is structured to add Coupons/Returns/Users later.
+- **FastCart logo** is an SVG approximation (`BrandLogo`) — no logo asset shipped; grunge wordmark → bold italic. Navy `#16243b` and avatar green `#22c55e` chosen to match mockups.
+- Visual tokens live in the MUI theme (decide-once, TRD §13); dark mode still single-sourced from Redux (Phase 0).
+
+**Open questions / blockers**
+- No admin test credentials → the end-to-end login → `me` → admin-gate flow is unverified against the real backend. First task with creds: confirm `login`/`me` response field names; adjust `LoginResponse` / `AuthMeResponse` if they differ.
+- Backend remains slow to cold-start (Render free tier) — Swagger fetch needed ~5 min this session.
+
+**NEXT ACTION (start here):**
+> Begin **Phase 2 — Catalog foundations**. First build the **"Other" tabbed screen shell** (replace the `/other` `PlaceholderPage` route) reusing the shell visual language, then **Categories CRUD + "Add category" modal** (multipart `Name` + `Image` via the axios `http` instance + `buildFormData`). Run `/design` and open `images/Categories.png` (+ the Add-category modal mockup) and `images/Brands.png` BEFORE writing UI. Endpoints: `GET/POST/PUT/DELETE /Categories`. Then Subcategories master–detail (TRD §6.1) inside the Categories tab.

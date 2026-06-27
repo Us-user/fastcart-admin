@@ -2,16 +2,55 @@
   "app": {
     "name": "FastCart Админ"
   },
-  "scaffold": {
-    "ready": "Каркас и инфраструктура подключены.",
-    "stackOk": "MUI + Tailwind + Redux + RTK Query + i18n + тёмная тема работают."
+  "auth": {
+    "welcome": "Добро пожаловать в панель администратора",
+    "login": "Войти",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "forgotPassword": "Забыли пароль?",
+    "forgotPasswordTitle": "Забыли пароль",
+    "resetPasswordTitle": "Сброс пароля",
+    "sendResetLink": "Отправить ссылку для сброса",
+    "reset": "Сбросить",
+    "showPassword": "Показать пароль",
+    "hidePassword": "Скрыть пароль",
+    "loginError": "Не удалось войти. Проверьте эл. почту и пароль.",
+    "genericError": "Что-то пошло не так. Попробуйте ещё раз.",
+    "resetLinkSent": "Если аккаунт существует, ссылка для сброса отправлена.",
+    "resetLinkInvalid": "Ссылка для сброса недействительна или истекла.",
+    "passwordReset": "Пароль сброшен. Пожалуйста, войдите."
+  },
+  "validation": {
+    "required": "Обязательное поле",
+    "email": "Введите корректный адрес эл. почты",
+    "passwordMin": "Пароль должен содержать не менее {{count}} символов",
+    "passwordsMatch": "Пароли не совпадают"
+  },
+  "permissions": {
+    "title": "Недостаточно прав",
+    "description": "У вашего аккаунта нет прав администратора для этой панели. Если это ошибка, обратитесь к администратору.",
+    "logout": "Выйти"
+  },
+  "nav": {
+    "dashboard": "Дашборд",
+    "orders": "Заказы",
+    "products": "Товары",
+    "other": "Прочее",
+    "logout": "Выйти",
+    "notifications": "Уведомления",
+    "openMenu": "Открыть меню"
+  },
+  "user": {
+    "menu": "Меню аккаунта",
+    "fallbackName": "Админ"
   },
   "theme": {
     "light": "Светлая тема",
     "dark": "Тёмная тема"
   },
   "language": {
-    "switch": "RU / EN"
+    "switchTo": "Переключить на {{lang}}"
   },
   "common": {
     "save": "Сохранить",
@@ -19,8 +58,11 @@
     "delete": "Удалить",
     "create": "Создать",
     "edit": "Редактировать",
+    "confirm": "Подтвердить",
     "search": "Поиск",
+    "searchPlaceholder": "Поиск…",
     "loading": "Загрузка…",
-    "retry": "Повторить"
+    "retry": "Повторить",
+    "comingSoon": "Скоро будет"
   }
 }
