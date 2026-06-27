@@ -428,6 +428,7 @@
     "returns":  {
                     "title":  "Возвраты",
                     "allStatuses":  "Все статусы",
+                    "filterByStatus":  "Фильтр по статусу",
                     "status":  {
                                    "Requested":  "Запрошен",
                                    "Approved":  "Одобрен",

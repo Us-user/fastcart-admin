@@ -94,6 +94,7 @@ export function ReturnsPage() {
           size="small"
           value={statusFilter}
           displayEmpty
+          inputProps={{ 'aria-label': t('returns.filterByStatus') }}
           onChange={(e) => {
             setStatusFilter(e.target.value as ReturnStatus | '');
             setPage(1);

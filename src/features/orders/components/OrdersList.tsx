@@ -179,7 +179,7 @@ export function OrdersList() {
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 text-left text-slate-400 dark:border-slate-700 dark:text-slate-500">
-                    <th className="w-10 py-3 pr-2">
+                    <th scope="col" className="w-10 py-3 pr-2">
                       <Checkbox
                         checked={allSelected}
                         indeterminate={someSelected}
@@ -188,12 +188,12 @@ export function OrdersList() {
                         slotProps={{ input: { 'aria-label': t('orders.selectAll') } }}
                       />
                     </th>
-                    <th className="py-3 pr-4 font-medium">{t('orders.columns.order')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('orders.columns.date')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('orders.columns.customer')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('orders.columns.paymentStatus')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('orders.columns.orderStatus')}</th>
-                    <th className="py-3 pr-4 text-right font-medium">
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('orders.columns.order')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('orders.columns.date')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('orders.columns.customer')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('orders.columns.paymentStatus')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('orders.columns.orderStatus')}</th>
+                    <th scope="col" className="py-3 pr-4 text-right font-medium">
                       {t('orders.columns.total')}
                     </th>
                   </tr>

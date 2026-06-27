@@ -75,13 +75,13 @@ export function ImagesUploader({ value, onChange }: ImagesUploaderProps) {
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs text-slate-400 dark:text-slate-500">
-              <th className="rounded-l-lg bg-slate-50 py-2 pl-3 font-medium dark:bg-slate-800/60">
+              <th scope="col" className="rounded-l-lg bg-slate-50 py-2 pl-3 font-medium dark:bg-slate-800/60">
                 {t('products.form.image')}
               </th>
-              <th className="bg-slate-50 py-2 font-medium dark:bg-slate-800/60">
+              <th scope="col" className="bg-slate-50 py-2 font-medium dark:bg-slate-800/60">
                 {t('products.form.fileName')}
               </th>
-              <th className="rounded-r-lg bg-slate-50 py-2 pr-3 text-right font-medium dark:bg-slate-800/60">
+              <th scope="col" className="rounded-r-lg bg-slate-50 py-2 pr-3 text-right font-medium dark:bg-slate-800/60">
                 {t('common.action')}
               </th>
             </tr>

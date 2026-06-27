@@ -374,3 +374,33 @@
 
 **NEXT ACTION (start here):**
 > Continue **Phase 9 — Polish**. Two tasks remain: (1) **Accessibility audit** — scan each screen for unlabelled inputs (`aria-label` on icon buttons, `label` on all form fields), confirm MUI Dialog has `aria-labelledby`/`aria-describedby`, and verify table headers have `scope="col"`. (2) **Final visual QA** — open each PNG in `images/` and compare to the running app; flag any color, spacing, or layout mismatches and fix them. After both tasks are done, mark Phase 9 complete and the project is delivered.
+
+---
+
+## Session 13 — 2026-06-28 — Phase 9 complete: accessibility + visual QA
+
+**Phase:** Phase 9 — **COMPLETE**. All phases and conventions are fully checked off. Project delivered.
+
+**Done this session**
+- **Accessibility audit — fixed across 9 files:**
+  - Added `scope="col"` to all custom HTML `<th>` elements in: `ProductsList.tsx`, `OrdersList.tsx`, `OrderDetail.tsx`, `ImagesUploader.tsx`, `TopProductsByUnits.tsx`, `RecentTransactions.tsx`.
+  - Added explicit `aria-label` to `IconButton` components inside `<Tooltip>` in: `SlidersSection.tsx` (Edit + Delete), `BannerSection.tsx` (Delete), `UsersPage.tsx` (View + Delete), `CouponsPage.tsx` (Edit + Delete).
+  - Added `slotProps.htmlInput['aria-label']` to the search `TextField` in `UsersPage.tsx`.
+  - Added `inputProps['aria-label']` to the status filter `Select` in `ReturnsPage.tsx` (new i18n key `returns.filterByStatus` added to both EN + RU locales).
+  - MUI `Dialog` + `DialogTitle` + `DialogContentText` already provide `aria-labelledby`/`aria-describedby` automatically — no changes needed.
+  - MUI `TableCell` in `TableHead` auto-emits `scope="col"` — no changes needed for Users/Returns/Coupons tables.
+- **Visual QA — all 20 `images/` PNGs reviewed against implementation:**
+  - All screens match their mockups. Accepted differences (all documented in prior session decisions): inventory count shown as pill not number (API has no count on list); category cards have delete icon not in mockup (added for completeness); product form has Subcategory + Condition dropdowns (TRD-mandated, not in mockup); color picker uses native `<input type=color>` (no-new-lib rule); SlidersSection form is above the list (not below as in mockup — visual language matches).
+- **ROADMAP.md** — all 9 Phase 9 tasks and all 5 convention items checked off `[x]`. Every phase 0–9 is complete.
+- **Verified:** `npm run build` (tsc strict + vite, **1402 modules**) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- No visual changes were required by the QA — all discrepancies were pre-existing documented decisions from earlier sessions.
+- The `02 Destructive-3/-6.png` "Option value" modals are addressed by the inline chip editor in `OptionsEditor.tsx`, which matches the `Detail products.png` main form mockup.
+
+**Open questions / blockers**
+- **All mutations remain unverified end-to-end** — no admin credentials available throughout the entire build. Every GET shape was confirmed with real data; all POST/PUT/DELETE calls are implemented to spec but untested against the live backend. First task with credentials: do one full create/edit/delete cycle on Products, then verify Orders and Dashboard endpoint field names.
+- Backend cold-starts slowly (Render free tier).
+
+**NEXT ACTION (start here):**
+> **Project is complete.** All phases (0–9) and conventions are checked off. The remaining action is **end-to-end verification with real admin credentials**: login → confirm `GET /Auth/me` roles → create/edit/delete one Product → check one Order → load Dashboard. Reconcile any field name mismatches between assumed response shapes and actual backend responses (see per-session open questions for specifics). No new screens or features are needed.

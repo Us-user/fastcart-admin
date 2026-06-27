@@ -82,6 +82,7 @@ export function UsersPage() {
           onChange={(e) => setSearchInput(e.target.value)}
           sx={{ width: 240 }}
           slotProps={{
+            htmlInput: { 'aria-label': t('users.searchPlaceholder') },
             input: {
               startAdornment: (
                 <InputAdornment position="start">
@@ -144,7 +145,7 @@ export function UsersPage() {
                       </TableCell>
                       <TableCell align="right">
                         <Tooltip title={t('users.viewDetail')}>
-                          <IconButton size="small" onClick={() => setSelectedUserId(user.id)}>
+                          <IconButton size="small" aria-label={t('users.viewDetail')} onClick={() => setSelectedUserId(user.id)}>
                             <VisibilityOutlinedIcon fontSize="small" />
                           </IconButton>
                         </Tooltip>
@@ -152,6 +153,7 @@ export function UsersPage() {
                           <IconButton
                             size="small"
                             color="error"
+                            aria-label={t('common.delete')}
                             onClick={() => setDeleteTarget({ id: user.id, name: user.userName })}
                           >
                             <DeleteOutlineIcon fontSize="small" />

@@ -250,7 +250,7 @@ export function SlidersSection() {
                   </div>
                 </div>
                 <Tooltip title={t('common.edit')}>
-                  <IconButton size="small" onClick={() => handleEdit(slider)} disabled={isBusy}>
+                  <IconButton size="small" aria-label={t('common.edit')} onClick={() => handleEdit(slider)} disabled={isBusy}>
                     <EditOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
@@ -258,6 +258,7 @@ export function SlidersSection() {
                   <IconButton
                     size="small"
                     color="error"
+                    aria-label={t('common.delete')}
                     onClick={() => setDeleteTarget({ id: slider.id, title: slider.title })}
                     disabled={isBusy}
                   >

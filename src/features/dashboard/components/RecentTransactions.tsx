@@ -18,10 +18,10 @@ export function RecentTransactions() {
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-xs text-gray-400">
-            <th className="pb-3 font-medium">{t('dashboard.columns.name')}</th>
-            <th className="pb-3 font-medium">{t('dashboard.columns.date')}</th>
-            <th className="pb-3 font-medium">{t('dashboard.columns.amount')}</th>
-            <th className="pb-3 font-medium">{t('dashboard.columns.status')}</th>
+            <th scope="col" className="pb-3 font-medium">{t('dashboard.columns.name')}</th>
+            <th scope="col" className="pb-3 font-medium">{t('dashboard.columns.date')}</th>
+            <th scope="col" className="pb-3 font-medium">{t('dashboard.columns.amount')}</th>
+            <th scope="col" className="pb-3 font-medium">{t('dashboard.columns.status')}</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 dark:divide-slate-700">

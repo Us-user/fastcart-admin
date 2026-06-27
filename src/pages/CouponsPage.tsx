@@ -151,7 +151,7 @@ export function CouponsPage() {
                       </TableCell>
                       <TableCell align="right">
                         <Tooltip title={t('common.edit')}>
-                          <IconButton size="small" onClick={() => openEdit(coupon)}>
+                          <IconButton size="small" aria-label={t('common.edit')} onClick={() => openEdit(coupon)}>
                             <EditOutlinedIcon fontSize="small" />
                           </IconButton>
                         </Tooltip>
@@ -159,6 +159,7 @@ export function CouponsPage() {
                           <IconButton
                             size="small"
                             color="error"
+                            aria-label={t('common.delete')}
                             onClick={() => setDeleteTarget({ id: coupon.id, code: coupon.code })}
                           >
                             <DeleteOutlineIcon fontSize="small" />

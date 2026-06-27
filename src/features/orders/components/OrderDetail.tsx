@@ -89,11 +89,11 @@ export function OrderDetail() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-slate-200 text-left text-slate-400 dark:border-slate-700 dark:text-slate-500">
-                        <th className="py-2 pr-4 font-medium">{t('orders.detail.product')}</th>
-                        <th className="py-2 pr-4 font-medium">{t('orders.detail.sku')}</th>
-                        <th className="py-2 pr-4 text-center font-medium">{t('orders.detail.qty')}</th>
-                        <th className="py-2 pr-4 text-right font-medium">{t('orders.detail.unit')}</th>
-                        <th className="py-2 text-right font-medium">{t('orders.detail.total')}</th>
+                        <th scope="col" className="py-2 pr-4 font-medium">{t('orders.detail.product')}</th>
+                        <th scope="col" className="py-2 pr-4 font-medium">{t('orders.detail.sku')}</th>
+                        <th scope="col" className="py-2 pr-4 text-center font-medium">{t('orders.detail.qty')}</th>
+                        <th scope="col" className="py-2 pr-4 text-right font-medium">{t('orders.detail.unit')}</th>
+                        <th scope="col" className="py-2 text-right font-medium">{t('orders.detail.total')}</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -216,7 +216,7 @@ export function ProductsList() {
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 text-left text-slate-400 dark:border-slate-700 dark:text-slate-500">
-                    <th className="w-10 py-3 pr-2">
+                    <th scope="col" className="w-10 py-3 pr-2">
                       <Checkbox
                         checked={allSelected}
                         indeterminate={someSelected}
@@ -225,11 +225,11 @@ export function ProductsList() {
                         slotProps={{ input: { 'aria-label': t('products.selectAll') } }}
                       />
                     </th>
-                    <th className="py-3 pr-4 font-medium">{t('products.columns.product')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('products.columns.inventory')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('products.columns.category')}</th>
-                    <th className="py-3 pr-4 font-medium">{t('products.columns.price')}</th>
-                    <th className="py-3 pr-4 text-right font-medium">
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('products.columns.product')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('products.columns.inventory')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('products.columns.category')}</th>
+                    <th scope="col" className="py-3 pr-4 font-medium">{t('products.columns.price')}</th>
+                    <th scope="col" className="py-3 pr-4 text-right font-medium">
                       {t('products.columns.action')}
                     </th>
                   </tr>

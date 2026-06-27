@@ -101,16 +101,16 @@
 - [x] RTK Query cache invalidation after all mutations.
 - [x] Dark-mode parity on every screen (faithful dark equivalents where mockups are light-only).
 - [x] i18n completeness — EN + RU parity, zero hardcoded display strings.
-- [ ] Accessibility — labelled inputs, focus-trapped dialogs, keyboard-navigable tables/menus.
+- [x] Accessibility — labelled inputs, focus-trapped dialogs, keyboard-navigable tables/menus.
 - [x] README (setup, env, MUI+Tailwind dark-mode approach, multipart helper) (TRD §12).
 - [x] **Endpoint coverage audit against TRD §10** — confirm every required endpoint is implemented.
-- [ ] Final visual QA pass against every mockup in `images/`.
+- [x] Final visual QA pass against every mockup in `images/`.
 
 ---
 
 ## Conventions — decide once, apply everywhere (TRD §13)
 - [x] Status → color map (single source).
-- [~] Locale-aware date / number / currency formatting. *(currency/number done — `shared/lib/format.ts`; date formatting pending)*
-- [ ] Default pagination page size (backend default 20 unless a mockup implies otherwise).
-- [~] Toast copy patterns (success / error). *(global snackbar + `getApiErrorMessage` fallback established; per-entity copy fills in per phase)*
-- [~] Yup validation schemas per entity (translated messages). *(auth schemas done; other entities per phase)*
+- [x] Locale-aware date / number / currency formatting. *(`formatDate`, `formatDateTime`, `formatCurrency`, `formatPriceRange`, `formatCompactCurrency` — all in `shared/lib/format.ts`)*
+- [x] Default pagination page size (PAGE_SIZE = 20 across all list pages).
+- [x] Toast copy patterns (success / error). *(global snackbar + `getApiErrorMessage` + per-entity toast keys in all features)*
+- [x] Yup validation schemas per entity (translated messages). *(all entity schemas complete)*

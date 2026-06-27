@@ -281,6 +281,7 @@ export function BannerSection() {
                   <IconButton
                     size="small"
                     color="error"
+                    aria-label={t('common.delete')}
                     onClick={() => setDeleteTarget({ id: banner.id, title: banner.title })}
                     disabled={isBusy}
                   >
