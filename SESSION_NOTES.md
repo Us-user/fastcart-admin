@@ -147,3 +147,35 @@
 
 **NEXT ACTION (start here):**
 > Begin the **Add product form** (Phase 3, TRD §5.3/§7/§8.1). Run `/design` and open `images/Detail products.png` (the "Products / Add new" form) + the option-value/success modals in the `02 Destructive-*` series BEFORE writing UI. Build at route `/products/new` (replace the placeholder): Information block (name, code, description, **Category→Subcategory linked dropdowns** — only `SubCategoryId` is sent; add a standalone `GET /SubCategories?categoryId` query in `features/catalog`, Brand, **Condition** `BrandNew|Refurbished|Old`), Price block (price/discount/count + `IsTaxable` toggle), Options editor (with value modals), and drop in the existing **`ColorBlock`** + **`TagBlock`** + an Images uploader. Submit via **multipart `POST /Products`** using the `buildFormData` helper — `Options`/`Variants` are `JSON.stringify`'d strings, `Images` binary, `TagIds` repeated (TRD §7) — through the axios `http` instance, then invalidate `Product` LIST. Finish with the "Successfully add" success modal.
+
+---
+
+## Session 6 — 2026-06-27 — Phase 3: Add product form (multipart create)
+
+**Phase:** Phase 3 — Products. Add-product form + multipart create + success modal **done** (3 tasks checked off). Edit product, variant stock, review moderation remain.
+
+**Verified the real `POST /Products` multipart schema against live Swagger first (critical):** fields are `Name, Code, Description, SubCategoryId, BrandId, IsTaxable, Condition, TagIds[], Options(string), Variants(string), Images[]`. **There is NO top-level Price/Discount/Count/ColorIds.** Price/discount/cost/stock live on **Variants** (`AddVariantRequest{ sku, optionValueIds[], price, hasDiscount, discountPrice, costPrice, count, isActive }`). Colors are persisted as **option values** (`OptionRequest.values[] = CreateOptionValueInput{ value, colorId, sortOrder }`). `ProductCondition` enum = `BrandNew|Refurbished|Old` (strings). Swagger cached at `scratchpad/swagger.json`.
+
+**Done this session**
+- **Form route** `/products/new` → `pages/ProductFormPage.tsx` → `features/products/components/ProductForm.tsx` (replaced the placeholder in `app/router/AppRouter.tsx`). Matches `images/Detail products.png`: header breadcrumb "Products / Add new" + Cancel/Save; left white card (Information + Price + Different Options toggle + Options) over a 2-col layout; right column = Colour / Tags / Images cards.
+- **Information block:** name + code row, rich-text Description, and a 2×2 dropdown grid — **Categories, Subcategory, Brands, Condition** (we added Subcategory §6.1 + Condition §6.9 in the mockup's style). Linked dropdowns per §8.1: Subcategory disabled until a Category is picked; only `SubCategoryId` is submitted.
+- **Price block:** price / discount / count + "Add tax for this product" `IsTaxable` Switch.
+- **`OptionsEditor.tsx`** — option rows (name + inline value chips with ×, add-by-Enter/✓) + "Add more"; shown only when the "Different Options" toggle is on. **`ImagesUploader.tsx`** — dashed dropzone + uploaded-file table (thumbnail · name · delete). **`ProductSuccessModal.tsx`** — `03 Message.png` (check badge, "Successfully add", Go to products / + Add new).
+- **`shared/ui/RichTextEditor.tsx`** — description toolbar (Normal · B/I/U · link · ordered/bulleted list · clear) built on `contentEditable` + `document.execCommand` so **no new lib** (TRD §1). Stores HTML.
+- **`features/products/useCreateProduct.ts`** — multipart `POST /Products` via axios `http` + `buildFormData({…}, { stringifyKeys: ['Options','Variants'] })`; `Images` binary, `TagIds` repeated; invalidates `Product` LIST on success.
+- **`features/products/schemas.ts`** (`productSchema` + `ProductFormValues`) and **types** extended (`PRODUCT_CONDITIONS`, `OptionValueInput`, `ProductOptionInput`, `ProductVariantInput`, `EditableOption`, `CreateProductPayload`). Mounted the existing **`ColorBlock`** + **`TagBlock`** (first runtime use). Full EN+RU i18n (`products.form.*`, `products.condition.*`, `validation.{number,positive,integer,min}`).
+- **Verified:** `npm run build` (tsc strict + vite, 895 modules) ✓, `npm run lint` ✓, `npm run format:check` ✓, dev server serves root + transforms `ProductForm.tsx` (HTTP 200) ✓.
+
+**Decisions made**
+- **Linked dropdowns are driven from the `getCategories` cache** (already fetched with `includeSubcategories=true`) — one fetch, verified shape, and it gives sub→parent for the future edit screen. **Did NOT add a standalone `GET /SubCategories?categoryId` query** (deviates from Session 4's note); add it in Phase 9's endpoint-coverage audit if needed.
+- **Create sends one base variant** carrying price/count with `optionValueIds: []` — option-value ids are server-assigned, so per-variant linkage isn't knowable at create. Per-variant options/stock are an **Edit-screen** concern (sectioned saves, §8.3). The mockup only collects one price/count, so this is faithful.
+- **Colors → a synthetic `Color` option** whose values carry `colorId` (the only way the API persists colors; this is what the list `swatches` come from). Built only when colors are selected.
+- **"Discount" = amount off** → `discountPrice = max(0, price − discount)`, `hasDiscount = discount > 0`. **`costPrice` defaults to `price`** (no cost field in the mockup). Both interpretations are documented assumptions to revisit if the backend disagrees.
+- Description stored as **HTML** from the contentEditable editor.
+
+**Open questions / blockers**
+- **Create is unverified end-to-end** — still no admin credentials. The base-variant packaging, synthetic Color option, discount/cost interpretation, and Description-as-HTML all need one real `POST /Products` to confirm. This is the first thing to check once creds exist.
+- Backend slow to cold-start (Render free tier); Swagger fetch took ~a minute.
+
+**NEXT ACTION (start here):**
+> Begin **Edit product** (Phase 3, TRD §5.3/§8.2/§8.3) at `/products/:id/edit` (replace the placeholder). This is **sectioned saves**, not one call: first add `getProduct` (`GET /Products/{id}`) to `productsApi` and inspect its detail shape (options, variants, images, colors) against `scratchpad/swagger.json`. Reuse `ProductForm`'s layout but persist per section via its own endpoint — base fields `PUT /Products/{id}`; images `POST /Products/{id}/images` + `DELETE …/images/{imageId}`; variants `POST/PUT/DELETE …/variants` + `PUT …/variants/{variantId}/stock`; options `POST/PUT/DELETE …/options`. On open, derive the Category from the product's subcategory to pre-fill **both** linked dropdowns (§8.2). Then variant stock management, then review moderation (`GET /products/{id}/reviews`, `DELETE /reviews/{id}`, §6.8).

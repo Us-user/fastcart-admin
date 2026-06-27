@@ -27,7 +27,11 @@
     "passwordMin": "Password must be at least {{count}} characters",
     "passwordsMatch": "Passwords do not match",
     "maxLength": "Must be at most {{count}} characters",
-    "hexCode": "Enter a valid hex color (e.g. #00599C)"
+    "hexCode": "Enter a valid hex color (e.g. #00599C)",
+    "number": "Enter a valid number",
+    "positive": "Must be greater than 0",
+    "integer": "Must be a whole number",
+    "min": "Must be at least {{count}}"
   },
   "permissions": {
     "title": "Insufficient permissions",
@@ -114,7 +118,57 @@
     "toast": {
       "deleted": "Product deleted",
       "bulkDeleted_one": "{{count}} product deleted",
-      "bulkDeleted_other": "{{count}} products deleted"
+      "bulkDeleted_other": "{{count}} products deleted",
+      "created": "Product created"
+    },
+    "condition": {
+      "brandNew": "Brand new",
+      "refurbished": "Refurbished",
+      "old": "Old"
+    },
+    "form": {
+      "breadcrumbAdd": "Add new",
+      "information": "Information",
+      "productName": "Product name",
+      "code": "Code",
+      "description": "Description",
+      "category": "Categories",
+      "subcategory": "Subcategory",
+      "selectCategoryFirst": "Select a category first",
+      "brand": "Brands",
+      "condition": "Condition",
+      "price": "Price",
+      "productPrice": "Product price",
+      "discount": "Discount",
+      "count": "Count",
+      "addTax": "Add tax for this product",
+      "differentOptions": "Different Options",
+      "differentOptionsHint": "This product has multiple options",
+      "options": "Options",
+      "optionN": "Option {{n}}",
+      "value": "Value",
+      "addValue": "Add value",
+      "addMore": "Add more",
+      "removeOption": "Remove option",
+      "colour": "Colour",
+      "tags": "Tags",
+      "images": "Images",
+      "image": "Image",
+      "fileName": "File name",
+      "normal": "Normal",
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "link": "Insert link",
+      "linkPrompt": "Enter a URL",
+      "orderedList": "Numbered list",
+      "bulletList": "Bulleted list",
+      "clearFormatting": "Clear formatting",
+      "discountMax": "Discount can't exceed the price",
+      "successTitle": "Successfully add",
+      "successMessage": "Do you want to add new product to your store?",
+      "goToProducts": "Go to products",
+      "addNew": "Add new"
     }
   },
   "catalog": {
