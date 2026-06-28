@@ -12,7 +12,7 @@ import {
   useUpdateProductVariantMutation,
   useUpdateVariantStockMutation,
 } from '../productsApi';
-import type { ProductDetailOption, ProductDetailVariant, ProductVariantInput } from '../types';
+import type { AddVariantRequest, ProductDetailOption, ProductDetailVariant } from '../types';
 import { card, sectionTitle } from './editStyles';
 
 interface ProductVariantsSectionProps {
@@ -22,10 +22,11 @@ interface ProductVariantsSectionProps {
 }
 
 /**
- * Variants section of the edit screen (TRD §5.3, §8.3). Each variant's price /
- * discount / cost / active state saves via `PUT …/variants/{id}`, its stock via
- * the dedicated `PUT …/variants/{id}/stock` endpoint, and delete via `DELETE`.
- * New variants are created with `POST …/variants` (option-value picks → ids).
+ * Variants section of the edit screen (TRD §5.3, §8.3). Pricing now lives on the
+ * product (edited in the Information section), so a variant only carries its SKU,
+ * stock and active state. SKU/active save via `PUT …/variants/{id}`, stock via the
+ * dedicated `PUT …/variants/{id}/stock` endpoint, and delete via `DELETE`. New
+ * variants are created with `POST …/variants` (option-value picks → ids).
  */
 export function ProductVariantsSection({
   productId,
@@ -81,11 +82,6 @@ function VariantRow({ productId, variant }: VariantRowProps) {
   const snackbar = useSnackbar();
 
   const [sku, setSku] = useState(variant.sku ?? '');
-  const [price, setPrice] = useState(String(variant.price));
-  const [discountPrice, setDiscountPrice] = useState(
-    variant.discountPrice == null ? '' : String(variant.discountPrice),
-  );
-  const [costPrice, setCostPrice] = useState('');
   const [isActive, setIsActive] = useState(variant.isActive);
   const [stock, setStock] = useState(String(variant.stockCount));
   const [confirmingDelete, setConfirmingDelete] = useState(false);
@@ -95,24 +91,12 @@ function VariantRow({ productId, variant }: VariantRowProps) {
   const [deleteVariant, { isLoading: deleting }] = useDeleteProductVariantMutation();
 
   const save = async () => {
-    const priceNum = numberOrNull(price);
-    if (priceNum == null || priceNum <= 0) {
-      snackbar.error(t('validation.positive'));
-      return;
-    }
-    const discount = numberOrNull(discountPrice);
-    const cost = numberOrNull(costPrice);
     try {
       await updateVariant({
         productId,
         variantId: variant.id,
         body: {
           sku: sku.trim() || null,
-          price: priceNum,
-          hasDiscount: discount != null && discount > 0,
-          discountPrice: discount,
-          // Detail doesn't expose costPrice — only send it when explicitly entered.
-          ...(cost != null ? { costPrice: cost } : {}),
           isActive,
         },
       }).unwrap();
@@ -161,41 +145,13 @@ function VariantRow({ productId, variant }: VariantRowProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="flex flex-wrap items-end gap-3">
         <TextField
           label={t('products.edit.sku')}
           value={sku}
           onChange={(e) => setSku(e.target.value)}
           size="small"
         />
-        <TextField
-          label={t('products.form.productPrice')}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          type="number"
-          size="small"
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
-        />
-        <TextField
-          label={t('products.edit.discountPrice')}
-          value={discountPrice}
-          onChange={(e) => setDiscountPrice(e.target.value)}
-          type="number"
-          size="small"
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
-        />
-        <TextField
-          label={t('products.edit.costPrice')}
-          value={costPrice}
-          onChange={(e) => setCostPrice(e.target.value)}
-          type="number"
-          size="small"
-          placeholder={t('products.edit.unchanged')}
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
-        />
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
         <div className="flex items-end gap-2">
           <TextField
             label={t('products.edit.stock')}
@@ -211,7 +167,7 @@ function VariantRow({ productId, variant }: VariantRowProps) {
           </Button>
         </div>
 
-        <label className="flex cursor-pointer items-center gap-1.5">
+        <label className="flex cursor-pointer items-center gap-1.5 pb-1.5">
           <Switch size="small" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />
           <span className="text-sm text-slate-700 dark:text-slate-200">
             {t('products.edit.active')}
@@ -252,9 +208,6 @@ function AddVariantRow({ productId, options, onDone }: AddVariantRowProps) {
   const [addVariant, { isLoading: creating }] = useAddProductVariantMutation();
 
   const [sku, setSku] = useState('');
-  const [price, setPrice] = useState('');
-  const [discountPrice, setDiscountPrice] = useState('');
-  const [costPrice, setCostPrice] = useState('');
   const [count, setCount] = useState('0');
   /** optionId → selected value id. */
   const [picks, setPicks] = useState<Record<number, number>>({});
@@ -263,14 +216,7 @@ function AddVariantRow({ productId, options, onDone }: AddVariantRowProps) {
     setPicks((prev) => ({ ...prev, [optionId]: valueId }));
 
   const save = async () => {
-    const priceNum = numberOrNull(price);
-    if (priceNum == null || priceNum <= 0) {
-      snackbar.error(t('validation.positive'));
-      return;
-    }
     const countNum = numberOrNull(count) ?? 0;
-    const discount = numberOrNull(discountPrice);
-    const cost = numberOrNull(costPrice);
     const optionValueIds = options
       .map((o) => picks[o.id])
       .filter((id): id is number => typeof id === 'number');
@@ -280,13 +226,9 @@ function AddVariantRow({ productId, options, onDone }: AddVariantRowProps) {
       return;
     }
 
-    const body: ProductVariantInput = {
+    const body: AddVariantRequest = {
       sku: sku.trim() || null,
       optionValueIds,
-      price: priceNum,
-      hasDiscount: discount != null && discount > 0,
-      discountPrice: discount,
-      costPrice: cost ?? priceNum,
       count: countNum,
       isActive: true,
     };
@@ -326,36 +268,12 @@ function AddVariantRow({ productId, options, onDone }: AddVariantRowProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3">
         <TextField
           label={t('products.edit.sku')}
           value={sku}
           onChange={(e) => setSku(e.target.value)}
           size="small"
-        />
-        <TextField
-          label={t('products.form.productPrice')}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          type="number"
-          size="small"
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
-        />
-        <TextField
-          label={t('products.edit.discountPrice')}
-          value={discountPrice}
-          onChange={(e) => setDiscountPrice(e.target.value)}
-          type="number"
-          size="small"
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
-        />
-        <TextField
-          label={t('products.edit.costPrice')}
-          value={costPrice}
-          onChange={(e) => setCostPrice(e.target.value)}
-          type="number"
-          size="small"
-          slotProps={{ htmlInput: { min: 0, step: '0.01' } }}
         />
         <TextField
           label={t('products.edit.stock')}

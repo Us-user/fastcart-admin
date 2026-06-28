@@ -112,9 +112,9 @@ export function ProductImagesSection({ productId, images }: ProductImagesSection
                 key={img.id}
                 className="group relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-800"
               >
-                {img.imageUrl ? (
+                {img.url ? (
                   <img
-                    src={img.imageUrl}
+                    src={img.url}
                     alt=""
                     className="h-full w-full object-cover"
                     loading="lazy"

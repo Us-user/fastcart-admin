@@ -467,7 +467,7 @@
                                   "username":  "Username",
                                   "email":  "Email",
                                   "phone":  "Phone",
-                                  "roles":  "Roles"
+                                  "roles":  "Role"
                               },
                   "detail":  {
                                  "title":  "User details",
@@ -475,9 +475,16 @@
                                  "email":  "Email",
                                  "phone":  "Phone",
                                  "joined":  "Joined",
-                                 "roles":  "Roles",
-                                 "noRoles":  "No roles assigned",
-                                 "removeRole":  "Remove role"
+                                 "roles":  "Role",
+                                 "noRoles":  "No role assigned",
+                                 "removeRole":  "Remove role",
+                                 "cantManageRole":  "You can’t manage this role",
+                                 "assignHint":  "Higher roles already include the permissions of lower ones, so a user has a single role. You can only assign roles below your own level.",
+                                 "selectRole":  "Select role",
+                                 "saveRole":  "Save role",
+                                 "roleUpdated":  "Role updated",
+                                 "needRole":  "A user must have a role.",
+                                 "noAssignableRoles":  "You can’t assign any roles."
                              },
                   "empty":  {
                                 "title":  "No users found",

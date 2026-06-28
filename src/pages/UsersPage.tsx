@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { UserDetailModal } from '@/features/users/components/UserDetailModal';
 import { useDeleteUserMutation, useGetUsersQuery } from '@/features/users/usersApi';
 import type { UserListItem } from '@/features/users/types';
+import { primaryRole } from '@/shared/lib/roles';
 import { getApiErrorMessage } from '@/shared/lib/apiError';
 import { useSnackbar } from '@/shared/lib/useSnackbar';
 import { ConfirmDialog } from '@/shared/ui/ConfirmDialog';
@@ -133,15 +134,16 @@ export function UsersPage() {
                       <TableCell>{user.email ?? '—'}</TableCell>
                       <TableCell>{user.phoneNumber ?? '—'}</TableCell>
                       <TableCell>
-                        <div className="flex flex-wrap gap-1">
-                          {user.roles.length > 0 ? (
-                            user.roles.map((role) => (
-                              <Chip key={role} label={role} size="small" color="primary" variant="outlined" />
-                            ))
-                          ) : (
-                            <span className="text-xs text-slate-400">{t('users.noRoles')}</span>
-                          )}
-                        </div>
+                        {primaryRole(user.roles) ? (
+                          <Chip
+                            label={primaryRole(user.roles)}
+                            size="small"
+                            color="primary"
+                            variant="outlined"
+                          />
+                        ) : (
+                          <span className="text-xs text-slate-400">{t('users.noRoles')}</span>
+                        )}
                       </TableCell>
                       <TableCell align="right">
                         <Tooltip title={t('users.viewDetail')}>

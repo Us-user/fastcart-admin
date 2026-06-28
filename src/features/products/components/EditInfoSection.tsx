@@ -55,12 +55,19 @@ export function EditInfoSection({ detail, tagIds }: EditInfoSectionProps) {
     resolver,
     defaultValues: {
       name: detail.name,
-      code: detail.code,
+      code: detail.code ?? '',
       description: detail.description ?? '',
       categoryId: detail.categoryId ?? '',
       subCategoryId: detail.subCategoryId,
       brandId: detail.brand?.id ?? '',
-      condition: detail.condition,
+      condition: detail.condition ?? 'BrandNew',
+      price: detail.price,
+      // Pre-fill the "amount off" from the stored discounted price.
+      discount:
+        detail.hasDiscount && detail.discountPrice != null
+          ? Number((detail.price - detail.discountPrice).toFixed(2))
+          : '',
+      costPrice: '',
       isTaxable: detail.isTaxable,
     },
   });
@@ -70,6 +77,11 @@ export function EditInfoSection({ detail, tagIds }: EditInfoSectionProps) {
   const subCategoryOptions = selectedCategory?.subCategories ?? [];
 
   const onSubmit = handleSubmit(async (data) => {
+    const price = Number(data.price);
+    const discount = data.discount === '' || data.discount == null ? 0 : Number(data.discount);
+    const hasDiscount = discount > 0;
+    const costPrice =
+      data.costPrice === '' || data.costPrice == null ? undefined : Number(data.costPrice);
     try {
       await updateBase({
         id: detail.id,
@@ -81,6 +93,11 @@ export function EditInfoSection({ detail, tagIds }: EditInfoSectionProps) {
           brandId: data.brandId === '' || data.brandId == null ? null : Number(data.brandId),
           isTaxable: data.isTaxable,
           condition: data.condition,
+          price,
+          hasDiscount,
+          discountPrice: hasDiscount ? Math.max(0, price - discount) : null,
+          // Detail doesn't expose costPrice — only send it when explicitly entered.
+          ...(costPrice != null ? { costPrice } : {}),
           tagIds,
         },
       }).unwrap();
@@ -225,6 +242,42 @@ export function EditInfoSection({ detail, tagIds }: EditInfoSectionProps) {
               ))}
             </TextField>
           )}
+        />
+      </div>
+
+      <h3 className="mb-3 mt-6 text-sm font-bold text-slate-900 dark:text-white">
+        {t('products.form.price')}
+      </h3>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <TextField
+          {...register('price')}
+          type="number"
+          placeholder={t('products.form.productPrice')}
+          error={Boolean(errors.price)}
+          helperText={errors.price?.message}
+          slotProps={{
+            htmlInput: { 'aria-label': t('products.form.productPrice'), min: 0, step: '0.01' },
+          }}
+        />
+        <TextField
+          {...register('discount')}
+          type="number"
+          placeholder={t('products.form.discount')}
+          error={Boolean(errors.discount)}
+          helperText={errors.discount?.message}
+          slotProps={{
+            htmlInput: { 'aria-label': t('products.form.discount'), min: 0, step: '0.01' },
+          }}
+        />
+        <TextField
+          {...register('costPrice')}
+          type="number"
+          placeholder={t('products.edit.costPrice')}
+          error={Boolean(errors.costPrice)}
+          helperText={errors.costPrice?.message ?? t('products.edit.unchanged')}
+          slotProps={{
+            htmlInput: { 'aria-label': t('products.edit.costPrice'), min: 0, step: '0.01' },
+          }}
         />
       </div>
 

@@ -23,9 +23,9 @@ export interface TopProductItem {
   name: string;
   imageUrl: string | null;
   categoryName: string | null;
-  sales: number;
-  units: number;
-  price: number;
+  sales?: number;
+  units?: number;
+  price?: number;
 }
 
 /** One row from `GET /admin/dashboard/recent-transactions?take` */

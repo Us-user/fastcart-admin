@@ -1,11 +1,11 @@
 import { baseApi } from '@/shared/api/baseApi';
 import type { ApiEnvelope, PagedResult } from '@/shared/api/types';
 import type {
+  AddVariantRequest,
   GetProductsArgs,
   ProductDetail,
   ProductListItem,
   ProductOptionInput,
-  ProductVariantInput,
   UpdateProductRequest,
   UpdateVariantRequest,
 } from './types';
@@ -110,7 +110,7 @@ export const productsApi = baseApi.injectEndpoints({
     }),
 
     /* --- Variants --- */
-    addProductVariant: builder.mutation<void, { productId: number; body: ProductVariantInput }>({
+    addProductVariant: builder.mutation<void, { productId: number; body: AddVariantRequest }>({
       query: ({ productId, body }) => ({
         url: `/Products/${productId}/variants`,
         method: 'POST',

@@ -7,20 +7,25 @@ export interface ProductSwatch {
   hexCode: string;
 }
 
-/** A row in `GET /Products` (the list payload — not the full product). */
+/**
+ * A row in `GET /Products` (the list payload — not the full product).
+ * Pricing now lives at the product level (`price`/`discountPrice`/
+ * `effectivePrice`), not as a per-variant range.
+ */
 export interface ProductListItem {
   id: number;
   name: string;
-  code: string;
+  code: string | null;
   brandName: string | null;
   categoryName: string | null;
   subCategoryName: string | null;
   primaryImageUrl: string | null;
-  fromPrice: number;
-  maxPrice: number;
+  price: number;
+  discountPrice: number | null;
+  effectivePrice: number;
   hasDiscount: boolean;
   inStock: boolean;
-  condition: ProductCondition;
+  condition: ProductCondition | null;
   isNew: boolean;
   avgRating: number;
   reviewCount: number;
@@ -65,14 +70,24 @@ export interface ProductOptionInput {
   values: OptionValueInput[];
 }
 
+/** One variant's value on a single option axis, referenced by name + value
+ *  (option values have no ids yet at create time). */
+export interface CreateVariantOption {
+  optionName: string;
+  value: string;
+}
+
 /**
- * One variant inside the stringified `Variants` array (server `AddVariantRequest`).
- * Price / discount / cost / stock live on the variant, NOT at the product level —
- * so even a simple product is created with a single base variant (TRD §7).
+ * One variant inside the multipart create payload's stringified `Variants` array.
+ * The new backend requires every variant to pick exactly one value for each option
+ * axis (`optionValues`, verified live), so the form sends the full combination
+ * matrix — not a single empty base variant. Price/discount/cost are ignored by the
+ * create endpoint (the product-level price is set via `PUT /Products/{id}` right
+ * after create), but kept here harmlessly.
  */
 export interface ProductVariantInput {
   sku?: string | null;
-  optionValueIds: number[];
+  optionValues: CreateVariantOption[];
   price: number;
   hasDiscount: boolean;
   discountPrice?: number | null;
@@ -112,12 +127,12 @@ export interface CreateProductPayload {
  * documented in Swagger (responses are `200 undefined`).
  * ------------------------------------------------------------------ */
 
-/** A stored product image. No seeded product has images, so `imageUrl` is the
- *  assumed field name (mirrors the list's `primaryImageUrl`); confirm on first
- *  real upload. */
+/** A stored product image (`GET /Products/{id}` → `images[]`). */
 export interface ProductImage {
   id: number;
-  imageUrl: string | null;
+  url: string | null;
+  isPrimary: boolean;
+  sortOrder: number;
 }
 
 /** Brand summary on the product detail. */
@@ -155,14 +170,13 @@ export interface ProductVariantOptionRef {
   value: string;
 }
 
-/** A variant on the detail — price/discount/cost/stock all live here (TRD §7). */
+/**
+ * A variant on the detail. Pricing moved to the product level, so a variant now
+ * carries only its SKU, stock, active state and the option values that define it.
+ */
 export interface ProductDetailVariant {
   id: number;
   sku: string | null;
-  price: number;
-  hasDiscount: boolean;
-  discountPrice: number | null;
-  effectivePrice: number;
   stockCount: number;
   isActive: boolean;
   options: ProductVariantOptionRef[];
@@ -172,14 +186,14 @@ export interface ProductDetailVariant {
 export interface ProductDetail {
   id: number;
   name: string;
-  code: string;
+  code: string | null;
   description: string | null;
   brand: ProductBrandRef | null;
   categoryId: number | null;
   categoryName: string | null;
   subCategoryId: number;
   subCategoryName: string | null;
-  condition: ProductCondition;
+  condition: ProductCondition | null;
   isTaxable: boolean;
   createdAt: string;
   images: ProductImage[];
@@ -188,8 +202,10 @@ export interface ProductDetail {
   variants: ProductDetailVariant[];
   avgRating: number;
   reviewCount: number;
-  fromPrice: number;
-  maxPrice: number;
+  price: number;
+  hasDiscount: boolean;
+  discountPrice: number | null;
+  effectivePrice: number;
   inStock: boolean;
 }
 
@@ -198,7 +214,8 @@ export interface ProductDetail {
  * its own endpoint; bodies verified against Swagger.
  * ------------------------------------------------------------------ */
 
-/** Base fields — `PUT /Products/{id}` (`UpdateProductRequest`). No price/variants. */
+/** Base fields — `PUT /Products/{id}` (`UpdateProductRequest`). Pricing now lives
+ *  on the product, so price/discount/cost are part of this base save. */
 export interface UpdateProductRequest {
   name: string;
   code: string;
@@ -207,7 +224,20 @@ export interface UpdateProductRequest {
   brandId?: number | null;
   isTaxable: boolean;
   condition: ProductCondition;
+  price: number;
+  hasDiscount: boolean;
+  discountPrice?: number | null;
+  costPrice?: number | null;
   tagIds: number[];
+}
+
+/** New variant — `POST /Products/{id}/variants` (`AddVariantRequest`). Price/cost
+ *  are no longer per-variant; a variant is just its SKU, stock and option picks. */
+export interface AddVariantRequest {
+  sku?: string | null;
+  optionValueIds: number[];
+  count: number;
+  isActive: boolean;
 }
 
 /** Variant update — `PUT /Products/{id}/variants/{variantId}` (`UpdateVariantRequest`).
@@ -216,10 +246,6 @@ export interface UpdateProductRequest {
  *  `count` is updated through the dedicated stock endpoint instead. */
 export interface UpdateVariantRequest {
   sku?: string | null;
-  price?: number | null;
-  hasDiscount?: boolean | null;
-  discountPrice?: number | null;
-  costPrice?: number | null;
   count?: number | null;
   isActive?: boolean | null;
 }

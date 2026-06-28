@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { getApiErrorMessage } from '@/shared/lib/apiError';
-import { formatPriceRange } from '@/shared/lib/format';
+import { formatCurrency } from '@/shared/lib/format';
 import { getStatusPillClasses } from '@/shared/lib/statusColors';
 import { useSnackbar } from '@/shared/lib/useSnackbar';
 import { ConfirmDialog } from '@/shared/ui/ConfirmDialog';
@@ -293,7 +293,16 @@ export function ProductsList() {
                           {product.categoryName ?? '—'}
                         </td>
                         <td className="py-3 pr-4 text-slate-900 dark:text-white">
-                          {formatPriceRange(product.fromPrice, product.maxPrice, i18n.language)}
+                          {product.hasDiscount ? (
+                            <span className="flex items-center gap-2">
+                              <span>{formatCurrency(product.effectivePrice, i18n.language)}</span>
+                              <span className="text-xs text-slate-400 line-through dark:text-slate-500">
+                                {formatCurrency(product.price, i18n.language)}
+                              </span>
+                            </span>
+                          ) : (
+                            formatCurrency(product.price, i18n.language)
+                          )}
                         </td>
                         <td className="py-3 pr-4">
                           <div className="flex items-center justify-end gap-1">

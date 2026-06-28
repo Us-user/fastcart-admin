@@ -18,6 +18,7 @@ import { productSchema, type ProductFormValues } from '../schemas';
 import {
   PRODUCT_CONDITIONS,
   type CreateProductPayload,
+  type CreateVariantOption,
   type EditableOption,
   type ProductCondition,
   type ProductOptionInput,
@@ -33,6 +34,21 @@ const CONDITION_LABEL: Record<ProductCondition, string> = {
   Refurbished: 'products.condition.refurbished',
   Old: 'products.condition.old',
 };
+
+/**
+ * Cartesian product of every option's values → one combination per variant, each
+ * picking exactly one value on every axis (what the backend requires). With no
+ * options this returns a single empty combination (a variant with no axes).
+ */
+function buildVariantMatrix(options: ProductOptionInput[]): CreateVariantOption[][] {
+  return options.reduce<CreateVariantOption[][]>(
+    (acc, opt) =>
+      acc.flatMap((combo) =>
+        opt.values.map((v) => [...combo, { optionName: opt.name, value: v.value }]),
+      ),
+    [[]],
+  );
+}
 
 const DEFAULT_VALUES: ProductFormValues = {
   name: '',
@@ -134,21 +150,25 @@ export function ProductForm() {
       }
     }
 
-    // Price/stock live on the variant, never at product level (TRD §7).
-    const variant: ProductVariantInput = {
-      sku: data.code.trim() || null,
-      optionValueIds: [],
+    // The backend wants one variant per option combination, each picking exactly
+    // one value on every axis. Build the cartesian product of all option values;
+    // with no options this yields a single variant with no axis values.
+    const combinations = buildVariantMatrix(optionInputs);
+    const code = data.code.trim();
+    const variants: ProductVariantInput[] = combinations.map((combo) => ({
+      sku: combo.length ? `${code}-${combo.map((c) => c.value).join('-')}` : code || null,
+      optionValues: combo,
       price,
       hasDiscount,
       discountPrice: hasDiscount ? Math.max(0, price - discount) : null,
       costPrice: price,
       count,
       isActive: true,
-    };
+    }));
 
     const payload: CreateProductPayload = {
       name: data.name.trim(),
-      code: data.code.trim(),
+      code,
       description: data.description || undefined,
       subCategoryId: Number(data.subCategoryId),
       brandId: data.brandId === '' || data.brandId == null ? undefined : Number(data.brandId),
@@ -156,7 +176,7 @@ export function ProductForm() {
       condition: data.condition,
       tagIds,
       options: optionInputs,
-      variants: [variant],
+      variants,
       images,
     };
 

@@ -1,20 +1,26 @@
+import { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutlined';
 import {
   Button,
   Chip,
-  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
+  FormControl,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   Skeleton,
   Tooltip,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
+import { useAppSelector } from '@/app/hooks';
+import { selectCurrentUser } from '@/features/auth/authSlice';
 import { getApiErrorMessage } from '@/shared/lib/apiError';
 import { formatDate } from '@/shared/lib/format';
+import { canManageRole, primaryRole, roleRank } from '@/shared/lib/roles';
 import { useSnackbar } from '@/shared/lib/useSnackbar';
 import {
   useAssignRoleMutation,
@@ -37,24 +43,61 @@ export function UserDetailModal({ userId, onClose }: Props) {
   const { data: allRoles = [] } = useGetRolesQuery();
   const [assignRole, { isLoading: isAssigning }] = useAssignRoleMutation();
   const [removeRole, { isLoading: isRemoving }] = useRemoveRoleMutation();
+  const busy = isAssigning || isRemoving;
 
-  const userRoleNames = new Set(user?.roles ?? []);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const myRoles = currentUser?.roles ?? [];
+  const myRolesKey = myRoles.join(',');
 
-  const handleAssign = async (roleId: string, roleName: string) => {
-    if (!userId) return;
-    try {
-      await assignRole({ userId, body: { roleId } }).unwrap();
-      snackbar.success(t('users.toast.roleAssigned', { role: roleName }));
-    } catch (err) {
-      snackbar.error(getApiErrorMessage(err, t('common.saveError')));
+  // A user has one effective role (its highest level — roles are cumulative).
+  const mainRole = user ? primaryRole(user.roles) : null;
+  // The admin can change a user's role only when that role is below their own.
+  const canEditMain = mainRole == null || canManageRole(myRoles, mainRole);
+
+  // Roles the admin may grant — strictly below their own — shown low → high.
+  const assignableRoles = allRoles
+    .filter((role) => canManageRole(myRoles, role.name))
+    .sort((a, b) => roleRank(a.name) - roleRank(b.name));
+
+  // Single selected role name ('' = none chosen yet).
+  const [selected, setSelected] = useState('');
+  useEffect(() => {
+    if (!user) {
+      setSelected('');
+      return;
     }
-  };
+    const mine = myRolesKey ? myRolesKey.split(',') : [];
+    const main = primaryRole(user.roles);
+    setSelected(main && canManageRole(mine, main) ? main : '');
+  }, [user, myRolesKey]);
 
-  const handleRemove = async (roleId: string, roleName: string) => {
-    if (!userId) return;
+  // Saving sets the user to exactly the selected role: assign it, then drop every
+  // other role the admin is allowed to manage (so one role remains).
+  const manageableCurrent = (user?.roles ?? []).filter((name) => canManageRole(myRoles, name));
+  const needAdd = selected !== '' && !manageableCurrent.includes(selected);
+  const willRemove = manageableCurrent.filter((name) => name !== selected);
+  const dirty = needAdd || willRemove.length > 0;
+
+  const saveRole = async () => {
+    if (!userId || !user) return;
+    if (selected === '') {
+      snackbar.error(t('users.detail.needRole'));
+      return;
+    }
+    const target = allRoles.find((r) => r.name === selected);
+    if (!target) return;
+    const toRemove = allRoles.filter(
+      (r) => manageableCurrent.includes(r.name) && r.name !== selected,
+    );
+    if (!needAdd && toRemove.length === 0) return;
     try {
-      await removeRole({ userId, roleId }).unwrap();
-      snackbar.success(t('users.toast.roleRemoved', { role: roleName }));
+      if (needAdd) {
+        await assignRole({ userId, body: { roleId: target.id } }).unwrap();
+      }
+      for (const role of toRemove) {
+        await removeRole({ userId, roleId: role.id }).unwrap();
+      }
+      snackbar.success(t('users.detail.roleUpdated'));
     } catch (err) {
       snackbar.error(getApiErrorMessage(err, t('common.saveError')));
     }
@@ -120,52 +163,57 @@ export function UserDetailModal({ userId, onClose }: Props) {
               </div>
             </div>
 
-            {/* Roles */}
+            {/* Role */}
             <div>
-              <p className="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-200">
+              <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
                 {t('users.detail.roles')}
               </p>
-              {allRoles.length === 0 ? (
-                <p className="text-sm text-slate-400">{t('users.detail.noRoles')}</p>
+              <p className="mb-3 text-xs text-slate-400 dark:text-slate-500">
+                {t('users.detail.assignHint')}
+              </p>
+
+              {!canEditMain ? (
+                // The user's level is at or above the admin's — read-only.
+                <Tooltip title={t('users.detail.cantManageRole')}>
+                  <span>
+                    <Chip label={mainRole} size="small" color="primary" disabled />
+                  </span>
+                </Tooltip>
+              ) : assignableRoles.length === 0 ? (
+                <p className="text-sm text-slate-400">{t('users.detail.noAssignableRoles')}</p>
               ) : (
-                <div className="flex flex-wrap gap-2">
-                  {allRoles.map((role) => {
-                    const assigned = userRoleNames.has(role.name);
-                    return (
-                      <Chip
-                        key={role.id}
-                        label={role.name}
-                        color={assigned ? 'primary' : 'default'}
-                        variant={assigned ? 'filled' : 'outlined'}
-                        size="small"
-                        disabled={isAssigning || isRemoving}
-                        deleteIcon={
-                          assigned ? (
-                            <Tooltip title={t('users.detail.removeRole')}>
-                              <DeleteOutlineIcon />
-                            </Tooltip>
-                          ) : undefined
-                        }
-                        onDelete={assigned ? () => handleRemove(role.id, role.name) : undefined}
-                        onClick={!assigned ? () => handleAssign(role.id, role.name) : undefined}
-                        sx={{ cursor: assigned ? 'default' : 'pointer' }}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-              {(isAssigning || isRemoving) && (
-                <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
-                  <CircularProgress size={12} />
-                  {t('common.loading')}
+                <div className="flex items-start gap-2">
+                  <FormControl fullWidth size="small">
+                    <InputLabel id="role-select-label">{t('users.detail.selectRole')}</InputLabel>
+                    <Select
+                      labelId="role-select-label"
+                      label={t('users.detail.selectRole')}
+                      value={selected}
+                      onChange={(e) => setSelected(e.target.value)}
+                    >
+                      {assignableRoles.map((role) => (
+                        <MenuItem key={role.id} value={role.name}>
+                          {role.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <Button
+                    variant="contained"
+                    onClick={saveRole}
+                    disabled={!dirty || busy}
+                    sx={{ flexShrink: 0, mt: 0.25 }}
+                  >
+                    {t('users.detail.saveRole')}
+                  </Button>
                 </div>
               )}
             </div>
           </div>
         )}
 
-        <div className="mt-4 flex justify-end">
-          <Button variant="contained" onClick={onClose}>
+        <div className="mt-6 flex justify-end">
+          <Button variant="outlined" color="inherit" onClick={onClose}>
             {t('common.cancel')}
           </Button>
         </div>

@@ -58,7 +58,7 @@ export function TopSellingProducts() {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold text-green-600 dark:text-green-400">
-                    {formatCompactCurrency(product.sales, i18n.language)}
+                    {formatCompactCurrency(product.sales ?? 0, i18n.language)}
                   </p>
                   <p className="text-xs text-gray-400">{t('dashboard.inSales')}</p>
                 </div>

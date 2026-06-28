@@ -36,7 +36,13 @@ export const productSchema = (t: TFunction) =>
       .transform(emptyToUndefined)
       .typeError(t('validation.required'))
       .required(t('validation.required')),
-    brandId: yup.number().transform(emptyToUndefined).optional(),
+    // Brand is required by the create endpoint (POST /Products rejects a missing
+    // brand with "Brand not found").
+    brandId: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.required'))
+      .required(t('validation.required')),
     condition: yup
       .mixed<ProductCondition>()
       .oneOf(['BrandNew', 'Refurbished', 'Old'])
@@ -87,8 +93,8 @@ export interface ProductFormValues {
 
 /**
  * Base-info schema for the Edit screen (TRD §8.3). The base `PUT /Products/{id}`
- * persists only the non-price fields — price/stock live on variants and are
- * managed in their own section — so this is the product form minus price/count.
+ * now persists product-level pricing too (price/discount/cost moved off variants),
+ * so the edit Information section owns those fields — mirroring the Add form.
  */
 export const productBaseSchema = (t: TFunction) =>
   yup.object({
@@ -118,6 +124,29 @@ export const productBaseSchema = (t: TFunction) =>
       .mixed<ProductCondition>()
       .oneOf(['BrandNew', 'Refurbished', 'Old'])
       .required(t('validation.required')),
+    price: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.number'))
+      .required(t('validation.required'))
+      .positive(t('validation.positive')),
+    discount: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.number'))
+      .min(0, t('validation.min', { count: 0 }))
+      .test('discount-le-price', t('products.form.discountMax'), function (value) {
+        const price = this.parent.price as number | undefined;
+        if (value == null || price == null) return true;
+        return value <= price;
+      })
+      .optional(),
+    costPrice: yup
+      .number()
+      .transform(emptyToUndefined)
+      .typeError(t('validation.number'))
+      .min(0, t('validation.min', { count: 0 }))
+      .optional(),
     isTaxable: yup.boolean().required(),
   });
 
@@ -130,5 +159,9 @@ export interface ProductBaseFormValues {
   subCategoryId: number | '';
   brandId: number | '';
   condition: ProductCondition;
+  price: number | '';
+  /** Amount off the price (matches the Add form); persisted as a discount price. */
+  discount: number | '';
+  costPrice: number | '';
   isTaxable: boolean;
 }

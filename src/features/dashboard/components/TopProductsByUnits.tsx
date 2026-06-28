@@ -55,10 +55,10 @@ export function TopProductsByUnits() {
                     </div>
                   </td>
                   <td className="py-3 text-right text-gray-600 dark:text-gray-300">
-                    {formatCurrency(product.price, i18n.language)}
+                    {formatCurrency(product.price ?? 0, i18n.language)}
                   </td>
                   <td className="py-3 text-right font-medium text-gray-900 dark:text-white">
-                    {product.units.toLocaleString(i18n.language)}
+                    {(product.units ?? 0).toLocaleString(i18n.language)}
                   </td>
                 </tr>
               ))}

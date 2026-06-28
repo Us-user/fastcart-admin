@@ -404,3 +404,47 @@
 
 **NEXT ACTION (start here):**
 > **Project is complete.** All phases (0–9) and conventions are checked off. The remaining action is **end-to-end verification with real admin credentials**: login → confirm `GET /Auth/me` roles → create/edit/delete one Product → check one Order → load Dashboard. Reconcile any field name mismatches between assumed response shapes and actual backend responses (see per-session open questions for specifics). No new screens or features are needed.
+
+---
+
+## Session 14 — 2026-06-28 — Live backend reconciliation: product pricing moved to product level + product create rewrite + roles redesign
+
+**Phase:** Post-delivery maintenance. Got **real admin credentials** this session (admin@gmail.com), so reconciled the live backend against the assumed shapes — the backend had changed in three areas.
+
+**Done this session**
+
+- **Pricing moved variant → product level (verified live).** The backend now keeps `price`/`hasDiscount`/`discountPrice`/`effectivePrice` on the **product**, not the variant. Reconciled:
+  - `features/products/types.ts`: `ProductListItem` (dropped `fromPrice`/`maxPrice` → `price`/`discountPrice`/`effectivePrice`; `code`/`condition` now nullable); `ProductImage` (`imageUrl` → **`url`**, + `isPrimary`/`sortOrder`); `ProductDetailVariant` (removed all price fields — now just `id`/`sku`/`stockCount`/`isActive`/`options`); `ProductDetail` (product-level price block, nullable `code`/`condition`); `UpdateProductRequest` (+`price`/`hasDiscount`/`discountPrice`/`costPrice`); new `AddVariantRequest` (`{sku,optionValueIds,count,isActive}`, no price); `UpdateVariantRequest` (price fields removed); `ProductVariantInput` now create-only with `optionValues` + price.
+  - `ProductsList.tsx`: price column uses `effectivePrice`/`price` (struck original on discount), was `formatPriceRange(fromPrice,maxPrice)`.
+  - `ProductImagesSection.tsx`: `img.url`.
+  - `ProductVariantsSection.tsx`: removed price/discount/cost fields from variant add+edit rows (variants are SKU/stock/active/options only). `addProductVariant` body → `AddVariantRequest`.
+  - `EditInfoSection.tsx` + `schemas.ts`: product-level price/discount/cost added to the base `PUT /Products/{id}` save (the Information section now owns pricing); **brand made required on create** (not edit).
+  - Dashboard `TopProductsByUnits.tsx`/`TopSellingProducts.tsx`/`types.ts`: top-products `price`/`sales`/`units` made optional + `?? 0` guards (backend may omit them).
+
+- **Product create rewritten + verified end-to-end live** (`useCreateProduct.ts` + `ProductForm.tsx`):
+  - **Two-step create**: `POST /Products` (multipart) then `PUT /Products/{id}` to set the product-level price. Confirmed live that the multipart create has **no top-level price field** and **ignores variant price** → product is created with `price:0`, so the PUT is required. `extractCreatedId()` reads the new id from the POST response (it returns the full product).
+  - **Variant matrix**: the form now sends one variant per option combination, each as `optionValues: [{ optionName, value }]` (verified by live trial — `options:[…]` and `values:[…]` fail with "Duplicate variant option combination"/"Validation failed"; **`optionValues` is the correct field**). `buildVariantMatrix()` = cartesian product of all option values.
+  - **Brand required** — `POST /Products` rejects a missing brand with "Brand not found".
+  - Live-verified: simple product, 1-axis (Color), and 2-axis (Size×Color) all create correctly; price PUT sets price/discount. 4 test products (ids 101–104) created then **deleted**.
+
+- **Roles redesign** (backend roles are now **Boss / SuperAdmin / Admin / Customer**):
+  - New `src/shared/lib/roles.ts`: hierarchy **Boss > SuperAdmin > Admin > Customer** (confirmed with user — Boss is top). Exports `roleRank`, `highestRoleRank`, `canManageRole` (assign strictly-below own level), `primaryRole` (highest = effective level).
+  - `UserDetailModal.tsx`: replaced multi-chip toggles with a **single-select** (one role per user). Shows only roles the signed-in admin may grant, ascending (Customer→Admin→SuperAdmin). Save normalizes the user to exactly the chosen role (assign it, drop other manageable roles). Can't leave a user role-less. A user whose level is ≥ the admin's is shown **read-only**.
+  - `UsersPage.tsx`: list shows the single **primary** (highest) role; column renamed "Role".
+  - i18n: `users.detail.*` keys reworked (`selectRole`/`saveRole`/`roleUpdated`/`needRole`/`noAssignableRoles`/`cantManageRole`/`assignHint`) + column header → singular, EN + RU.
+
+- **Verified:** `npm run build` (tsc strict + vite) ✓, `npm run lint` ✓.
+
+**Decisions made**
+- **Role hierarchy: Boss > SuperAdmin > Admin > Customer** (user-confirmed; Boss highest). Single source: `src/shared/lib/roles.ts` — change `RANK_BY_NAME` to adjust.
+- **One role per user** model (roles are cumulative — a higher role implies the lower; `primaryRole` = effective level). UI enforces single-select even though the backend stores a role *set*.
+- **Product create is two-step** (POST then PUT for price) because the multipart create has no price field and ignores variant price. Variant option selections use **`optionValues: [{optionName,value}]`**.
+- Product-image field is **`url`** (product images only — Categories/Banners/Sliders still use `imageUrl`; verified the rename is product-scoped).
+
+**Open questions / blockers**
+- **Role assign/remove not tested live** — the auto-mode classifier blocks privilege mutations on the shared backend, so the roles flow is verified only by types/lint + reasoning. User should click through assign/remove in the Users screen once.
+- A throwaway **Customer** test account (`probe1782650708@example.com`) was registered on the live backend during earlier create-probing and left in place (harmless; there's no self-serve user delete for it beyond the admin endpoint).
+- `GET /admin/roles` returns all 4 roles for everyone (not filtered server-side) — assignable filtering is purely client-side, but the backend still enforces on assign.
+
+**NEXT ACTION (start here):**
+> **Verify the roles flow in the running app as admin** (`admin@gmail.com`): open a user in **Users**, confirm the single-select shows only Customer/Admin/SuperAdmin (not Boss), assign a role and confirm the list shows the new primary role. If the backend later exposes an assignable-roles endpoint, switch `UserDetailModal` from the client-side `canManageRole` filter to that. Otherwise the app is fully reconciled with the live backend — no open feature work.
