@@ -6,7 +6,7 @@ export const tagsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getTags: builder.query<Tag[], void>({
       query: () => ({ url: '/Tags' }),
-      transformResponse: (raw: ApiEnvelope<Tag[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<Tag[]>) => raw.data ?? [],
       providesTags: (result) =>
         result
           ? [

@@ -34,7 +34,8 @@ export function LoginPage() {
   const onSubmit = handleSubmit(async (values) => {
     try {
       const res = await login({ login: values.email, password: values.password }).unwrap();
-      dispatch(setCredentials({ accessToken: res.accessToken, refreshToken: res.refreshToken }));
+      const { accessToken, refreshToken } = res.data;
+      dispatch(setCredentials({ accessToken, refreshToken }));
       navigate(from, { replace: true });
     } catch (err) {
       snackbar.error(getApiErrorMessage(err, t('auth.loginError')));

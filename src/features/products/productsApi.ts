@@ -55,7 +55,7 @@ export const productsApi = baseApi.injectEndpoints({
     }),
     getRelatedProducts: builder.query<ProductListItem[], number>({
       query: (id) => `/Products/${id}/related`,
-      transformResponse: (raw: ApiEnvelope<ProductListItem[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<ProductListItem[]>) => raw.data ?? [],
     }),
     deleteProduct: builder.mutation<void, number>({
       query: (id) => ({ url: `/Products/${id}`, method: 'DELETE' }),

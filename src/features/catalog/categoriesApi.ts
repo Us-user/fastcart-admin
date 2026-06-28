@@ -12,7 +12,7 @@ export const categoriesApi = baseApi.injectEndpoints({
       // Subcategories are fetched inline so the master–detail panel (TRD §6.1)
       // reads them from the same cache as the grid.
       query: () => ({ url: '/Categories', params: { includeSubcategories: true } }),
-      transformResponse: (raw: ApiEnvelope<Category[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<Category[]>) => raw.data ?? [],
       providesTags: (result) =>
         result
           ? [

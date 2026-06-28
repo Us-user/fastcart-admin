@@ -6,7 +6,7 @@ export const bannersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getBanners: builder.query<Banner[], void>({
       query: () => '/admin/banners',
-      transformResponse: (raw: ApiEnvelope<Banner[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<Banner[]>) => raw.data ?? [],
       providesTags: (result) =>
         result
           ? [

@@ -35,11 +35,24 @@ export interface LoginRequest {
   password: string;
 }
 
-/** `POST /Auth/login` response: access + refresh tokens (user info is fetched via /Auth/me). */
-export interface LoginResponse {
+/** Wrapped API envelope returned by this backend for most endpoints. */
+export interface ApiEnvelope<T> {
+  success: boolean;
+  message: string | null;
+  data: T;
+  errors: unknown;
+}
+
+export interface LoginData {
   accessToken: string;
   refreshToken: string;
+  accessTokenExpiresAt?: string;
+  tokenType?: string;
+  user?: AuthMeResponse;
 }
+
+/** `POST /Auth/login` response: wrapped envelope containing tokens + user. */
+export type LoginResponse = ApiEnvelope<LoginData>;
 
 export interface ForgotPasswordRequest {
   email: string;

@@ -27,7 +27,8 @@ export const dashboardApi = baseApi.injectEndpoints({
         url: '/admin/dashboard/revenue',
         params: { year: arg?.year },
       }),
-      transformResponse: (raw: ApiEnvelope<RevenueDataPoint[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<RevenueDataPoint[]>) =>
+        Array.isArray(raw.data) ? raw.data : [],
       providesTags: [{ type: 'Dashboard', id: 'REVENUE' }],
     }),
 
@@ -36,7 +37,8 @@ export const dashboardApi = baseApi.injectEndpoints({
         url: '/admin/dashboard/top-products',
         params: { metric: arg?.metric, take: arg?.take },
       }),
-      transformResponse: (raw: ApiEnvelope<TopProductItem[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<TopProductItem[]>) =>
+        Array.isArray(raw.data) ? raw.data : [],
       providesTags: (_r, _e, arg) => [
         { type: 'Dashboard', id: `TOP_${String(arg?.metric ?? 'sales').toUpperCase()}` },
       ],
@@ -47,7 +49,8 @@ export const dashboardApi = baseApi.injectEndpoints({
         url: '/admin/dashboard/recent-transactions',
         params: { take: arg?.take },
       }),
-      transformResponse: (raw: ApiEnvelope<RecentTransaction[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<RecentTransaction[]>) =>
+        Array.isArray(raw.data) ? raw.data : [],
       providesTags: [{ type: 'Dashboard', id: 'TRANSACTIONS' }],
     }),
   }),

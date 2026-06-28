@@ -4,7 +4,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { FullScreenLoader } from '@/shared/ui/FullScreenLoader';
 import { useGetMeQuery } from './authApi';
-import { clearCredentials, selectIsAdmin, selectIsAuthenticated, setUser } from './authSlice';
+import { clearCredentials, selectIsAuthenticated, setUser } from './authSlice';
 
 /**
  * Gate for authenticated routes (TRD §3.2/§3.3). Also the auth-bootstrap point:
@@ -44,7 +44,8 @@ export function RequireAuth() {
  * already resolved; non-admins are sent to the "Insufficient permissions" screen.
  */
 export function RequireAdmin() {
-  const isAdmin = useAppSelector(selectIsAdmin);
+  const { data: user } = useGetMeQuery();
+  const isAdmin = Boolean(user?.roles?.some((r) => r.toLowerCase() === 'admin'));
   if (!isAdmin) {
     return <Navigate to="/no-access" replace />;
   }

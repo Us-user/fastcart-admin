@@ -6,7 +6,7 @@ export const slidersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getSliders: builder.query<Slider[], void>({
       query: () => '/admin/sliders',
-      transformResponse: (raw: ApiEnvelope<Slider[]>) => raw.data,
+      transformResponse: (raw: ApiEnvelope<Slider[]>) => raw.data ?? [],
       providesTags: (result) =>
         result
           ? [

@@ -43,6 +43,7 @@ export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: (body) => ({ url: '/Auth/login', method: 'POST', body }),
+      invalidatesTags: ['Auth'],
     }),
     logout: builder.mutation<void, { refreshToken: string }>({
       query: (body) => ({ url: '/Auth/logout', method: 'POST', body }),
@@ -58,7 +59,8 @@ export const authApi = baseApi.injectEndpoints({
     }),
     getMe: builder.query<AuthUser, void>({
       query: () => ({ url: '/Auth/me' }),
-      transformResponse: (raw: AuthMeResponse) => mapToAuthUser(raw),
+      transformResponse: (raw: AuthMeResponse | { data: AuthMeResponse }) =>
+        mapToAuthUser('data' in raw ? raw.data : raw),
       providesTags: ['Auth'],
     }),
   }),

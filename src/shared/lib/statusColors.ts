@@ -51,10 +51,11 @@ function normalize(status: string): string {
   return status.toLowerCase().replace(/[\s_-]/g, '');
 }
 
-export function getStatusTone(status: string): StatusTone {
+export function getStatusTone(status: string | null | undefined): StatusTone {
+  if (!status) return DEFAULT_TONE;
   return STATUS_TONE[normalize(status)] ?? DEFAULT_TONE;
 }
 
-export function getStatusPillClasses(status: string): string {
+export function getStatusPillClasses(status: string | null | undefined): string {
   return TONE_CLASSES[getStatusTone(status)];
 }

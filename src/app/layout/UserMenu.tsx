@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { selectCurrentUser } from '@/features/auth/authSlice';
+import { useGetMeQuery } from '@/features/auth/authApi';
 import { useLogout } from '@/features/auth/useLogout';
 import { selectThemeMode, toggleThemeMode } from '@/features/theme/themeSlice';
 
@@ -19,7 +19,7 @@ export function UserMenu() {
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const mode = useAppSelector(selectThemeMode);
-  const user = useAppSelector(selectCurrentUser);
+  const { data: user } = useGetMeQuery();
   const logout = useLogout();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 

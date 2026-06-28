@@ -6,9 +6,13 @@ import { storeRef } from './storeRef';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-interface RefreshResponse {
+interface RefreshData {
   accessToken: string;
   refreshToken?: string;
+}
+interface RefreshResponse {
+  success: boolean;
+  data: RefreshData;
 }
 
 let refreshPromise: Promise<string | null> | null = null;
@@ -38,16 +42,17 @@ async function performRefresh(): Promise<string | null> {
   try {
     // Bare axios call (not the shared `http` instance) so this request bypasses
     // the 401 interceptor and cannot trigger a refresh loop.
-    const { data } = await axios.post<RefreshResponse>(`${API_BASE}/api/v1/Auth/refresh`, {
+    const { data: envelope } = await axios.post<RefreshResponse>(`${API_BASE}/api/v1/Auth/refresh`, {
       refreshToken,
     });
+    const tokenData = envelope.data ?? (envelope as unknown as RefreshData);
     storeRef.store?.dispatch(
       setCredentials({
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken ?? refreshToken,
+        accessToken: tokenData.accessToken,
+        refreshToken: tokenData.refreshToken ?? refreshToken,
       }),
     );
-    return data.accessToken;
+    return tokenData.accessToken;
   } catch {
     handleRefreshFailure();
     return null;

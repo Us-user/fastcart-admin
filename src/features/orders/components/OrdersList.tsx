@@ -288,7 +288,8 @@ function OrderRow({ order, isSelected, lang, onToggle, onClick, t }: OrderRowPro
   );
 }
 
-function StatusPill({ status }: { status: string }) {
+function StatusPill({ status }: { status: string | null | undefined }) {
+  if (!status) return null;
   return (
     <span
       className={`inline-block rounded-md px-2.5 py-1 text-xs font-medium ${getStatusPillClasses(status)}`}
